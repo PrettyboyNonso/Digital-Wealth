@@ -10,8 +10,8 @@ const Contact = () => {
         </p>
       </div>
 
-      <div className="flex-shrink-0 flex-grow-0 basis-[50%] items-center justify-start flex flex-col">
-        <form action="" className="flex gap-3">
+      <div className="flex-shrink-0 flex-grow-0 basis-[50%] items-end justify-start flex flex-col">
+        <form action="" className="flex gap-4">
           <input
             type="text"
             placeholder="Enter your email"
@@ -21,9 +21,11 @@ const Contact = () => {
             subscribe
           </button>
         </form>
-        <small className="mt-1 text-white font-medium text-xs flex gap-3">
-          Your data are protected. We care about your privacy
-        </small>
+        <div className="w-96 flex justify-start">
+          <small className="mt-1 text-white font-medium text-xs px-1">
+            Your data are protected. We care about your privacy
+          </small>
+        </div>
       </div>
     </div>
   );

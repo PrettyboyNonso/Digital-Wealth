@@ -40,7 +40,7 @@ const Testimonials = () => {
 
   const TestimonialCard = ({ testimony, name, location }: testi) => {
     return (
-      <div className="border-2 border-solid flex-shrink-0 flex-grow-0 basis-[24%] min-h-fit px-2 py-3 rounded-md ">
+      <div className="border-2 border-yellow-700 flex-shrink-0 flex-grow-0 basis-[24%] min-h-fit px-2 py-3 rounded-md ">
         <p className="text-xs font-medium font-mons">{testimony}</p>
 
         <div className="flex w-full justify-between items-center mt-5">
