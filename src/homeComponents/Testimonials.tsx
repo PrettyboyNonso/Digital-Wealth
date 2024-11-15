@@ -41,14 +41,14 @@ const Testimonials = () => {
   const TestimonialCard = ({ testimony, name, location }: testi) => {
     return (
       <div className="border-2 border-solid flex-shrink-0 flex-grow-0 basis-[24%] min-h-fit px-2 py-3 rounded-md ">
-        <p className="text-sm font-medium font-mons">{testimony}</p>
+        <p className="text-xs font-medium font-mons">{testimony}</p>
 
         <div className="flex w-full justify-between items-center mt-5">
           <div>
-            <h2 className="font-bold font-mons text-sm">{name}</h2>
+            <h2 className="font-bold font-mons text-xs">{name}</h2>
             <div className="flex items-center gap-1 text-xs mt-1">
-              <MapPin className="w-5 h-5" />
-              <p className="font-medium font-mons">{location}</p>
+              <MapPin className="w-4 h-4" />
+              <p className="font-medium font-mons text-xs">{location}</p>
             </div>
           </div>
         </div>
@@ -58,13 +58,13 @@ const Testimonials = () => {
   return (
     <div>
       <div className="w-full flex flex-col items-center">
-        <h1 className="text-3xl uppercase font-mons font-bold flex gap-2">
+        <h1 className="text-2xl uppercase font-mons font-bold flex gap-2">
           <div className="bg-amber-400 px-3 -rotate-2 text-gray-800">
             <h1>world-class</h1>
           </div>{" "}
           customer support
         </h1>
-        <p className="mt-3 capitalize font-mons font-medium text-sm">
+        <p className="mt-3 capitalize font-mons font-medium text-xs">
           don't just take our words for it. Check what our customers say
         </p>
       </div>

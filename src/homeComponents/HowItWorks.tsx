@@ -9,9 +9,11 @@ const HowItWorks = () => {
     paragraph: string;
   }) => {
     return (
-      <div className="flex flex-col flex-shrink-0 flex-grow-0 basis-[23%]">
-        <small className="font-mons font-semibold capitalize">{step}</small>
-        <h2 className="mt-3 font-mons capitalize font-bold text-sm">{head}</h2>
+      <div className="flex flex-col flex-shrink-0 flex-grow-0 basis-[23%] border-b border-t py-2 border-solid">
+        {/* <small className="font-mons font-semibold capitalize">{step}</small> */}
+        <h2 className="mt-3 font-mons capitalize font-bold text-sm text-yellow-700">
+          {head}
+        </h2>
         <p className="font-medium mt-2 text-xs font-mons capitalize">
           {paragraph}
         </p>
@@ -20,7 +22,7 @@ const HowItWorks = () => {
   };
   return (
     <div>
-      <div className="mt-16 w-full flex items-center flex-col">
+      <div className="mt-16 w-full flex items-center flex-col py-4">
         <h4 className="font-mons uppercase text-xs font-bold text-blue-700">
           how it works
         </h4>

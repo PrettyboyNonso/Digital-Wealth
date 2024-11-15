@@ -1,4 +1,5 @@
 import About from "./About";
+import Contact from "./Contact";
 import Faq from "./Faq";
 import Hero from "./Hero";
 import HowItWorks from "./HowItWorks";
@@ -22,6 +23,10 @@ const Home = () => {
       </section>
       <section className="mt-10">
         <Faq />
+      </section>
+
+      <section className="px-10 mt-10">
+        <Contact />
       </section>
     </main>
   );

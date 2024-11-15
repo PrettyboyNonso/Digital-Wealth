@@ -55,7 +55,7 @@ const About = () => {
         />
         <AboutCard
           head="  Enhanced Liquidity"
-          text=" Experience enhanced liquidity with our platform, allowing you to execute trades quickly and efficiently at competitive prices. Our vast network of market makers and liquidity providers ensures seamless trading, even during high volatility periods. This means your trades are filled with minimal slippage and at the best possible rates, enhancing your overall trading experience."
+          text=" Experience enhanced liquidity with our platform, allowing you to execute trades quickly and efficiently at competitive prices. Our vast network of market makers and liquidity providers ensures seamless trading, even during high volatility periods. This means your trades are filled with minimal slippage and at the best possible rates."
           icon={Droplet}
           isDown={true}
         />
