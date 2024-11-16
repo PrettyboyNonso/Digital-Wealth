@@ -36,12 +36,12 @@ const About = () => {
   return (
     <div className="flex flex-col">
       <div className="flex flex-col w-fit">
-        <h1 className="text-xl font-bold capitalize font-mons ">
+        <h1 className=" text-lg md:text-xl font-bold capitalize font-mons ">
           learn <span className="text-orange-700">about</span> us
         </h1>
         <div className="w-9 h-1 bg-green-950 self-end rounded-sm"></div>
       </div>
-      <div className="w-full flex mt-8 gap-4 items-start">
+      <div className="w-full flex flex-col lg:flex-row mt-8 gap-4 items-start flex-wrap">
         <AboutCard
           head=" Unwavering Security"
           text=" Our platform offers unwavering security, utilizing the latest

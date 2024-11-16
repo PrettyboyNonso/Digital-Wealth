@@ -25,7 +25,7 @@ const Home = () => {
         <Faq />
       </section>
 
-      <section className="px-10 mt-10">
+      <section className="px-4 lg:px-10 mt-10">
         <Contact />
       </section>
     </main>

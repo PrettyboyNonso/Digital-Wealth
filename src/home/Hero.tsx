@@ -4,9 +4,9 @@ const Hero = () => {
   const HeroSlides = ({ head, paragraph, video, button, index }: HeroProps) => {
     return (
       <div
-        className={`mt-3 w-full min-h-[400px] absolute flex-shrink-0 flex-grow-0 basis-full ${index}`}
+        className={`mt-0 lg:mt-3 w-full min-h-dvh md:min-h-[400px] absolute flex-shrink-0 flex-grow-0 basis-full ${index}`}
       >
-        <video
+        {/* <video
           className="absolute top-0 left-0 w-full h-full object-cover"
           autoPlay
           loop
@@ -15,14 +15,14 @@ const Hero = () => {
         >
           <source src={video} type="video/mp4" />
           Your browser does not support the video tag.
-        </video>
+        </video> */}
 
-        <div className="absolute z-10 text-white bg-black bg-opacity-60 h-full w-full py-28 px-10">
-          <h1 className="text-2xl font-mons capitalize">{head}</h1>
-          <p className="mt-2 max-w-[50%] font-mons font-medium text-sm">
+        <div className="absolute z-10 text-white bg-black bg-opacity-60 h-full w-full py-44 px-6 lg:py-28 lg:px-10">
+          <h1 className="text-xl lg:text-2xl font-mons capitalize">{head}</h1>
+          <p className="mt-2 lg:max-w-[50%] max-w-[90%] font-mons font-medium text-sm">
             {paragraph}
           </p>
-          <button className="mt-4 capitalize text-xs font-mons bg-green-950 px-4 py-3">
+          <button className="lg:mt-4 mt-8 capitalize text-xs font-mons bg-green-950 px-4 py-3">
             {button}
           </button>
         </div>
@@ -31,7 +31,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative w-full min-h-[430px] overflow-hidden">
+    <div className="relative w-full min-h-dvh md:min-h-[430px] overflow-hidden">
       <div className="w-full h-full transition-transform duration-500 hide-scrollbar relative">
         <HeroSlides
           head="  Trade with Confidence on a Trusted Platform"

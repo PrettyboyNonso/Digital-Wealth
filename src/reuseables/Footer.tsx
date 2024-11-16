@@ -2,13 +2,13 @@ import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
-    <footer className="w-full border border-solid  max-h-full py-8 px-8">
-      <div className="w-full flex items-end">
-        <div className="flex-shrink-0 flex-grow-0 basis-[50%]">
+    <footer className="w-full border border-solid  max-h-full md:py-8 md:px-8 px-6 py-4 static bottom-0">
+      <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-0">
+        <div className="flex-shrink-0 flex-grow-0 basis-[100%] md:basis-[50%]">
           <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[30%] text-lg">
             digital <span className="text-orange-600">wealth</span>
           </h1>
-          <ul className="flex gap-4 mt-3 capitalize font-mons font-semibold text-xs">
+          <ul className="flex gap-4 mt-3 capitalize font-mons font-medium text-xs">
             <li>home</li>
             <li>about</li>
             <li>faq</li>
@@ -17,7 +17,7 @@ const Footer = () => {
           </ul>
         </div>
 
-        <div className="flex-shrink-0 flex flex-grow-0 basis-[50%] justify-end gap-12">
+        <div className="flex-shrink-0 flex flex-grow-0 basis-[100%] md:basis-[50%] md:justify-end gap-6 md:gap-12">
           <Link to="/register">
             <button className="bg-orange-950 px-4 text-xs capitalize font-mons font-semibold py-2 w-fit h-fit text-white rounded-sm">
               register

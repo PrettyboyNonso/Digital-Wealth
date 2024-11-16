@@ -7,12 +7,12 @@ import {
 
 const Faq = () => {
   return (
-    <div className="mt-24">
+    <div className="mt-20 md:mt-24">
       <div className="flex flex-col w-fit px-12">
-        <h1 className="text-xl font-bold capitalize font-mons ">
+        <h1 className="text-lg md:text-xl font-bold capitalize font-mons ">
           frequently <span className="text-orange-700">asked</span> questions
         </h1>
-        <div className="w-9 h-1 bg-green-950 self-end rounded-sm"></div>
+        <div className="w-9 h-1 bg-green-950 self-end rounded-sm hidden md:flex"></div>
       </div>
       <div className="w-full px-12 mt-5">
         <Accordion type="single" collapsible className="min-w-72">

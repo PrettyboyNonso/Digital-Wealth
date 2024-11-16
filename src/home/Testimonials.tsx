@@ -40,7 +40,7 @@ const Testimonials = () => {
 
   const TestimonialCard = ({ testimony, name, location }: testi) => {
     return (
-      <div className="border-2 border-yellow-700 flex-shrink-0 flex-grow-0 basis-[24%] min-h-fit px-2 py-3 rounded-md ">
+      <div className="border-2 border-yellow-700 flex-shrink-0 flex-grow-0 basis-[100%] md:basis-[45%] lg:basis-[23%] min-h-fit px-2 py-3 rounded-md ">
         <p className="text-xs font-medium font-mons">{testimony}</p>
 
         <div className="flex w-full justify-between items-center mt-5">
@@ -58,18 +58,18 @@ const Testimonials = () => {
   return (
     <div>
       <div className="w-full flex flex-col items-center">
-        <h1 className="text-2xl uppercase font-mons font-bold flex gap-2">
-          <div className="bg-amber-400 px-3 -rotate-2 text-gray-800">
+        <h1 className="md:text-2xl text-center text-xl uppercase font-mons font-bold items-start flex md:flex-row flex-col gap-2">
+          <div className="bg-amber-400  px-3 md:-rotate-2 text-gray-800">
             <h1>world-class</h1>
           </div>{" "}
           customer support
         </h1>
-        <p className="mt-3 capitalize font-mons font-medium text-xs">
+        <p className="mt-3 capitalize font-mons font-medium text-xs text-center">
           don't just take our words for it. Check what our customers say
         </p>
       </div>
 
-      <div className="flex gap-6 items-end mt-8">
+      <div className="flex flex-nowrap md:flex-wrap gap-6 items-end mt-8 md:justify-center">
         {testimonials.map((value, index) => (
           <TestimonialCard
             testimony={value.testimony}

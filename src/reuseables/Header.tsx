@@ -2,12 +2,12 @@ import { NavLink } from "react-router-dom";
 
 const Header = () => {
   return (
-    <header className="w-full min-h-fit max-h-full ">
-      <div className="font-mons w-full min-h-16 flex px-6 py-2 items-center  gap-4">
-        <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[30%]">
+    <header className="w-full min-h-fit max-h-full  ">
+      <div className="font-mons w-full min-h-16 flex px-6 items-center gap-4">
+        <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[50%] lg:basis-[30%]">
           digital <span className="text-orange-600">wealth</span>
         </h1>
-        <nav className="flex-shrink-0 flex-grow-0 basis-[40%]">
+        <nav className="hidden lg:flex-shrink-0 lg:flex-grow-0 lg:basis-[40%] lg:block ">
           <ul className="flex justify-around items-center">
             <li className="font-mons capitalize font-semibold text-[13px]">
               <NavLink
@@ -53,7 +53,7 @@ const Header = () => {
           </ul>
         </nav>
 
-        <div className="flex-grow-0 flex-shrink-0 basis-[25%] flex gap-12 items-end justify-end">
+        <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-12 items-end justify-end lg:flex hidden">
           <NavLink to="/register">
             <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-3 py-1">
               register
