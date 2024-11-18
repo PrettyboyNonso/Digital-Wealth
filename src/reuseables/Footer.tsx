@@ -1,8 +1,15 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Footer = () => {
+  const location = useLocation();
+  const showFooter =
+    location.pathname === "/register" || location.pathname === "/login";
   return (
-    <footer className="w-full border border-solid  max-h-full md:py-8 md:px-8 px-6 py-4 static bottom-0">
+    <footer
+      className={`w-full border border-solid  max-h-full md:py-8 md:px-8 px-6 py-4 static bottom-0 ${
+        showFooter && "hidden md:block"
+      }`}
+    >
       <div className="w-full flex flex-col md:flex-row md:items-end justify-between gap-6 md:gap-0">
         <div className="flex-shrink-0 flex-grow-0 basis-[100%] md:basis-[50%]">
           <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[30%] text-lg">

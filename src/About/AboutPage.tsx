@@ -25,14 +25,14 @@ const AboutPage = () => {
     desc: string;
   }) => {
     return (
-      <div className="flex-grow-0 flex-shrink-0 md:basis-[48%] basis-[100%] border border-solid rounded-md py-2 px-4">
+      <div className=" snap-start border-orange-700 flex-grow-0 flex-shrink-0 md:basis-[48%] basis-[80%] border rounded-md py-2 px-4">
         <h2 className="font-bold capitalize font-mons text-sm">{heading}</h2>
         <p className="text-xs font-mons font-medium capitalize mt-2">{desc}</p>
       </div>
     );
   };
   return (
-    <div className="min-h-96 w-full gap-4 px-4 md:px-12 border-t border-solid md:gap-4 flex flex-col lg:flex-row py-8 justify-between items-start">
+    <div className="min-h-96 w-full gap-y-8 px-4 md:px-12 border-t border-solid md:gap-4 flex flex-col lg:flex-row py-8 justify-between md:items-start">
       <div className="flex-grow-0 order-0 flex-shrink-0 basis-[40%] md:border md:border-solid rounded-md capitalize font-mons md:px-4 md:py-8">
         <p className="font-semibold text-xs text-orange-500 uppercase">
           how it started
@@ -68,7 +68,7 @@ const AboutPage = () => {
             className="w-full h-[300px] object-cover rounded-md"
           />
         </div>
-        <div className="flex-grow-0 flex-shrink-0 md:basis-[40%] basis-[100%]  mt-4 flex flex-wrap gap-y-4 justify-between">
+        <div className=" snap-x snap-mandatory gap-x-4 md:gap-x-0 flex-grow-0 flex-shrink-0 w-full md:basis-[40%] basis-[100%] mt-8 overflow-x-auto flex md:flex-wrap md:gap-y-4 md:justify-between">
           {aboutdetailsobj.map((value, index) => (
             <AboutDetailsCard
               heading={value.heading}

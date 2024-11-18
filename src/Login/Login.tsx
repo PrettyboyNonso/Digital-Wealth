@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const Login = () => {
   return (
-    <div className="min-h-[580px] border-t  w-full flex items-start md:gap-4 lg:gap-0 lg:justify-between px-4 md:px-10 py-4">
+    <div className="min-h-[580px] border-t w-full flex items-start md:gap-4 lg:gap-0 lg:justify-between px-4 md:px-10 py-16 md:py-4">
       <div className="flex-shrink-0 flex-grow-0 md:basis-[50%]  lg:basis-[60%] w-full px-4 lg:px-10 py-6">
         <h1 className="font-mons uppercase font-bold  ">
           Log In to your account

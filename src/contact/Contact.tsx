@@ -69,7 +69,7 @@ const ContactPage = () => {
             className="resize-none border border-solid min-h-44 text-xs px-2 w-full lg:w-full font-mons outline-teal-500 py-4 rounded-md md:w-[80%]"
           ></textarea>
 
-          <button className="bg-teal-600 py-2 capitalize font-mons text-xs font-bold text-white rounded-sm w-full md:w-[80%]">
+          <button className="bg-teal-600 py-2 capitalize font-mons text-xs font-bold text-white rounded-sm w-full md:w-[80%] lg:w-[100%]">
             submit
           </button>
         </form>

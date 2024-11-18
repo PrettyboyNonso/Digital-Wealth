@@ -40,7 +40,7 @@ const Testimonials = () => {
 
   const TestimonialCard = ({ testimony, name, location }: testi) => {
     return (
-      <div className="border-2 border-yellow-700 flex-shrink-0 flex-grow-0 basis-[100%] md:basis-[45%] lg:basis-[23%] min-h-fit px-2 py-3 rounded-md ">
+      <div className="border-2 snap-start border-yellow-700 flex-shrink-0 flex-grow-0 basis-[100%] md:basis-[45%] lg:basis-[23%] min-h-fit px-2 py-3 rounded-md ">
         <p className="text-xs font-medium font-mons">{testimony}</p>
 
         <div className="flex w-full justify-between items-center mt-5">
@@ -69,7 +69,7 @@ const Testimonials = () => {
         </p>
       </div>
 
-      <div className="flex flex-nowrap md:flex-wrap gap-6 items-end mt-8 md:justify-center">
+      <div className="flex flex-nowrap md:flex-wrap  w-full gap-6 items-end mt-8 md:justify-center overflow-x-scroll snap-x snap-mandatory">
         {testimonials.map((value, index) => (
           <TestimonialCard
             testimony={value.testimony}

@@ -6,7 +6,7 @@ const Hero = () => {
       <div
         className={`mt-0 lg:mt-3 w-full min-h-dvh md:min-h-[400px] absolute flex-shrink-0 flex-grow-0 basis-full ${index}`}
       >
-        {/* <video
+        <video
           className="absolute top-0 left-0 w-full h-full object-cover"
           autoPlay
           loop
@@ -15,7 +15,7 @@ const Hero = () => {
         >
           <source src={video} type="video/mp4" />
           Your browser does not support the video tag.
-        </video> */}
+        </video>
 
         <div className="absolute z-10 text-white bg-black bg-opacity-60 h-full w-full py-44 px-6 lg:py-28 lg:px-10">
           <h1 className="text-xl lg:text-2xl font-mons capitalize">{head}</h1>
