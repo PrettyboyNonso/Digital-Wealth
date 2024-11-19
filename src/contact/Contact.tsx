@@ -1,6 +1,15 @@
-const ContactPage = () => {
+import { Winners } from "@/App";
+
+const ContactPage = ({
+  userData,
+}: {
+  userData: { name: string; money: number };
+}) => {
   return (
-    <div className="min-h-96 border-t flex flex-col lg:flex-row border-solid px-8 md:px-12 py-4 justify-between">
+    <div className="relative min-h-96 border-t flex flex-col lg:flex-row border-solid px-8 md:px-12 py-4 justify-between">
+      {userData.name !== "" && userData.money !== 0 && (
+        <Winners userData={userData} />
+      )}
       <div className="flex-shrink-0 flex-grow-0 basis-[60%] py-8">
         <h1 className="text-lg md:text-2xl uppercase font-mons font-bold">
           <span className="bg-yellow-500 px-3 py-1">contact</span> us

@@ -1,8 +1,19 @@
+import { Winners } from "@/App";
+import LoginContext from "@/context/LoginContext";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const Login = () => {
+const Login = ({ userData }: { userData: { name: string; money: number } }) => {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("state is mismanaged");
+  }
+  const { loginFunc, LoginerrorMessage } = context;
   return (
-    <div className="min-h-[580px] border-t w-full flex items-start md:gap-4 lg:gap-0 lg:justify-between px-4 md:px-10 py-16 md:py-4">
+    <div className="relative min-h-[580px] border-t w-full flex items-start md:gap-4 lg:gap-0 lg:justify-between px-4 md:px-10 py-16 md:py-4">
+      {userData.name !== "" && userData.money !== 0 && (
+        <Winners userData={userData} />
+      )}
       <div className="flex-shrink-0 flex-grow-0 md:basis-[50%]  lg:basis-[60%] w-full px-4 lg:px-10 py-6">
         <h1 className="font-mons uppercase font-bold  ">
           Log In to your account
@@ -11,11 +22,16 @@ const Login = () => {
           enter your credentials to access your account
         </p>
 
-        <form action="" className="mt-12 w-full flex flex-col gap-6 ">
+        <form
+          action=""
+          className="mt-12 w-full flex flex-col gap-6 "
+          onSubmit={loginFunc}
+        >
           <div className="flex flex-col gap-1 font-mons capitalize font-medium text-[13px]">
             <p>email address</p>
             <input
               type="text"
+              name="email"
               placeholder="Email Address"
               className="h-12 lg:h-10 px-2 outline-teal-600 rounded-md lg:rounded-xl border border-solid w-full lg:w-[80%] text-xs"
             />
@@ -24,22 +40,30 @@ const Login = () => {
             <p>password</p>
             <input
               type="password"
+              name="password"
               placeholder="Enter Password"
               className="h-12 lg:h-10 px-2 outline-teal-600 rounded-md lg:rounded-xl border border-solid w-full lg:w-[80%] text-xs"
             />
           </div>
+
+          <div className="mt-4 lg:w-[80%] w-full">
+            <button
+              className="bg-teal-600 w-full h-10 text-xs capitalize font-mons text-white font-bold rounded-md"
+              type="submit"
+            >
+              login
+            </button>
+            <p className="mt-4 font-medium text-xs font-mons text-red-500">
+              {LoginerrorMessage}
+            </p>
+            <p className="mt-4 font-medium text-xs font-mons capitalize">
+              don't have an account?{" "}
+              <Link to="/register" className="underline text-teal-600">
+                register
+              </Link>
+            </p>
+          </div>
         </form>
-        <div className="mt-4 lg:w-[80%] w-full">
-          <button className="bg-teal-600 w-full h-10 text-xs capitalize font-mons text-white font-bold rounded-md">
-            login
-          </button>
-          <p className="mt-4 font-medium text-xs font-mons capitalize">
-            don't have an account?{" "}
-            <Link to="/register" className="underline text-teal-600">
-              register
-            </Link>
-          </p>
-        </div>
       </div>
       <div className="hidden md:block flex-shrink-0 flex-grow-0 md:basis-[48%] lg:basis-[38%] px-10 py-6 border border-solid rounded-md bg-teal-600">
         <h1 className="uppercase text-white font-mons font-bold">

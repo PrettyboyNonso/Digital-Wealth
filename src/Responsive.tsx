@@ -1,3 +1,4 @@
+import { ArrowUpRight } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Responsive = ({
@@ -52,7 +53,7 @@ const Responsive = ({
           </li>
         </ul>
 
-        <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex flex-col">
+        {/* <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex flex-col">
           <NavLink to="/register" onClick={handleLinkClick}>
             <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-3 py-1">
               register
@@ -64,7 +65,16 @@ const Responsive = ({
               login
             </button>
           </NavLink>
-        </div>
+        </div> */}
+
+        <NavLink
+          to="/dashboard"
+          className="flex-grow-0 flex-shrink-0 basis-[25%]  items-center justify-center flex flex-col"
+        >
+          <button className="rounded-sm flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
+            dashboard <ArrowUpRight className="w-4 h-4" />
+          </button>
+        </NavLink>
       </div>
       <div className="flex-shrink-0 flex-grow-0 bg-black basis-[50%] opacity-[0.3]"></div>
     </div>

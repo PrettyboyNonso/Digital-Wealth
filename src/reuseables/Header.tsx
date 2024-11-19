@@ -1,6 +1,6 @@
 import { stateFunc } from "@/App";
 import Responsive from "@/Responsive";
-import { Menu } from "lucide-react";
+import { ArrowUpRight, Menu } from "lucide-react";
 import { NavLink } from "react-router-dom";
 
 const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
@@ -22,7 +22,9 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
 
   return (
     <>
-      <header className="w-full min-h-fit max-h-full lg:block flex justify-between pr-4 items-center">
+      <header
+        className={`w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center flex`}
+      >
         <div className="font-mons w-full min-h-16 flex px-6 items-center gap-4">
           <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[50%] lg:basis-[30%]">
             digital <span className="text-orange-600">wealth</span>
@@ -80,12 +82,21 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
               </button>
             </NavLink>
 
-            <NavLink to="login">
+            <NavLink to="/login">
               <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-3 py-1">
                 login
               </button>
             </NavLink>
           </div>
+
+          {/* <NavLink
+            to="/dashboard"
+            className="flex-grow-0 flex-shrink-0 basis-[25%] justify-center lg:flex hidden"
+          >
+            <button className="flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
+              dashboard <ArrowUpRight className="w-4 h-4" />
+            </button>
+          </NavLink> */}
         </div>
         <div className="lg:hidden">
           <Menu onClick={openNavClose} />

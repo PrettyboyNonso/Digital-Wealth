@@ -1,4 +1,10 @@
-const AboutPage = () => {
+import { Winners } from "@/App";
+
+const AboutPage = ({
+  userData,
+}: {
+  userData: { name: string; money: number };
+}) => {
   const aboutdetailsobj = [
     {
       heading: "Top-Notch Trading Tools",
@@ -32,7 +38,10 @@ const AboutPage = () => {
     );
   };
   return (
-    <div className="min-h-96 w-full gap-y-8 px-4 md:px-12 border-t border-solid md:gap-4 flex flex-col lg:flex-row py-8 justify-between md:items-start">
+    <div className="min-h-96 w-full gap-y-8 px-4 md:px-12 border-t border-solid md:gap-4 flex flex-col lg:flex-row py-8 justify-between md:items-start relative">
+      {userData.name !== "" && userData.money !== 0 && (
+        <Winners userData={userData} />
+      )}
       <div className="flex-grow-0 order-0 flex-shrink-0 basis-[40%] md:border md:border-solid rounded-md capitalize font-mons md:px-4 md:py-8">
         <p className="font-semibold text-xs text-orange-500 uppercase">
           how it started
