@@ -38,53 +38,56 @@ const AboutPage = ({
     );
   };
   return (
-    <div className="min-h-96 w-full gap-y-8 px-4 md:px-12 border-t border-solid md:gap-4 flex flex-col lg:flex-row py-8 justify-between md:items-start relative">
+    <div className="relative">
       {userData.name !== "" && userData.money !== 0 && (
         <Winners userData={userData} />
       )}
-      <div className="flex-grow-0 order-0 flex-shrink-0 basis-[40%] md:border md:border-solid rounded-md capitalize font-mons md:px-4 md:py-8">
-        <p className="font-semibold text-xs text-orange-500 uppercase">
-          how it started
-        </p>
-        <h1 className="mt-4 text-3xl font-semibold">
-          Our Mission is Empowering Global Trading Success
-        </h1>
-        <p className="md:mt-12 mt-8 text-xs font-medium">
-          At digital wealth, we are committed to empowering traders worldwide
-          with cutting-edge tools, secure platforms, and seamless access to
-          global markets. Our mission is to make trading accessible and
-          efficient for everyone, whether you are a seasoned investor or just
-          beginning your financial journey. With years of experience and a deep
-          understanding of the financial landscape, we have designed a
-          comprehensive trading environment that prioritizes safety,
-          transparency, and user experience. We utilize advanced encryption
-          technology and strict security protocols to safeguard your assets and
-          personal data, so you can trade with confidence. Our platform offers
-          an extensive array of assets, from stocks and forex to
-          cryptocurrencies and commodities, ensuring you have diverse
-          opportunities to grow your investments. We also provide educational
-          resources and market insights, keeping you informed and equipped to
-          make sound trading decisions. At digital wealth, your success is our
-          priority. Join a thriving community of traders who trust us to deliver
-          exceptional service and reliable trading solutions every day.
-        </p>
-      </div>
-      <div className="flex-grow-0 flex-shrink-0 basis-[58%] flex flex-col justify-between order-2">
-        <div className="flex-grow-0 flex-shrink-0 basis-[50%] h-[300px] border border-solid rounded-md">
-          <img
-            src="/vitaly-gariev-YuO3d4XS6yw-unsplash.jpg"
-            alt=""
-            className="w-full h-[300px] object-cover rounded-md"
-          />
+      <div className="min-h-96 w-full gap-y-8 px-4 md:px-12 border-t border-solid md:gap-4 flex flex-col lg:flex-row py-8 justify-between md:items-start">
+        <div className="flex-grow-0 flex-shrink-0 basis-[40%] md:border md:border-solid rounded-md capitalize font-mons md:px-4 md:py-8">
+          <p className="font-semibold text-xs text-orange-500 uppercase">
+            how it started
+          </p>
+          <h1 className="mt-4 text-3xl font-semibold">
+            Our Mission is Empowering Global Trading Success
+          </h1>
+          <p className="md:mt-12 mt-8 text-xs font-medium">
+            At digital wealth, we are committed to empowering traders worldwide
+            with cutting-edge tools, secure platforms, and seamless access to
+            global markets. Our mission is to make trading accessible and
+            efficient for everyone, whether you are a seasoned investor or just
+            beginning your financial journey. With years of experience and a
+            deep understanding of the financial landscape, we have designed a
+            comprehensive trading environment that prioritizes safety,
+            transparency, and user experience. We utilize advanced encryption
+            technology and strict security protocols to safeguard your assets
+            and personal data, so you can trade with confidence. Our platform
+            offers an extensive array of assets, from stocks and forex to
+            cryptocurrencies and commodities, ensuring you have diverse
+            opportunities to grow your investments. We also provide educational
+            resources and market insights, keeping you informed and equipped to
+            make sound trading decisions. At digital wealth, your success is our
+            priority. Join a thriving community of traders who trust us to
+            deliver exceptional service and reliable trading solutions every
+            day.
+          </p>
         </div>
-        <div className=" snap-x snap-mandatory gap-x-4 md:gap-x-0 flex-grow-0 flex-shrink-0 w-full md:basis-[40%] basis-[100%] mt-8 overflow-x-auto flex md:flex-wrap md:gap-y-4 md:justify-between">
-          {aboutdetailsobj.map((value, index) => (
-            <AboutDetailsCard
-              heading={value.heading}
-              desc={value.desc}
-              key={index}
+        <div className="flex-grow-0 flex-shrink-0 basis-[58%] flex flex-col justify-between">
+          <div className="flex-grow-0 flex-shrink-0 basis-[50%] h-[300px] border border-solid rounded-md ">
+            <img
+              src="/vitaly-gariev-YuO3d4XS6yw-unsplash.jpg"
+              alt=""
+              className="w-full h-[300px] object-cover rounded-md"
             />
-          ))}
+          </div>
+          <div className="snap-x snap-mandatory gap-x-4 md:gap-x-0 flex-grow-0 flex-shrink-0 w-full md:basis-[40%] basis-[100%] mt-8 overflow-x-auto flex md:flex-wrap md:gap-y-4 md:justify-between">
+            {aboutdetailsobj.map((value, index) => (
+              <AboutDetailsCard
+                heading={value.heading}
+                desc={value.desc}
+                key={index}
+              />
+            ))}
+          </div>
         </div>
       </div>
     </div>

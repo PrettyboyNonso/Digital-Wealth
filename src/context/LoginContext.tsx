@@ -16,6 +16,12 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [LoginerrorMessage, setLoginErrorMessage] = useState("");
   const [successMessage, setsuccessMessage] = useState("");
 
+  /* this function does the basic javascript auth and returns an object 
+        {fullName: fullName,
+         userEmail: userEmail,
+        userPassword: userPassword,
+        authenticated: true,
+        }  */
   const authenticateLogin = (e: FormEvent<HTMLFormElement>) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     e.preventDefault();
@@ -38,6 +44,14 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     }
   };
 
+  {
+    /* this function does the basic javascript auth and returns an object 
+    {fullName: fullName,
+        userEmail: userEmail,
+        userPassword: userPassword,
+        confirmPassword: confirmPassword,
+        authenticated: true,}  */
+  }
   const authenticateRegister = (e: FormEvent<HTMLFormElement>) => {
     const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
     e.preventDefault();
@@ -62,9 +76,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       }
 
       setErrorMessage("");
-      setsuccessMessage(
-        "An email has been sent to your gmail account, proceed there for further confirmation"
-      );
+
       return {
         fullName: fullName,
         userEmail: userEmail,
@@ -76,14 +88,54 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       setErrorMessage("You left some fields empty");
     }
   };
+
+  // beginning of register function, this is the function called when you click "register button"
   const registerFunction = async (e: FormEvent<HTMLFormElement>) => {
-    const details = authenticateRegister(e);
-    console.log(details?.authenticated);
+    const details = authenticateRegister(e); // details is an object returned from the authenticateRegister function
+    if (details?.authenticated) {
+      const response = await fetch("endpoint goes here", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          name: details.fullName,
+          email: details.userEmail,
+          password: details.confirmPassword,
+        }),
+      });
+
+      if (response.ok) {
+        setsuccessMessage(
+          "An email has been sent to your gmail account, proceed there for further confirmation"
+        );
+        console.log(response.status); // you should get 200 in the console
+      } else {
+        throw new Error("An error occured");
+      }
+    }
   };
 
   const loginFunc = async (e: FormEvent<HTMLFormElement>) => {
     const details = authenticateLogin(e);
-    console.log(details?.authenticated);
+    if (details) {
+      const response = await fetch("endpoint goes here", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: details.userEmail,
+          password: details.userPassword,
+        }),
+      });
+
+      if (response.ok) {
+        console.log("Worked well");
+      } else {
+        throw new Error("an error occured");
+      }
+    }
   };
 
   const values = {

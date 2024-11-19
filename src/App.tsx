@@ -23,13 +23,13 @@ export const Winners = ({
   userData: { name: string; money: number };
 }) => {
   return (
-    <div className="flex gap-3 fixed px-2 py-1 min-w-32 min-h-16 max-w-fit max-h-fit bg-black md:top-96 top-[500px] z-50 rounded-lg border border-orange-400 items-center">
-      <div className="flex-grow-0 flex-shrink-0">
-        <CurrencyDollarIcon className="text-white w-10 h-12" />
+    <div className="flex gap-3 fixed px-2 py-2 min-h-7 max-w-48 bg-black md:top-96 top-[500px] z-50 rounded-lg border border-orange-400 items-center">
+      <div className="flex-grow-0 flex-shrink-0 basis-[20%]">
+        <CurrencyDollarIcon className="text-white w-8 h-8" />
       </div>
-      <div className="flex-shrink-0 flex-grow-0 basis-[50%]">
-        <h2 className="font-mons text-white text-xs capitalize">
-          yay!! <span className="text-green-600">{userData.name}</span> just won{" "}
+      <div className="flex-shrink-0 flex-grow-0 basis-[70%]">
+        <h2 className="font-mons text-white text-xs capitalize overflow-hidden">
+          <span className="text-green-600">{userData.name}</span> just won{" "}
           <span className="text-green-600">{`$${userData.money}`}</span>
         </h2>
       </div>
@@ -52,7 +52,7 @@ function App() {
   };
 
   async function getWinnings() {
-    const newRand = RandInt(5, 15);
+    const newRand = RandInt(2, 5);
     const moneyWon = RandInt(1500, 21500);
     const winnerName = await FetchUsers();
     setCurrentWinner({
