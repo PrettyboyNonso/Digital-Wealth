@@ -1,9 +1,8 @@
-import { Winners } from "@/App";
 import LoginContext from "@/context/LoginContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const Login = ({ userData }: { userData: { name: string; money: number } }) => {
+const Login = () => {
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
@@ -11,9 +10,6 @@ const Login = ({ userData }: { userData: { name: string; money: number } }) => {
   const { loginFunc, LoginerrorMessage } = context;
   return (
     <div className="relative min-h-[580px] border-t w-full flex items-start md:gap-4 lg:gap-0 lg:justify-between px-4 md:px-10 py-16 md:py-4">
-      {userData.name !== "" && userData.money !== 0 && (
-        <Winners userData={userData} />
-      )}
       <div className="flex-shrink-0 flex-grow-0 md:basis-[50%]  lg:basis-[60%] w-full px-4 lg:px-10 py-6">
         <h1 className="font-mons uppercase font-bold  ">
           Log In to your account

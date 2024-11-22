@@ -1,13 +1,9 @@
-import { Winners } from "@/App";
+import Winners from "@/reuseables/Winners";
 import LoginContext from "../context/LoginContext";
 import { useContext } from "react";
 import { Link } from "react-router-dom";
 
-const Register = ({
-  userData,
-}: {
-  userData: { name: string; money: number };
-}) => {
+const Register = () => {
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
@@ -16,9 +12,8 @@ const Register = ({
 
   return (
     <div className="relative min-h-[580px] border-t  w-full flex items-start border border-solid md:gap-4 lg:gap-0 lg:justify-between px-4 lg:px-10 py-4">
-      {userData.name !== "" && userData.money !== 0 && (
-        <Winners userData={userData} />
-      )}
+      <Winners />
+
       <div className="flex-shrink-0 flex-grow-0 basis-[100%] md:basis-[50%] lg:basis-[60%] px-4 lg:px-10 py-6">
         <h1 className="font-mons uppercase font-bold ">get started now</h1>
         <p className="max-w-[100%] mt-1 text-xs capitalize font-mons font-medium text-gray-700">

@@ -1,4 +1,5 @@
-import { createContext, FormEvent, useState } from "react";
+import { CryptoDetails } from "@/lib/utils";
+import React, { createContext, FormEvent, useEffect, useState } from "react";
 
 interface LoginContextType {
   registerFunction: (e: FormEvent<HTMLFormElement>) => void;
@@ -6,6 +7,7 @@ interface LoginContextType {
   successMessage: string;
   loginFunc: (e: FormEvent<HTMLFormElement>) => void;
   LoginerrorMessage: string;
+  assetState: CryptoDetails[];
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
@@ -15,6 +17,45 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [errorMessage, setErrorMessage] = useState("");
   const [LoginerrorMessage, setLoginErrorMessage] = useState("");
   const [successMessage, setsuccessMessage] = useState("");
+  const [assetState, setAssetState] = useState<CryptoDetails[]>([]);
+
+  const getCrypto = async (...ids: string[]) => {
+    const options = {
+      method: "GET",
+      headers: {
+        accept: "application/json",
+        "x-cg-demo-api-key": "CG-BFZ4VisezRhHydG8AwE61kVa",
+      },
+    };
+    const assets = [];
+    for (const id of ids) {
+      try {
+        const url = `https://api.coingecko.com/api/v3/coins/${id}`;
+        const response = await fetch(url, options);
+        const data = await response.json();
+        assets.push(data);
+      } catch (error) {
+        console.log(error);
+      }
+    }
+
+    setAssetState(assets);
+    console.log(assetState);
+  };
+
+  useEffect(() => {
+    getCrypto(
+      "bitcoin",
+      "ethereum",
+      "binancecoin",
+      "cardano",
+      "solana",
+      "ripple",
+      "dogecoin",
+      "polkadot",
+      "litecoin"
+    );
+  }, []);
 
   /* this function does the basic javascript auth and returns an object 
         {fullName: fullName,
@@ -144,6 +185,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     successMessage,
     LoginerrorMessage,
     loginFunc,
+    assetState,
   };
 
   return (
