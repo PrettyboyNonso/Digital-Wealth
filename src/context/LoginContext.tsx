@@ -165,9 +165,9 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       });
 
       if (response.ok) {
-        setsuccessMessage(
-          "An email has been sent to your gmail account, proceed there for further confirmation"
-        );
+        // setsuccessMessage(
+        //   "An email has been sent to your gmail account, proceed there for further confirmation"
+        // );
         console.log(response.status); // you should get 200 in the console
       } else {
         throw new Error("An error occured");
