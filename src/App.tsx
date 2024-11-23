@@ -9,6 +9,7 @@ import Dashboard from "./dashboard/dashboard";
 import Layout from "./layout";
 import Dashboardlayout from "./dashboard/dashboardlayout";
 import Register from "./Login/Register";
+import Auth from "./home/Auth";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -41,6 +42,7 @@ function App() {
             />
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/auth" element={<Auth />} />
           </Routes>
         </main>
       </LoginProvider>
