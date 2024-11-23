@@ -37,7 +37,6 @@ const Winners = () => {
     const interval = setInterval(() => {
       getWinnings();
     }, sec * 1000);
-    console.log("winners", currentWinner);
     return () => clearInterval(interval);
   }, [sec]);
   return (

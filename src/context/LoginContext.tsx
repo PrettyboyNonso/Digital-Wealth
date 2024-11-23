@@ -1,5 +1,11 @@
 import { CryptoDetails } from "@/lib/utils";
-import React, { createContext, FormEvent, useEffect, useState } from "react";
+import React, {
+  createContext,
+  FormEvent,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
 
 interface LoginContextType {
   registerFunction: (e: FormEvent<HTMLFormElement>) => void;
@@ -8,6 +14,10 @@ interface LoginContextType {
   loginFunc: (e: FormEvent<HTMLFormElement>) => void;
   LoginerrorMessage: string;
   assetState: CryptoDetails[];
+  getCrypto: (...ids: string[]) => void;
+  isActive: string;
+  setIsActive: React.Dispatch<React.SetStateAction<string>>;
+  sectionArray: React.MutableRefObject<(HTMLElement | null)[]>;
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
@@ -18,6 +28,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [LoginerrorMessage, setLoginErrorMessage] = useState("");
   const [successMessage, setsuccessMessage] = useState("");
   const [assetState, setAssetState] = useState<CryptoDetails[]>([]);
+  const [isActive, setIsActive] = useState("home");
+  const sectionArray = useRef<(HTMLElement | null)[]>([]);
 
   const getCrypto = async (...ids: string[]) => {
     const options = {
@@ -53,7 +65,13 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       "ripple",
       "dogecoin",
       "polkadot",
-      "litecoin"
+      "litecoin",
+      "tron",
+      "shiba-inu",
+      "avalanche-2",
+      "chainlink",
+      "uniswap",
+      "vechain"
     );
   }, []);
 
@@ -186,6 +204,10 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     LoginerrorMessage,
     loginFunc,
     assetState,
+    getCrypto,
+    isActive,
+    setIsActive,
+    sectionArray,
   };
 
   return (

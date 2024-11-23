@@ -1,9 +1,26 @@
 import { stateFunc } from "@/App";
+import LoginContext from "@/context/LoginContext";
+import { CryptoDetails } from "@/lib/utils";
 import Responsive from "@/Responsive";
 import { Menu } from "lucide-react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
 const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("context is empty");
+  }
+
+  const { assetState, isActive, sectionArray } = context;
+
+  function handleSmoothScroll(index: number) {
+    sectionArray.current[index]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
   function openNavClose() {
     setNavIsOpen((prev: boolean) => {
       const newState = !prev;
@@ -20,9 +37,45 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
     });
   }
 
+  const Coin = ({ coinData }: { coinData: CryptoDetails }) => {
+    return (
+      <div className="flex flex-shrink-0 flex-grow-0 w-fit min-h-10 items-center gap-2">
+        <div className="flex-shrink-0 flex-grow-0  ">
+          <img src={coinData.image.thumb} alt="thumbs" className="" />
+        </div>
+        <div className="flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons text-blue-500">
+          <h3>{coinData.name}</h3>
+        </div>
+        <div className="flex-shrink-0 flex-grow-0 w-fit text-[11px] font-semibold uppercase font-mons text-gray-700">
+          <h3>[{coinData.symbol}]</h3>
+        </div>
+        <div
+          className={`flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons ${
+            coinData.market_data.price_change_percentage_24h > 0
+              ? "text-green-500"
+              : "text-red-500"
+          }`}
+        >
+          <h3>
+            {coinData.market_data.price_change_percentage_24h?.toFixed(1)}%
+          </h3>
+        </div>
+      </div>
+    );
+  };
+
   return (
-    <div className="fixed top-0 z-50 bg-white w-full border-b border-solid">
-      <div className="w-full min-h-10 border border-solid px-10 flex items-center"></div>
+    <div className="fixed top-0 z-50 bg-white w-full border-b border-solid ">
+      <div className="w-full py-2 bg-gray-100 ">
+        <div className="animate-scroll  flex items-center w-full flex-nowrap  gap-6 hide-scrollbar min-h-10">
+          {assetState.map((value, index) => (
+            <Coin coinData={value} key={index} />
+          ))}
+          {assetState.map((value, index) => (
+            <Coin coinData={value} key={index} />
+          ))}
+        </div>
+      </div>
       <header
         className={` w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center flex`}
       >
@@ -35,9 +88,9 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
               <li className="font-mons capitalize font-semibold text-[13px]">
                 <NavLink
                   to="/"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
+                  className={`
+                    ${isActive === "home" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(0)}
                 >
                   home
                 </NavLink>
@@ -45,10 +98,10 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
 
               <li className="font-mons capitalize font-semibold text-[13px]">
                 <NavLink
-                  to="/market"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
+                  to="/"
+                  className={`
+                    ${isActive === "market" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(1)}
                 >
                   market
                 </NavLink>
@@ -56,10 +109,10 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
 
               <li className="font-mons capitalize font-semibold text-[13px]">
                 <NavLink
-                  to="/about"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
+                  to="/"
+                  className={`
+                    ${isActive === "about" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(4)}
                 >
                   about
                 </NavLink>
@@ -67,55 +120,48 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
 
               <li className="font-mons capitalize font-semibold text-[13px]">
                 <NavLink
-                  to="/trading"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
+                  to="/"
+                  className={`
+                    ${isActive === "trade" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(6)}
                 >
                   trading
                 </NavLink>
               </li>
               <li className="font-mons capitalize font-semibold text-[13px]">
                 <NavLink
-                  to="/trading"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
-                >
-                  testimonial
-                </NavLink>
-              </li>
-              <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/trading"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
+                  to="/"
+                  className={`
+                    ${isActive === "plans" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(7)}
                 >
                   plans
                 </NavLink>
               </li>
               <li className="font-mons capitalize font-semibold text-[13px]">
                 <NavLink
-                  to="/trading"
-                  className={({ isActive }) =>
-                    isActive ? "text-teal-600" : "text-black"
-                  }
+                  to="/"
+                  className={`
+                    ${
+                      isActive === "testimonials"
+                        ? "text-teal-600"
+                        : "text-black"
+                    }`}
+                  onClick={() => handleSmoothScroll(8)}
+                >
+                  testimonial
+                </NavLink>
+              </li>
+              <li className="font-mons capitalize font-semibold text-[13px]">
+                <NavLink
+                  to="/"
+                  className={`
+                    ${isActive === "support" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(9)}
                 >
                   support
                 </NavLink>
               </li>
-
-              {/* <li className="font-mons capitalize font-semibold text-[13px]">
-              <NavLink
-                to="/buy"
-                className={({ isActive }) =>
-                  isActive ? "text-teal-600" : "text-black"
-                }
-              >
-                buy crypto
-              </NavLink>
-            </li> */}
             </ul>
           </nav>
 

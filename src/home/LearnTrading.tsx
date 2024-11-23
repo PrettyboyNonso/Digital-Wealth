@@ -138,7 +138,7 @@ const LearnTrading = () => {
               </div>
               <div className="flex gap-1 items-center">
                 <p className="capitalize text-xs font-mons text-gray-400 font-semibold">
-                  4 months
+                  6 months
                 </p>
                 <ChevronDown className="text-gray-500" />
               </div>
