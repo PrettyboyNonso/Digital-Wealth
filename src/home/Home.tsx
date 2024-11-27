@@ -63,21 +63,21 @@ const Home = () => {
         <Hero />
       </section>
       <section
-        className="px-10 -mt-16  relative z-40 py-6"
+        className="px-2 md:px-10 -mt-16  relative z-40 py-6"
         ref={(el) => (sectionArray.current[1] = el)}
         data-id="market"
       >
         <Market />
       </section>
       <section
-        className="px-10  py-6 bg-gray-100 mt-4 min-h-72"
+        className="px-4 lg:px-10  py-6 bg-gray-100 mt-4 min-h-72"
         ref={(el) => (sectionArray.current[2] = el)}
         data-id="market"
       >
         <Benefits />
       </section>
       <section
-        className="px-32 mt-10 "
+        className="px-4 md:px-10 lg:px-32 mt-10 "
         ref={(el) => (sectionArray.current[3] = el)}
         data-id="market"
       >
@@ -99,7 +99,7 @@ const Home = () => {
       </section>
 
       <section
-        className="mt-28 px-10"
+        className="mt-28 px-4 md:px-10"
         ref={(el) => (sectionArray.current[6] = el)}
         data-id="trade"
       >

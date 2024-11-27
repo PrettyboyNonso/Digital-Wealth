@@ -78,11 +78,11 @@ const options: _DeepPartialObject<
 const LearnTrading = () => {
   return (
     <div className="w-full">
-      <div className="w-full flex flex-col items-center  justify-center">
-        <h1 className="font-mons text-2xl font-semibold">
+      <div className="w-full flex flex-col lg:items-center  lg:justify-center">
+        <h1 className="font-mons md:text-xl text-lg lg:text-2xl font-semibold">
           Trade what you want, When you want
         </h1>
-        <p className="max-w-[70%] text-sm font-medium font-mons mt-2">
+        <p className="max-w-[100%] text-xs md:text-sm font-medium font-mons mt-2">
           One of the primary goals of Digital Wealth Trade is to provide the
           best product in the market. Our relationships with leading tier one
           financial institutions mean deep liquidity and tighter spreads for
@@ -90,17 +90,17 @@ const LearnTrading = () => {
         </p>
       </div>
 
-      <div className="flex flex-wrap mt-6 gap-6 px-28">
-        <div className="flex-shrink-0 flex-grow-0 basis-[48%] border border-solid min-h-32 bg-teal-50 flex flex-col items-center py-6 gap-2 rounded-md shadow-xl">
-          <h1 className="text-3xl uppercase font-mons font-bold text-teal-700">
+      <div className="flex flex-wrap mt-6 gap-6 lg:px-28">
+        <div className="flex-shrink-0 flex-grow-0 md:basis-[48%] basis-[100%] px-2 border border-solid min-h-32 bg-teal-50 flex flex-col items-center py-6 gap-2 rounded-md shadow-xl">
+          <h1 className="md:text-3xl text-xl uppercase font-mons font-bold text-teal-700">
             10k+
           </h1>
-          <p className="text-sm capitalize font-semibold font-mons mt-5">
+          <p className="text-sm capitalize font-semibold font-mons md:mt-5 mt-3">
             customers are already benefiting from our website
           </p>
         </div>
-        <div className="flex-shrink-0 flex-grow-0 basis-[48%] border border-solid min-h-32 bg-teal-50 flex flex-col items-center py-6 gap-2 rounded-md shadow-xl">
-          <h2 className="text-md capitalize font-mons font-semibold">
+        <div className="flex-shrink-0 flex-grow-0 md:basis-[48%] basis-[100%] border border-solid min-h-32 bg-teal-50 flex flex-col items-center py-6 gap-2 rounded-md shadow-xl">
+          <h2 className="text-sm capitalize font-mons font-semibold text-center">
             Trade Forex, Indices, Shares & Commodities
           </h2>
           <div className=" w-full flex mt-2 items-end">
@@ -116,20 +116,20 @@ const LearnTrading = () => {
           </div>
         </div>
 
-        <div className=" py-4 px-10 flex-shrink-0 flex-grow-0 basis-[100%] border border-solid min-h-32 rounded-md shadow-xl bg-teal-50 flex items-center">
-          <div className="flex-shrink-0 flex-grow-0 basis-[50%] flex flex-col items-center">
-            <h2 className="font-mons font-semibold text-sm uppercase max-w-[80%]">
+        <div className="py-4 px-4 md:px-10 flex-shrink-0 flex-grow-0 basis-[100%] border border-solid md:min-h-32 min-h-fit rounded-md shadow-xl bg-teal-50 flex flex-col md:flex-row md:items-center">
+          <div className="flex-shrink-0 flex-grow-0 basis-[50%] flex flex-col md:items-center">
+            <h2 className="font-mons font-semibold text-sm uppercase max-w-[100%] md:max-w-[80%]">
               Trade on the go on our dedicated web app
             </h2>
 
-            <p className="text-[13px] max-w-[90%] text-gray-600 mt-3 font-mons font-medium">
+            <p className="text-[13px] max-w-[100%] md:max-w-[90%] text-gray-600 mt-3 font-mons font-medium">
               Experience seamless trading anytime, anywhere with our intuitive
               web apps. Stay updated with real-time market data, execute trades
               with ease, and access powerful tools right from your smartphone.
             </p>
           </div>
-          <div className="flex-shrink-0 flex-grow-0 basis-[50%] bg-teal-100 rounded-md min-h-48 shadow-md">
-            <div className="flex items-start justify-between px-6 py-4">
+          <div className="md:block flex flex-col flex-shrink-0 flex-grow-0 md:basis-[50%] min-h-fit bg-teal-100 rounded-md md:min-h-48 shadow-md border border-solid">
+            <div className="flex items-start justify-between px-4 md:px-6 py-4">
               <div className="flex flex-col gap-1">
                 <p className="capitalize text-xs font-mons text-gray-400 font-semibold">
                   summary
@@ -144,7 +144,7 @@ const LearnTrading = () => {
               </div>
             </div>
 
-            <div className="w-full min-h-16">
+            <div className="w-full min-h-16 flex justify-center">
               <Line options={options} data={data} />
             </div>
           </div>

@@ -21,23 +21,18 @@ import {
 } from "lucide-react";
 const items = [
   {
-    title: "Home",
-    url: "/",
-    icon: LucideHome,
-  },
-  {
     title: "Dashboard",
-    url: "#",
+    url: "/dashboard",
     icon: LayoutDashboard,
   },
   {
     title: "Deposit",
-    url: "#",
+    url: "/dashboard/deposit",
     icon: Bitcoin,
   },
   {
     title: "Withdraw",
-    url: "#",
+    url: "/dashboard/withdraw",
     icon: Wallet,
   },
   {
@@ -49,6 +44,12 @@ const items = [
     title: "Settings",
     url: "#",
     icon: Settings,
+  },
+
+  {
+    title: "Back Home",
+    url: "/",
+    icon: LucideHome,
   },
   {
     title: "Log out",

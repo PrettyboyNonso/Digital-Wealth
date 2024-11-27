@@ -2,15 +2,15 @@ import { ArrowUpRight } from "lucide-react";
 
 const Plans = () => {
   return (
-    <div className="w-full flex flex-col gap-16">
+    <div className="w-full flex flex-col gap-12 lg:gap-16">
       <div className="w-full justify-center flex flex-col items-center gap-2">
         <p className="font-mons capitalize font-bold text-xs text-orange-700">
           our awesome plans
         </p>
-        <h1 className="font-mons capitalize font-semibold">
+        <h1 className="text-sm md:text-base font-mons capitalize font-semibold text-center">
           we have helped thousands individual with our plans
         </h1>
-        <p className="font-mons capitalize font-semibold text-xs text-gray-600">
+        <p className="font-mons capitalize font-semibold text-xs text-gray-600 text-center">
           hundreds of all sizes and accross all industries has made great
           improvements with us
         </p>
@@ -21,8 +21,8 @@ const Plans = () => {
           <p className="font-medium font-mons  text-sm">Choose a plan:</p>
         </div>
 
-        <div className="flex px-56 mt-6 justify-between">
-          <div className="px-4 py-4 flex-shrink-0 flex-grow-0 basis-[48%] border-2 border-solid min-h-48 rounded-md bg-teal-100 shadow-md">
+        <div className="flex flex-col md:flex-row gap-4 md:gap-0 lg:px-56 mt-6 justify-between">
+          <div className=" px-4 py-4 flex-shrink-0 flex-grow-0 md:basis-[48%] basis-[100%] border-2 border-solid min-h-48 rounded-md bg-teal-100 shadow-md">
             <h1 className="uppercase text-sm font-bold font-mons ">beginner</h1>
             <ul className="mt-4 px-2 flex flex-col gap-2">
               <li className="text-xs font-mons capitalize font-medium list-disc">

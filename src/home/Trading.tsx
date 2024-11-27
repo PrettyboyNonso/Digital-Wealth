@@ -2,7 +2,7 @@ const Trading = () => {
   return (
     <div>
       <div className="mt-3 ">
-        <h1 className="text-xl font-mons font-bold capitalize">
+        <h1 className="text-lg md:text-xl font-mons font-bold capitalize">
           learn more about trading
         </h1>
 

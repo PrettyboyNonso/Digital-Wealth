@@ -1,11 +1,27 @@
 import { ArrowUpRight } from "lucide-react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import LoginContext from "./context/LoginContext";
 
 const Responsive = ({
   setNavIsOpen,
 }: {
   setNavIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("context is empty");
+  }
+
+  const { isActive, sectionArray } = context;
+
+  function handleSmoothScroll(index: number) {
+    sectionArray.current[index]?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  }
+
   function handleLinkClick() {
     setNavIsOpen(false);
     const bodyTag = document.querySelector("body");
@@ -13,47 +29,92 @@ const Responsive = ({
       bodyTag.style.overflow = "auto";
     }
   }
+  const NavClick = (index: number) => {
+    handleSmoothScroll(index);
+    handleLinkClick();
+  };
+
   return (
-    <div className="w-full h-0 flex flex-col lg:hidden absolute z-30 responsive">
-      <div className="w-full flex flex-col py-8 bg-white gap-8  max-h-fit flex-shrink-0 flex-grow-0 basis-[fit-content]">
+    <div className="w-full h-fit flex flex-col lg:hidden absolute z-30 responsive border-b-2 border-solid">
+      <div className="w-full flex flex-col py-8 bg-white gap-8  min-h-fit flex-shrink-0 flex-grow-0 basis-[80%]">
         <ul className="flex flex-col items-center justify-center gap-8">
           <li className="font-mons capitalize font-semibold text-[13px]">
             <NavLink
               to="/"
-              onClick={handleLinkClick}
-              className={({ isActive }) =>
-                isActive ? "text-teal-600" : "text-black"
-              }
+              className={`
+                    ${isActive === "home" ? "text-teal-600" : "text-black"}`}
+              onClick={() => NavClick(0)}
             >
               home
             </NavLink>
           </li>
           <li className="font-mons capitalize font-semibold text-[13px]">
             <NavLink
-              to="/about"
-              onClick={handleLinkClick}
-              className={({ isActive }) =>
-                isActive ? "text-teal-600" : "text-black"
-              }
+              to="/"
+              className={`
+                    ${isActive === "market" ? "text-teal-600" : "text-black"}`}
+              onClick={() => NavClick(1)}
+            >
+              market
+            </NavLink>
+          </li>
+          <li className="font-mons capitalize font-semibold text-[13px]">
+            <NavLink
+              to="/"
+              className={`
+                    ${isActive === "about" ? "text-teal-600" : "text-black"}`}
+              onClick={() => NavClick(4)}
             >
               about
             </NavLink>
           </li>
-
           <li className="font-mons capitalize font-semibold text-[13px]">
             <NavLink
-              to="/contact"
-              onClick={handleLinkClick}
-              className={({ isActive }) =>
-                isActive ? "text-teal-600" : "text-black"
-              }
+              to="/"
+              className={`
+                    ${isActive === "trade" ? "text-teal-600" : "text-black"}`}
+              onClick={() => NavClick(6)}
             >
-              contact
+              trading
+            </NavLink>
+          </li>
+          <li className="font-mons capitalize font-semibold text-[13px]">
+            <NavLink
+              to="/"
+              className={`
+                    ${isActive === "plans" ? "text-teal-600" : "text-black"}`}
+              onClick={() => NavClick(7)}
+            >
+              plans
+            </NavLink>
+          </li>
+          <li className="font-mons capitalize font-semibold text-[13px]">
+            <NavLink
+              to="/"
+              className={`
+                    ${
+                      isActive === "testimonials"
+                        ? "text-teal-600"
+                        : "text-black"
+                    }`}
+              onClick={() => NavClick(8)}
+            >
+              testimonial
+            </NavLink>
+          </li>
+          <li className="font-mons capitalize font-semibold text-[13px]">
+            <NavLink
+              to="/"
+              className={`
+                    ${isActive === "support" ? "text-teal-600" : "text-black"}`}
+              onClick={() => NavClick(9)}
+            >
+              support
             </NavLink>
           </li>
         </ul>
 
-        {/* <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex flex-col">
+        <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex ">
           <NavLink to="/register" onClick={handleLinkClick}>
             <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-3 py-1">
               register
@@ -65,18 +126,18 @@ const Responsive = ({
               login
             </button>
           </NavLink>
-        </div> */}
+        </div>
 
-        <NavLink
+        {/* <NavLink
           to="/dashboard"
           className="flex-grow-0 flex-shrink-0 basis-[25%]  items-center justify-center flex flex-col"
         >
           <button className="rounded-sm flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
             dashboard <ArrowUpRight className="w-4 h-4" />
           </button>
-        </NavLink>
+        </NavLink> */}
       </div>
-      <div className="flex-shrink-0 flex-grow-0 bg-black basis-[50%] opacity-[0.3]"></div>
+      <div className="flex-shrink-0 flex-grow-0 bg-black basis-[20%] opacity-70 w-full  min-h-dvh"></div>
     </div>
   );
 };

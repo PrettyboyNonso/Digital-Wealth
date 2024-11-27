@@ -4,7 +4,7 @@ import { Link, useLocation } from "react-router-dom";
 const Auth = () => {
   //   const [uid, setUid] = useState<string | null>(null);
   //   const [token, setToken] = useState<string | null>(null);
-  const [responseGood, setResponseGood] = useState(false);
+  const [responseGood, setResponseGood] = useState(true);
   const location = useLocation();
   const sendtokens = async (UID: string | null, Token: string | null) => {
     if (UID && Token) {
@@ -39,7 +39,7 @@ const Auth = () => {
   }, []);
   const NotConfirmedPage = () => {
     return (
-      <div className="min-w-[500px] border-2 border-solid min-h-48 px-10 py-8 rounded-lg shadow-md">
+      <div className="md:min-w-[500px] w-[100%]  border-2 border-solid min-h-48 lg:px-10 px-4 py-8 rounded-lg shadow-md">
         <h1 className="text-red-700 font-mons font-semibold capitalize">
           oops!
         </h1>
@@ -56,7 +56,7 @@ const Auth = () => {
   };
   const ConfirmedPage = () => {
     return (
-      <div className="min-w-[500px] border-2 border-solid min-h-48 px-10 py-8 rounded-lg shadow-md">
+      <div className="md:min-w-[500px] w-[100%] border-2 border-solid min-h-48 px-4 md:px-10 py-8 rounded-lg shadow-md">
         <h1 className="text-teal-800 font-mons font-semibold capitalize">
           welcome onboard!
         </h1>
@@ -78,7 +78,7 @@ const Auth = () => {
     );
   };
   return (
-    <div className="w-full bg-teal-50 min-h-dvh flex justify-center items-center">
+    <div className="w-full bg-teal-50 min-h-dvh flex justify-center items-center px-4 lg:px-0">
       <div>{responseGood ? <ConfirmedPage /> : <NotConfirmedPage />}</div>
     </div>
   );

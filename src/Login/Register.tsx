@@ -10,8 +10,8 @@ const Register = () => {
   const { registerFunction, errorMessage, successMessage } = context;
 
   return (
-    <div className="min-h-dvh w-full flex justify-center items-center bg-teal-50">
-      <div className="w-[40%] py-6 flex flex-col items-center justify-center bg-white px-10 rounded-md">
+    <div className="min-h-dvh w-full flex justify-center items-center bg-teal-50 lg:px-0 md:px-10 px-2">
+      <div className="lg:w-[40%] w-[100%] py-6 flex flex-col items-center justify-center bg-white px-4 lg:px-10 rounded-md">
         <h1 className="font-mons uppercase font-bold self-start text-sm">
           get started now
         </h1>

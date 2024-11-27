@@ -9,8 +9,8 @@ const Login = () => {
   }
   const { loginFunc, LoginerrorMessage } = context;
   return (
-    <div className="min-h-dvh w-full flex justify-center items-center bg-teal-50">
-      <div className="w-[40%] py-6 flex flex-col items-center justify-center bg-white px-10 rounded-md">
+    <div className="min-h-dvh w-full flex justify-center items-center bg-teal-50 md:px-10 px-2 lg:px-0">
+      <div className="lg:w-[40%] w-[100%]  py-6 flex flex-col items-center justify-center bg-white px-3 md:px-10 rounded-md">
         <h1 className="font-mons uppercase font-bold self-start text-sm">
           Log In to your account
         </h1>

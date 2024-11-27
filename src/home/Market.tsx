@@ -11,12 +11,12 @@ const Market = () => {
   const { assetState } = context;
   const CryptoCard = ({ value }: { value: CryptoDetails }) => {
     return (
-      <div className="flex flex-col items-center py-4 flex-shrink-0 flex-grow-0 basis-[20%] min-h-32 border-2 border-solid shadow-md rounded-md snap-start">
+      <div className="flex flex-col items-center py-4 flex-shrink-0 flex-grow-0 md:basis-[40%] lg:basis-[20%] basis-[90%] min-h-32 border-2 border-solid shadow-md rounded-md snap-start">
         <div>
           <img src={value?.image.thumb} alt="" />
         </div>
         <div className="w-full flex flex-col items-center">
-          <h2 className="mt-4 capitalize font-semibold font-mons">
+          <h2 className=" mt-2 md:mt-4 capitalize font-semibold font-mons">
             {value.name}
           </h2>
           <h2 className="font-semibold text-sm font-mons mt-1">
@@ -46,11 +46,11 @@ const Market = () => {
     );
   };
   return (
-    <div className="bg-white shadow-2xl px-8 py-8 min-h-64 rounded-lg">
-      <p className="text-xs text-orange-600 capitalize font-mons font-semibold">
+    <div className="bg-white shadow-2xl  px-4 md:px-8 py-8 md:min-h-64 rounded-lg">
+      <p className="text-[11px] md:text-xs text-orange-600 capitalize font-mons font-semibold">
         vast market
       </p>
-      <h1 className="text-2xl max-w-[35%] font-bold font-mons mt-2">
+      <h1 className="text-sm md:text-2xl max-w-[80%] lg:max-w-[35%] font-bold font-mons mt-2">
         Real trading experience, without the risk
       </h1>
       <div className="mt-8 w-full flex gap-3 overflow-x-auto hide-scrollbar snap-x snap-mandatory">

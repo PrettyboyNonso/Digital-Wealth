@@ -10,6 +10,8 @@ import Layout from "./layout";
 import Dashboardlayout from "./dashboard/dashboardlayout";
 import Register from "./Login/Register";
 import Auth from "./home/Auth";
+import Deposit from "./dashboard/Deposit";
+import Withdraw from "./dashboard/Withdraw";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -32,14 +34,12 @@ function App() {
                 </Layout>
               }
             />
-            <Route
-              path="/dashboard"
-              element={
-                <Dashboardlayout>
-                  <Dashboard />
-                </Dashboardlayout>
-              }
-            />
+            <Route path="dashboard/*" element={<Dashboardlayout />}>
+              <Route index element={<Dashboard />} />
+              <Route path="deposit" element={<Deposit />} />
+              <Route path="withdraw" element={<Withdraw />} />
+            </Route>
+
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/auth" element={<Auth />} />

@@ -6,6 +6,31 @@ import { Menu } from "lucide-react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
+export const Coin = ({ coinData }: { coinData: CryptoDetails }) => {
+  return (
+    <div className="flex flex-shrink-0 flex-grow-0 w-fit min-h-10 items-center gap-2">
+      <div className="flex-shrink-0 flex-grow-0  ">
+        <img src={coinData.image.thumb} alt="thumbs" className="" />
+      </div>
+      <div className="flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons text-blue-500">
+        <h3>{coinData.name}</h3>
+      </div>
+      <div className="flex-shrink-0 flex-grow-0 w-fit text-[11px] font-semibold uppercase font-mons text-gray-700">
+        <h3>[{coinData.symbol}]</h3>
+      </div>
+      <div
+        className={`flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons ${
+          coinData.market_data.price_change_percentage_24h >= 0
+            ? "text-green-500"
+            : "text-red-500"
+        }`}
+      >
+        <h3>{coinData.market_data.price_change_percentage_24h?.toFixed(1)}%</h3>
+      </div>
+    </div>
+  );
+};
+
 const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
   const context = useContext(LoginContext);
   if (context === null) {
@@ -37,33 +62,6 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
     });
   }
 
-  const Coin = ({ coinData }: { coinData: CryptoDetails }) => {
-    return (
-      <div className="flex flex-shrink-0 flex-grow-0 w-fit min-h-10 items-center gap-2">
-        <div className="flex-shrink-0 flex-grow-0  ">
-          <img src={coinData.image.thumb} alt="thumbs" className="" />
-        </div>
-        <div className="flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons text-blue-500">
-          <h3>{coinData.name}</h3>
-        </div>
-        <div className="flex-shrink-0 flex-grow-0 w-fit text-[11px] font-semibold uppercase font-mons text-gray-700">
-          <h3>[{coinData.symbol}]</h3>
-        </div>
-        <div
-          className={`flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons ${
-            coinData.market_data.price_change_percentage_24h > 0
-              ? "text-green-500"
-              : "text-red-500"
-          }`}
-        >
-          <h3>
-            {coinData.market_data.price_change_percentage_24h?.toFixed(1)}%
-          </h3>
-        </div>
-      </div>
-    );
-  };
-
   return (
     <div className="fixed top-0 z-50 bg-white w-full border-b border-solid ">
       <div className="w-full py-2 bg-gray-100 ">
@@ -79,7 +77,7 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
       <header
         className={` w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center flex`}
       >
-        <div className="font-mons w-full min-h-16 flex px-6 items-center">
+        <div className="font-mons w-full min-h-16 flex px-6 items-center ">
           <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[40%] lg:basis-[20%]">
             digital <span className="text-orange-600">wealth</span>
           </h1>
