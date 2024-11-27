@@ -12,6 +12,8 @@ import Register from "./Login/Register";
 import Auth from "./home/Auth";
 import Deposit from "./dashboard/Deposit";
 import Withdraw from "./dashboard/Withdraw";
+import Loan from "./dashboard/Loan";
+import Upgrade from "./dashboard/Upgrade";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -38,6 +40,8 @@ function App() {
               <Route index element={<Dashboard />} />
               <Route path="deposit" element={<Deposit />} />
               <Route path="withdraw" element={<Withdraw />} />
+              <Route path="loan" element={<Loan />} />
+              <Route path="upgrade" element={<Upgrade />} />
             </Route>
 
             <Route path="/register" element={<Register />} />

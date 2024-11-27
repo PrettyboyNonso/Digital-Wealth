@@ -65,9 +65,11 @@ const Dashboard = () => {
         </div>
 
         <div className="flex flex-col items-center gap-1">
-          <div className="bg-teal-600 px-6 rounded-lg py-3 text-white">
-            <PiggyBank className="w-5 h-5" />
-          </div>
+          <NavLink to="/dashboard/loan">
+            <div className="bg-teal-600 px-6 rounded-lg py-3 text-white">
+              <PiggyBank className="w-5 h-5" />
+            </div>
+          </NavLink>
 
           <p className="font-mons font-semibold capitalize text-gray-600 text-[13px]">
             borrow
@@ -81,7 +83,7 @@ const Dashboard = () => {
           <select
             name="crypto-pair"
             id="crypto-pair"
-            className=" border border-green-500 w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
+            className=" border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
           >
             <option value="">Crypto Pair</option>
             <option value="usdt-tron">USDT/TRON</option>
@@ -99,7 +101,7 @@ const Dashboard = () => {
           <select
             name="leverage"
             id="leverage"
-            className="mt-3 border border-green-500 w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
+            className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
           >
             <option value=""> Leverage</option>
             <option value="1x">1x</option>
@@ -114,13 +116,13 @@ const Dashboard = () => {
           <input
             type="number"
             placeholder="Amount to invest"
-            className="mt-3 border border-green-500 w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
+            className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
           />
 
           <select
             name="days"
             id="days"
-            className="mt-3 border border-green-500 w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
+            className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] outline-none px-2"
           >
             <option value=""> Day</option>
             <option value="1">1 Day</option>

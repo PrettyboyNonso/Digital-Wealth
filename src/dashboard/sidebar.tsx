@@ -8,9 +8,11 @@ import {
   SidebarMenu,
   SidebarMenuButton,
   SidebarMenuItem,
+  useSidebar,
 } from "@/components/ui/sidebar";
 
 import {
+  BadgeCheck,
   Bitcoin,
   HandHelping,
   LayoutDashboard,
@@ -19,6 +21,7 @@ import {
   Settings,
   Wallet,
 } from "lucide-react";
+import { NavLink } from "react-router-dom";
 const items = [
   {
     title: "Dashboard",
@@ -37,8 +40,13 @@ const items = [
   },
   {
     title: "Loan",
-    url: "#",
+    url: "/dashboard/loan",
     icon: HandHelping,
+  },
+  {
+    title: "Upgrade Account",
+    url: "/dashboard/upgrade",
+    icon: BadgeCheck,
   },
   {
     title: "Settings",
@@ -59,6 +67,7 @@ const items = [
 ];
 
 const SideNav = () => {
+  const { setOpenMobile } = useSidebar();
   return (
     <Sidebar>
       <SidebarContent>
@@ -75,12 +84,13 @@ const SideNav = () => {
                   <SidebarMenuItem
                     key={item.title}
                     className="font-mono font-medium text-black"
+                    onClick={() => setOpenMobile(false)}
                   >
                     <SidebarMenuButton asChild>
-                      <a href={item.url}>
+                      <NavLink to={item.url}>
                         <item.icon />
                         <span>{item.title}</span>
-                      </a>
+                      </NavLink>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
                 ))}
