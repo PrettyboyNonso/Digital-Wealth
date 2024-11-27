@@ -1,3 +1,4 @@
+import LoginContext from "@/context/LoginContext";
 import {
   ArrowLeftRight,
   ArrowUp,
@@ -6,9 +7,20 @@ import {
   Copy,
   PiggyBank,
 } from "lucide-react";
+import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 const Dashboard = () => {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("state is mismanaged");
+  }
+
+  const { fetchStockData } = context;
+
+  useEffect(() => {
+    fetchStockData("IBM");
+  }, []);
   return (
     <div className="w-full h-full py-4 px-4 ">
       <div className="flex justify-between items-center">
@@ -76,6 +88,8 @@ const Dashboard = () => {
           </p>
         </div>
       </div>
+
+      <div className="mt-10 w-full">line chart</div>
 
       <div className="mt-12">
         {/* <h2 className="text-[16px] font-mons capitalize font-bold">assets</h2> */}

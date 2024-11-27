@@ -7,6 +7,16 @@ import React, {
   useState,
 } from "react";
 
+type StockData = {
+  [date: string]: {
+    1: string; // open price
+    2: string; // high price
+    3: string; // low price
+    4: string; // close price
+    5: string; // adjusted close price
+  };
+};
+
 interface LoginContextType {
   registerFunction: (e: FormEvent<HTMLFormElement>) => void;
   errorMessage: string;
@@ -18,6 +28,8 @@ interface LoginContextType {
   isActive: string;
   setIsActive: React.Dispatch<React.SetStateAction<string>>;
   sectionArray: React.MutableRefObject<(HTMLElement | null)[]>;
+  fetchStockData: (symbol: string) => void;
+  stockData: StockData;
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
@@ -30,6 +42,16 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [assetState, setAssetState] = useState<CryptoDetails[]>([]);
   const [isActive, setIsActive] = useState("home");
   const sectionArray = useRef<(HTMLElement | null)[]>([]);
+  const [stockData, setStockData] = useState({});
+  const apiKey = import.meta.env.VITE_STOCK_API;
+  const fetchStockData = async (symbol: string) => {
+    const response = await fetch(
+      `https://www.alphavantage.co/query?function=TIME_SERIES_WEEKLY_ADJUSTED&symbol=${symbol}&apikey=${apiKey}`
+    );
+    const data = await response.json();
+    setStockData(data["Weekly Adjusted Time Series"]);
+    console.log(data);
+  };
 
   const getCrypto = async (...ids: string[]) => {
     const options = {
@@ -150,27 +172,42 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
 
   // beginning of register function, this is the function called when you click "register button"
   const registerFunction = async (e: FormEvent<HTMLFormElement>) => {
-    const details = authenticateRegister(e); // details is an object returned from the authenticateRegister function
+    const details = authenticateRegister(e);
     if (details?.authenticated) {
-      const response = await fetch("endpoint goes here", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          name: details.fullName,
-          email: details.userEmail,
-          password: details.confirmPassword,
-        }),
-      });
+      try {
+        const response = await fetch(
+          "https://digital-wealth.onrender.com/auth/users/",
+          {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
 
-      if (response.ok) {
-        // setsuccessMessage(
-        //   "An email has been sent to your gmail account, proceed there for further confirmation"
-        // );
-        console.log(response.status); // you should get 200 in the console
-      } else {
-        throw new Error("An error occured");
+            body: JSON.stringify({
+              // name: details.fullName,
+              email: details.userEmail,
+              password: details.confirmPassword,
+            }),
+          }
+        );
+        console.log(
+          JSON.stringify({
+            email: details.userEmail,
+            password: details.confirmPassword,
+          })
+        );
+        if (response.ok) {
+          setsuccessMessage(
+            "An email has been sent to your gmail account, proceed there for further confirmation"
+          );
+          console.log(response.status); // you should get 200 in the console
+        } else {
+          const errorData = await response.json();
+          throw new Error(errorData?.detail || "An error occurred");
+        }
+      } catch (error) {
+        console.error("Fetch error:", error);
+        throw new Error("An error occurred while registering");
       }
     }
   };
@@ -208,6 +245,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     isActive,
     setIsActive,
     sectionArray,
+    fetchStockData,
+    stockData,
   };
 
   return (
