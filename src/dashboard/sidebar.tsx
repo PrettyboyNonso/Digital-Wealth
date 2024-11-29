@@ -13,11 +13,13 @@ import {
 
 import {
   BadgeCheck,
+  BarChartBig,
   Bitcoin,
+  Copy,
+  EyeIcon,
   HandHelping,
   LayoutDashboard,
   LogOutIcon,
-  LucideHome,
   Settings,
   Wallet,
 } from "lucide-react";
@@ -44,9 +46,24 @@ const items = [
     icon: HandHelping,
   },
   {
+    title: "View Loans",
+    url: "#",
+    icon: EyeIcon,
+  },
+  {
     title: "Upgrade Account",
     url: "/dashboard/upgrade",
     icon: BadgeCheck,
+  },
+  {
+    title: "Copy Experts",
+    url: "#",
+    icon: Copy,
+  },
+  {
+    title: "Purchase Signals",
+    url: "#",
+    icon: BarChartBig,
   },
   {
     title: "Settings",
@@ -54,11 +71,6 @@ const items = [
     icon: Settings,
   },
 
-  {
-    title: "Back Home",
-    url: "/",
-    icon: LucideHome,
-  },
   {
     title: "Log out",
     url: "#",
