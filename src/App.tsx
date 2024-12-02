@@ -14,6 +14,8 @@ import Deposit from "./dashboard/Deposit";
 import Withdraw from "./dashboard/Withdraw";
 import Loan from "./dashboard/Loan";
 import Upgrade from "./dashboard/Upgrade";
+import ViewLoan from "./dashboard/ViewLoan";
+import CopyTrading from "./dashboard/CopyTrading";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -42,6 +44,8 @@ function App() {
               <Route path="withdraw" element={<Withdraw />} />
               <Route path="loan" element={<Loan />} />
               <Route path="upgrade" element={<Upgrade />} />
+              <Route path="view-loans" element={<ViewLoan />} />
+              <Route path="copy-trading" element={<CopyTrading />} />
             </Route>
 
             <Route path="/register" element={<Register />} />

@@ -15,6 +15,7 @@ import {
   BadgeCheck,
   BarChartBig,
   Bitcoin,
+  Briefcase,
   Copy,
   EyeIcon,
   HandHelping,
@@ -47,7 +48,7 @@ const items = [
   },
   {
     title: "View Loans",
-    url: "#",
+    url: "/dashboard/view-loans",
     icon: EyeIcon,
   },
   {
@@ -56,8 +57,13 @@ const items = [
     icon: BadgeCheck,
   },
   {
+    title: "Plans",
+    url: "/dashboard/plans",
+    icon: Briefcase,
+  },
+  {
     title: "Copy Experts",
-    url: "#",
+    url: "/dashboard/copy-trading",
     icon: Copy,
   },
   {
