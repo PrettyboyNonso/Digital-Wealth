@@ -1,4 +1,3 @@
-import { useState } from "react";
 import Home from "./home/Home";
 import Login from "./Login/Login";
 // import Register from "./Login/Register";
@@ -26,8 +25,6 @@ export interface stateFunc {
 }
 
 function App() {
-  const [navIsOpen, setNavIsOpen] = useState(false);
-
   return (
     <BrowserRouter>
       <LoginProvider>
@@ -36,7 +33,7 @@ function App() {
             <Route
               path="/"
               element={
-                <Layout setNavIsOpen={setNavIsOpen} navIsOpen={navIsOpen}>
+                <Layout>
                   <Home />
                 </Layout>
               }

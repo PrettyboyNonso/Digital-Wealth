@@ -30,6 +30,8 @@ interface LoginContextType {
   sectionArray: React.MutableRefObject<(HTMLElement | null)[]>;
   fetchStockData: (symbol: string) => void;
   stockData: StockData;
+  setNavIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  navIsOpen: boolean;
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
@@ -43,6 +45,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [isActive, setIsActive] = useState("home");
   const sectionArray = useRef<(HTMLElement | null)[]>([]);
   const [stockData, setStockData] = useState({});
+  const [navIsOpen, setNavIsOpen] = useState(false);
+
   const apiKey = import.meta.env.VITE_STOCK_API;
   const fetchStockData = async (symbol: string) => {
     const response = await fetch(
@@ -247,6 +251,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     sectionArray,
     fetchStockData,
     stockData,
+    setNavIsOpen,
+    navIsOpen,
   };
 
   return (

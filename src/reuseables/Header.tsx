@@ -1,10 +1,10 @@
-import { stateFunc } from "@/App";
 import LoginContext from "@/context/LoginContext";
 import { CryptoDetails } from "@/lib/utils";
 import Responsive from "@/Responsive";
-import { Menu } from "lucide-react";
+
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+import MenuBar from "./Menu";
 
 const LoadingCoin = () => {
   return (
@@ -45,13 +45,14 @@ export const Coin = ({ coinData }: { coinData: CryptoDetails }) => {
   );
 };
 
-const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
+const Header = () => {
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("context is empty");
   }
 
-  const { assetState, isActive, sectionArray } = context;
+  const { assetState, isActive, sectionArray, navIsOpen, setNavIsOpen } =
+    context;
 
   function handleSmoothScroll(index: number) {
     sectionArray.current[index]?.scrollIntoView({
@@ -59,22 +60,6 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
       block: "start",
     });
     console.log(isActive);
-  }
-
-  function openNavClose() {
-    setNavIsOpen((prev: boolean) => {
-      const newState = !prev;
-      const bodyTag = document.querySelector("body");
-      if (bodyTag) {
-        console.log(bodyTag);
-        if (newState) {
-          bodyTag.style.overflowY = "hidden";
-        } else {
-          bodyTag.style.overflowY = "auto";
-        }
-      }
-      return newState;
-    });
   }
 
   return (
@@ -225,9 +210,7 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
             </button>
           </NavLink> */}
         </div>
-        <div className="lg:hidden">
-          <Menu onClick={openNavClose} className="w-7 h-7" />
-        </div>
+        <MenuBar />
       </header>
       {navIsOpen && <Responsive setNavIsOpen={setNavIsOpen} />}
     </div>

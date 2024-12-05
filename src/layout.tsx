@@ -2,18 +2,10 @@ import React from "react";
 import Footer from "./reuseables/Footer";
 import Header from "./reuseables/Header";
 
-const Layout = ({
-  children,
-  setNavIsOpen,
-  navIsOpen,
-}: {
-  children: React.ReactNode;
-  setNavIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  navIsOpen: boolean;
-}) => {
+const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
     <>
-      <Header setNavIsOpen={setNavIsOpen} navIsOpen={navIsOpen} />
+      <Header />
       <main>{children}</main>
       <Footer />
     </>
