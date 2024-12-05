@@ -1,12 +1,14 @@
 /** @type {import('tailwindcss').Config} */
+import tailwindcssAnimate from "tailwindcss-animate";
+
 export default {
   darkMode: ["class"],
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
   theme: {
     extend: {
       fontFamily: {
-        mons: ["Montserrat", "san-serif"],
-        logo: ["Lilita One", "san-serif"],
+        mons: ["Montserrat", "sans-serif"],
+        logo: ["Lilita One", "sans-serif"],
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -109,15 +111,14 @@ export default {
     function ({ addUtilities }) {
       addUtilities({
         ".hide-scrollbar": {
-          /* Hide scrollbar for all browsers */
-          "-ms-overflow-style": "none" /* Internet Explorer 10+ */,
-          "scrollbar-width": "none" /* Firefox */,
+          "-ms-overflow-style": "none",
+          "scrollbar-width": "none",
         },
         ".hide-scrollbar::-webkit-scrollbar": {
-          display: "none" /* Chrome, Safari, and Opera */,
+          display: "none",
         },
       });
     },
-    require("tailwindcss-animate"),
+    tailwindcssAnimate,
   ],
 };
