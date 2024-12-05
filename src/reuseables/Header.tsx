@@ -6,6 +6,20 @@ import { Menu } from "lucide-react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 
+const LoadingCoin = () => {
+  return (
+    <div className=" px-2 flex flex-shrink-0 flex-grow-0 w-fit min-h-8 items-center gap-2 basis-[12%]">
+      <div className="flex-shrink-0 flex-grow-0  border border-solid w-10 h-4 rounded-sm animate-blink bg-gray-200 "></div>
+      <div className="flex-shrink-0 flex-grow-0 w-fit text-xs font-semibold capitalize font-mons text-blue-500">
+        <h3 className="w-12 h-4 rounded-sm animate-blink bg-gray-200 border border-solid"></h3>
+      </div>
+      <div className="flex-shrink-0 flex-grow-0 w-fit text-[11px] font-semibold uppercase font-mons text-gray-700">
+        <h3 className="w-6 h-4 rounded-sm bg-gray-200 animate-blink border border-solid"></h3>
+      </div>
+    </div>
+  );
+};
+
 export const Coin = ({ coinData }: { coinData: CryptoDetails }) => {
   return (
     <div className="flex flex-shrink-0 flex-grow-0 w-fit min-h-10 items-center gap-2">
@@ -44,6 +58,7 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
       behavior: "smooth",
       block: "start",
     });
+    console.log(isActive);
   }
 
   function openNavClose() {
@@ -65,14 +80,27 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
   return (
     <div className="fixed top-0 z-50 bg-white w-full border-b border-solid ">
       <div className="w-full py-2 bg-gray-100 ">
-        <div className="animate-scroll  flex items-center w-full flex-nowrap  gap-6 hide-scrollbar min-h-10">
-          {assetState.map((value, index) => (
-            <Coin coinData={value} key={index} />
-          ))}
-          {assetState.map((value, index) => (
-            <Coin coinData={value} key={index} />
-          ))}
-        </div>
+        {assetState.length === 0 ? (
+          <div className="flex items-center w-full flex-nowrap  gap-6 hide-scrollbar min-h-10 px-3">
+            <LoadingCoin />
+            <LoadingCoin />
+            <LoadingCoin />
+            <LoadingCoin />
+            <LoadingCoin />
+            <LoadingCoin />
+            <LoadingCoin />
+            <LoadingCoin />
+          </div>
+        ) : (
+          <div className="animate-scroll  flex items-center w-full flex-nowrap  gap-6 hide-scrollbar min-h-10">
+            {assetState.map((value, index) => (
+              <Coin coinData={value} key={index} />
+            ))}
+            {assetState.map((value, index) => (
+              <Coin coinData={value} key={index} />
+            ))}
+          </div>
+        )}
       </div>
       <header
         className={` w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center flex`}
@@ -154,8 +182,18 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
                 <NavLink
                   to="/"
                   className={`
-                    ${isActive === "support" ? "text-teal-600" : "text-black"}`}
+                    ${isActive === "license" ? "text-teal-600" : "text-black"}`}
                   onClick={() => handleSmoothScroll(9)}
+                >
+                  license
+                </NavLink>
+              </li>
+              <li className="font-mons capitalize font-semibold text-[13px]">
+                <NavLink
+                  to="/"
+                  className={`
+                    ${isActive === "support" ? "text-teal-600" : "text-black"}`}
+                  onClick={() => handleSmoothScroll(10)}
                 >
                   support
                 </NavLink>

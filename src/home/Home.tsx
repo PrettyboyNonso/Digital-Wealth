@@ -12,6 +12,7 @@ import Plans from "./Plans";
 import { useContext, useEffect } from "react";
 import LoginContext from "@/context/LoginContext";
 import About from "./About";
+import License from "./License";
 
 const Home = () => {
   const context = useContext(LoginContext);
@@ -40,13 +41,15 @@ const Home = () => {
               setIsActive("plans");
             } else if (sectionId === "testimonial") {
               setIsActive("testimonials");
+            } else if (sectionId === "license") {
+              setIsActive("license");
             } else if (sectionId === "support") {
               setIsActive("support");
             }
           }
         });
       },
-      { threshold: 0.8 }
+      { threshold: 1 }
     );
     sectionArray.current.forEach((section) => {
       if (section) observer.observe(section);
@@ -120,8 +123,15 @@ const Home = () => {
         <Testimonials />
       </section>
       <section
-        className="mt-10"
+        className="mt-12 px-10"
         ref={(el) => (sectionArray.current[9] = el)}
+        data-id="license"
+      >
+        <License />
+      </section>
+      <section
+        className="mt-10"
+        ref={(el) => (sectionArray.current[10] = el)}
         data-id="support"
       >
         <Faq />
@@ -129,7 +139,7 @@ const Home = () => {
 
       <section
         className="px-4 lg:px-10 mt-10"
-        ref={(el) => (sectionArray.current[10] = el)}
+        ref={(el) => (sectionArray.current[11] = el)}
         data-id="support"
       >
         <Contact />

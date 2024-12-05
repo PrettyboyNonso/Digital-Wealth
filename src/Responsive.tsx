@@ -35,8 +35,8 @@ const Responsive = ({
   };
 
   return (
-    <div className="w-full h-fit flex flex-col lg:hidden absolute z-30 responsive border-b-2 border-solid">
-      <div className="w-full flex flex-col py-8 bg-white gap-8  min-h-fit flex-shrink-0 flex-grow-0 basis-[80%]">
+    <div className="w-full h-dvh lg:hidden absolute z-30 responsive border-b-2 border-solid">
+      <div className="w-full flex flex-col py-8 bg-white gap-8  min-h-full">
         <ul className="flex flex-col items-center justify-center gap-8">
           <li className="font-mons capitalize font-semibold text-[13px]">
             <NavLink
@@ -137,7 +137,6 @@ const Responsive = ({
           </button>
         </NavLink> */}
       </div>
-      <div className="flex-shrink-0 flex-grow-0 bg-black basis-[20%] opacity-70 w-full  min-h-dvh"></div>
     </div>
   );
 };

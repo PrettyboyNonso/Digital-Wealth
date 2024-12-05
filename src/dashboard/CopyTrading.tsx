@@ -2,8 +2,8 @@ import { StarIcon } from "@heroicons/react/24/solid";
 
 const CopyTrading = () => {
   return (
-    <div className=" w-full justify-center h-fit py-8 px-4 items-center flex flex-col gap-8">
-      <div className="flex flex-col w-[50%] min-h-56 border border-solid shadow-md relative py-3">
+    <div className=" w-full justify-between h-fit py-8 px-4 items-center flex ">
+      <div className="flex flex-col w-[48%] min-h-56 border border-solid shadow-md relative py-3">
         <p className="bg-yellow-500 font-mons text-xs py-1  rounded-sm font-bold capitalize absolute top-2 left-2 px-4">
           pro
         </p>
@@ -48,12 +48,12 @@ const CopyTrading = () => {
           </div>
 
           <button className="w-full mt-5 bg-green-500 py-2 rounded-sm text-white font-mono capitalize">
-            copy expert
+            copy Javis B
           </button>
         </div>
       </div>
 
-      <div className="flex flex-col w-[50%] min-h-56 border border-solid shadow-md relative py-3">
+      <div className="flex flex-col w-[48%] min-h-56 border border-solid shadow-md relative py-3">
         <p className="bg-yellow-500 font-mons text-xs py-1  rounded-sm font-bold capitalize absolute top-2 left-2 px-4">
           pro
         </p>
@@ -98,7 +98,7 @@ const CopyTrading = () => {
           </div>
 
           <button className="w-full mt-5 bg-green-500 py-2 rounded-sm text-white font-mono capitalize">
-            copy expert
+            copy Mara
           </button>
         </div>
       </div>

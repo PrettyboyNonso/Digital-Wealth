@@ -16,6 +16,9 @@ import Loan from "./dashboard/Loan";
 import Upgrade from "./dashboard/Upgrade";
 import ViewLoan from "./dashboard/ViewLoan";
 import CopyTrading from "./dashboard/CopyTrading";
+import Plans from "./dashboard/Plans";
+// import Settings from "./dashboard/Settings";
+// import SignalPage from "./dashboard/Signal";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -46,6 +49,9 @@ function App() {
               <Route path="upgrade" element={<Upgrade />} />
               <Route path="view-loans" element={<ViewLoan />} />
               <Route path="copy-trading" element={<CopyTrading />} />
+              <Route path="plans" element={<Plans />} />
+              {/* <Route path="settings" element={<Settings />} /> */}
+              {/* <Route path="signals" element={<SignalPage />} /> */}
             </Route>
 
             <Route path="/register" element={<Register />} />

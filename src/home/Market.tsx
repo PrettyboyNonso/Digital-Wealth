@@ -9,6 +9,12 @@ const Market = () => {
     return;
   }
   const { assetState } = context;
+
+  const LoadingCryptoDet = () => {
+    return (
+      <div className="flex flex-col items-center py-4 flex-shrink-0 flex-grow-0 md:basis-[40%] lg:basis-[20%] basis-[90%] min-h-32 border-2 border-solid shadow-md rounded-md snap-start animate-blink"></div>
+    );
+  };
   const CryptoCard = ({ value }: { value: CryptoDetails }) => {
     return (
       <div className="flex flex-col items-center py-4 flex-shrink-0 flex-grow-0 md:basis-[40%] lg:basis-[20%] basis-[90%] min-h-32 border-2 border-solid shadow-md rounded-md snap-start">
@@ -54,9 +60,16 @@ const Market = () => {
         Real trading experience, without the risk
       </h1>
       <div className="mt-8 w-full flex gap-3 overflow-x-auto hide-scrollbar snap-x snap-mandatory">
-        {assetState.map((value, index) => (
-          <CryptoCard value={value} key={index} />
-        ))}
+        {assetState.length === 0 ? (
+          <>
+            <LoadingCryptoDet /> <LoadingCryptoDet /> <LoadingCryptoDet />{" "}
+            <LoadingCryptoDet /> <LoadingCryptoDet />{" "}
+          </>
+        ) : (
+          assetState.map((value, index) => (
+            <CryptoCard value={value} key={index} />
+          ))
+        )}
       </div>
     </div>
   );

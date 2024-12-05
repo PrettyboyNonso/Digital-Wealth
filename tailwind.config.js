@@ -67,6 +67,14 @@ export default {
         },
       },
       keyframes: {
+        blink: {
+          from: {
+            backgroundColor: "#e5e7eb",
+          },
+          to: {
+            backgroundColor: "#f3f4f6",
+          },
+        },
         scroll: {
           to: {
             transform: "translateX(calc(-100% - 24px))",
@@ -93,6 +101,7 @@ export default {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
         scroll: "scroll 20s linear infinite",
+        blink: "blink 1s infinite alternate",
       },
     },
   },

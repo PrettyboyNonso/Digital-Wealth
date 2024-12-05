@@ -12,6 +12,7 @@ import {
 } from "lucide-react";
 import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
+import ChartComponent from "./ChartComponent";
 
 const Dashboard = () => {
   const context = useContext(LoginContext);
@@ -94,7 +95,24 @@ const Dashboard = () => {
           </div>
         </div>
 
-        <div className="mt-10 w-full lg:hidden">line chart</div>
+        <div className="mt-10 w-full lg:hidden">
+          <ChartComponent />
+        </div>
+
+        <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
+          <Wallet className="text-white" />
+          <h1 className="text-white font-mono font-semibold capitalize">
+            connect wallet
+          </h1>
+          <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
+            earn daily 250 for connecting your wallet
+          </p>
+
+          <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
+            connect now
+            <ArrowRight />
+          </button>
+        </div>
 
         <div className="mt-12 lg:mt-16">
           {/* <h2 className="text-[16px] font-mons capitalize font-bold">assets</h2> */}
@@ -211,7 +229,7 @@ const Dashboard = () => {
           <h1 className="text-white font-mono font-semibold capitalize">
             connect wallet
           </h1>
-          <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
+          <p className="text-gray-300 text-xs font-mono font-bold capitalize ">
             earn daily 250 for connecting your wallet
           </p>
 

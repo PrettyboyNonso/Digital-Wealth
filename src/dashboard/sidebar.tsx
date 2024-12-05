@@ -13,7 +13,7 @@ import {
 
 import {
   BadgeCheck,
-  BarChartBig,
+  // BarChartBig,
   Bitcoin,
   Briefcase,
   Copy,
@@ -21,7 +21,7 @@ import {
   HandHelping,
   LayoutDashboard,
   LogOutIcon,
-  Settings,
+  // Settings,
   Wallet,
 } from "lucide-react";
 import { NavLink } from "react-router-dom";
@@ -66,16 +66,16 @@ const items = [
     url: "/dashboard/copy-trading",
     icon: Copy,
   },
-  {
-    title: "Purchase Signals",
-    url: "#",
-    icon: BarChartBig,
-  },
-  {
-    title: "Settings",
-    url: "#",
-    icon: Settings,
-  },
+  // {
+  //   title: "Purchase Signals",
+  //   url: "/dashboard/signals",
+  //   icon: BarChartBig,
+  // },
+  // {
+  //   title: "Settings",
+  //   url: "/dashboard/settings",
+  //   icon: Settings,
+  // },
 
   {
     title: "Log out",
