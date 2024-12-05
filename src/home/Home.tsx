@@ -9,10 +9,11 @@ import Trading from "./Trading";
 import LearnTrading from "./LearnTrading";
 import Winners from "@/reuseables/Winners";
 import Plans from "./Plans";
-import { useContext, useEffect } from "react";
+import { useContext } from "react";
 import LoginContext from "@/context/LoginContext";
 import About from "./About";
 import License from "./License";
+import Refresh from "./Refresh";
 
 const Home = () => {
   const context = useContext(LoginContext);
@@ -20,41 +21,8 @@ const Home = () => {
     throw new Error("context not found");
   }
 
-  const { setIsActive, sectionArray } = context;
+  const { sectionArray } = context;
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries: IntersectionObserverEntry[]) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const sectionId = entry.target.getAttribute("data-id");
-
-            if (sectionId === "hero") {
-              setIsActive("home");
-            } else if (sectionId === "market") {
-              setIsActive("market");
-            } else if (sectionId === "about") {
-              setIsActive("about");
-            } else if (sectionId === "trade") {
-              setIsActive("trade");
-            } else if (sectionId === "plans") {
-              setIsActive("plans");
-            } else if (sectionId === "testimonial") {
-              setIsActive("testimonials");
-            } else if (sectionId === "license") {
-              setIsActive("license");
-            } else if (sectionId === "support") {
-              setIsActive("support");
-            }
-          }
-        });
-      },
-      { threshold: 1 }
-    );
-    sectionArray.current.forEach((section) => {
-      if (section) observer.observe(section);
-    });
-  }, []);
   return (
     <main className="pb-6 mb-4 relative">
       <Winners />
@@ -66,7 +34,7 @@ const Home = () => {
         <Hero />
       </section>
       <section
-        className="px-2 md:px-10 -mt-16  relative z-40 py-6"
+        className="px-2 md:px-10 -mt-16  relative z-30 py-6"
         ref={(el) => (sectionArray.current[1] = el)}
         data-id="market"
       >
@@ -144,6 +112,7 @@ const Home = () => {
       >
         <Contact />
       </section>
+      <Refresh />
     </main>
   );
 };

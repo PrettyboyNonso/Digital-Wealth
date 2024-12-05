@@ -52,7 +52,7 @@ const Market = () => {
     );
   };
   return (
-    <div className="bg-white shadow-2xl  px-4 md:px-8 py-8 md:min-h-64 rounded-lg">
+    <div className="bg-white shadow-2xl px-4 md:px-8 py-8 md:min-h-64 rounded-lg">
       <p className="text-[11px] md:text-xs text-orange-600 capitalize font-mons font-semibold">
         vast market
       </p>

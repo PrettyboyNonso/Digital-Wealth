@@ -106,7 +106,7 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
         className={` w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center flex`}
       >
         <div className="font-mons w-full min-h-16 flex px-6 items-center ">
-          <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[40%] lg:basis-[20%]">
+          <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[60%] lg:basis-[20%]">
             digital <span className="text-orange-600">wealth</span>
           </h1>
           <nav className="hidden lg:flex-shrink-0 lg:flex-grow-0 lg:basis-[60%] lg:block ">
@@ -115,7 +115,8 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
                 <NavLink
                   to="/"
                   className={`
-                    ${isActive === "home" ? "text-teal-600" : "text-black"}`}
+                    ${isActive === "home" ? "text-teal-600" : "text-black"}
+                    `}
                   onClick={() => handleSmoothScroll(0)}
                 >
                   home
@@ -225,7 +226,7 @@ const Header = ({ setNavIsOpen, navIsOpen }: stateFunc) => {
           </NavLink> */}
         </div>
         <div className="lg:hidden">
-          <Menu onClick={openNavClose} />
+          <Menu onClick={openNavClose} className="w-7 h-7" />
         </div>
       </header>
       {navIsOpen && <Responsive setNavIsOpen={setNavIsOpen} />}

@@ -35,7 +35,7 @@ const Responsive = ({
   };
 
   return (
-    <div className="w-full h-dvh lg:hidden absolute z-30 responsive border-b-2 border-solid">
+    <div className="w-full h-dvh lg:hidden absolute z-50 responsive border-b-2 border-solid">
       <div className="w-full flex flex-col py-8 bg-white gap-8  min-h-full">
         <ul className="flex flex-col items-center justify-center gap-8">
           <li className="font-mons capitalize font-semibold text-[13px]">
@@ -116,13 +116,13 @@ const Responsive = ({
 
         <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex ">
           <NavLink to="/register" onClick={handleLinkClick}>
-            <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-3 py-1">
+            <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-6 py-3">
               register
             </button>
           </NavLink>
 
           <NavLink to="login" onClick={handleLinkClick}>
-            <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-3 py-1">
+            <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-7 py-3">
               login
             </button>
           </NavLink>

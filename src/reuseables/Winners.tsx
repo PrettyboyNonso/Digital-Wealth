@@ -45,7 +45,7 @@ const Winners = () => {
         currentWinner.money === 0 && currentWinner.name === ""
           ? "opacity-0"
           : "opacity-1"
-      } flex gap-3 fixed px-2 py-2 min-h-7 max-w-48 bg-black md:top-96 top-[500px] z-50 rounded-lg border border-orange-400 items-center`}
+      } flex gap-3 fixed px-2 py-2 min-h-7 max-w-48 bg-black md:top-96 top-[500px] z-40 rounded-lg border border-orange-400 items-center`}
     >
       <div className="flex-grow-0 flex-shrink-0 basis-[20%]">
         <CurrencyDollarIcon className="text-white w-8 h-8" />
