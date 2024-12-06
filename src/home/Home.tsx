@@ -91,7 +91,7 @@ const Home = () => {
         <Testimonials />
       </section>
       <section
-        className="mt-12 px-10"
+        className="mt-20 md:mt-12 px-10"
         ref={(el) => (sectionArray.current[9] = el)}
         data-id="license"
       >

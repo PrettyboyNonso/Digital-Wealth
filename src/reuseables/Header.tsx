@@ -4,7 +4,6 @@ import Responsive from "@/Responsive";
 
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
-import MenuBar from "./Menu";
 
 const LoadingCoin = () => {
   return (
@@ -51,8 +50,7 @@ const Header = () => {
     throw new Error("context is empty");
   }
 
-  const { assetState, isActive, sectionArray, navIsOpen, setNavIsOpen } =
-    context;
+  const { assetState, isActive, sectionArray } = context;
 
   function handleSmoothScroll(index: number) {
     sectionArray.current[index]?.scrollIntoView({
@@ -88,7 +86,7 @@ const Header = () => {
         )}
       </div>
       <header
-        className={` w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center flex`}
+        className={` w-full min-h-fit max-h-full lg:block justify-between pr-4 items-center hidden`}
       >
         <div className="font-mons w-full min-h-16 flex px-6 items-center ">
           <h1 className="uppercase font-logo text-slate-900 flex-shrink-0 flex-grow-0 basis-[60%] lg:basis-[20%]">
@@ -210,9 +208,8 @@ const Header = () => {
             </button>
           </NavLink> */}
         </div>
-        <MenuBar />
       </header>
-      {navIsOpen && <Responsive setNavIsOpen={setNavIsOpen} />}
+      <Responsive />
     </div>
   );
 };
