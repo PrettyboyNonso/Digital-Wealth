@@ -38,20 +38,20 @@ const Dashboard = () => {
 
         <div className="w-full min-h-32 px-4 py-4 border border-solid mt-5 lg:mt-3 shadow-lg bg-black rounded-md lg:py-6 lg:min-h-fit">
           <div className="w-full flex justify-between">
-            <p className="capitalize font-semibold font-mons text-gray-300 text-[14px] lg:text-xs">
+            <p className="capitalize font-semibold font-mons text-gray-300 text-[13px] lg:text-xs">
               deposits
             </p>
-            <Copy className="text-white cursor-pointer lg:w-4 lg:h-4" />
+            <Copy className="text-white cursor-pointer lg:w-4 lg:h-4 w-5 h-5" />
           </div>
 
-          <h1 className=" lg:mt-1 mt-2 text-lg font-semibold font-mons capitalize text-white">
+          <h1 className=" lg:mt-1 mt-2 lg:text-lg text-[15px] font-semibold font-mons capitalize text-white">
             $0.00
           </h1>
           <div className="flex mt-3 text-white gap-3 font-mons font-medium text-xs items-center">
             <div className="flex items-center bg-greencustom px-3 py-1 gap-1 rounded-sm">
               <ArrowUp className="w-4 h-4" /> <span className="">0.00</span>
             </div>
-            <p className="font-mons text-gray-300 font-semibold">
+            <p className="font-mons text-gray-300 font-semibold lg:text-base text-xs">
               Compared to market data
             </p>
           </div>
@@ -60,36 +60,36 @@ const Dashboard = () => {
         <div className="lg:mt-3 mt-5 w-full flex justify-between px-3 lg:hidden">
           <div className="flex flex-col items-center gap-1">
             <NavLink to="/dashboard/deposit">
-              <div className="bg-black flex flex-col px-6 rounded-lg py-3 text-white">
+              <div className="bg-black flex flex-col md:px-6 rounded-lg md:py-3 px-4 py-2 text-white">
                 <Bitcoin className="w-5 h-5 lg:w-4 lg:h-4" />
               </div>
             </NavLink>
 
-            <p className="font-mons font-semibold capitalize text-gray-600 text-[13px] lg:text-xs lg:font-bold">
+            <p className="font-mons capitalize text-gray-600 text-xs lg:text-xs font-bold">
               fund
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-1">
             <NavLink to="/dashboard/withdraw">
-              <div className="bg-green-500 px-6 rounded-lg py-3 text-white">
+              <div className="bg-green-500 flex flex-col md:px-6 rounded-lg md:py-3 px-4 py-2 text-white">
                 <ArrowLeftRight className="w-5 h-5 lg:w-4 lg:h-4" />
               </div>
             </NavLink>
 
-            <p className="font-mons font-semibold capitalize text-gray-600 text-[13px] lg:text-xs lg:font-bold">
+            <p className="font-mons capitalize text-gray-600 text-xs lg:text-xs font-bold">
               withdraw
             </p>
           </div>
 
           <div className="flex flex-col items-center gap-1">
             <NavLink to="/dashboard/loan">
-              <div className="bg-teal-600 px-6 rounded-lg py-3 text-white">
+              <div className="bg-teal-600 flex flex-col md:px-6 rounded-lg md:py-3 px-4 py-2 text-white">
                 <PiggyBank className="w-5 h-5 lg:w-4 lg:h-4" />
               </div>
             </NavLink>
 
-            <p className="font-mons font-semibold capitalize text-gray-600 text-[13px] lg:text-xs lg:font-bold">
+            <p className="font-mons capitalize text-gray-600 text-xs lg:text-xs font-bold">
               borrow
             </p>
           </div>
@@ -99,16 +99,16 @@ const Dashboard = () => {
           <ChartComponent />
         </div>
 
-        <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
-          <Wallet className="text-white" />
-          <h1 className="text-white font-mono font-semibold capitalize">
+        <div className="bg-blue-600 py-4 min-h-fit rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid  flex flex-col items-center">
+          <Wallet className="text-white w-5 h-5" />
+          <h1 className="text-white font-mono font-semibold capitalize lg:text-base text-sm">
             connect wallet
           </h1>
-          <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
+          <p className="text-black mt-1 text-xs font-mono font-bold capitalize">
             earn daily 250 for connecting your wallet
           </p>
 
-          <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
+          <button className="mt-6 bg-white lg:px-5 py-2 px-4 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
             connect now
             <ArrowRight />
           </button>
@@ -120,7 +120,7 @@ const Dashboard = () => {
             <select
               name="crypto-pair"
               id="crypto-pair"
-              className=" border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] lg:text-xs outline-none px-2"
+              className=" border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
             >
               <option value="">Crypto Pair</option>
               <option value="usdt-tron">USDT/TRON</option>
@@ -138,7 +138,7 @@ const Dashboard = () => {
             <select
               name="leverage"
               id="leverage"
-              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] lg:text-xs outline-none px-2"
+              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
             >
               <option value=""> Leverage</option>
               <option value="1x">1x</option>
@@ -153,13 +153,13 @@ const Dashboard = () => {
             <input
               type="number"
               placeholder="Amount to invest"
-              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] lg:text-xs outline-none px-2"
+              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
             />
 
             <select
               name="days"
               id="days"
-              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-[13px] lg:text-xs outline-none px-2"
+              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
             >
               <option value=""> Day</option>
               <option value="1">1 Day</option>
@@ -172,10 +172,10 @@ const Dashboard = () => {
             </select>
 
             <div className="w-full justify-between flex mt-5 items-center">
-              <button className="flex-shrink-0 flex-grow-0 basis-[48%] bg-red-600 py-2 rounded-sm capitalize text-white font-mons font-semibold text-[14px] lg:text-xs">
+              <button className="flex-shrink-0 flex-grow-0 basis-[48%] bg-red-600 py-2 rounded-sm capitalize text-white font-mons font-semibold text-xs">
                 sell
               </button>
-              <button className="lg:text-xs flex-shrink-0 flex-grow-0 basis-[48%] bg-green-600 py-2 rounded-sm capitalize text-white font-mons font-semibold text-[14px]">
+              <button className="text-xs flex-shrink-0 flex-grow-0 basis-[48%] bg-green-600 py-2 rounded-sm capitalize text-white font-mons font-semibold ">
                 buy
               </button>
             </div>

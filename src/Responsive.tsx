@@ -177,6 +177,7 @@ const Responsive = () => {
           <NavLink
             to="/dashboard"
             className="flex-grow-0 flex-shrink-0 basis-[25%]  items-center justify-center flex flex-col"
+            onClick={() => (window.location.href = "/dashboard")}
           >
             <button className="rounded-sm flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
               dashboard <ArrowUpRight className="w-4 h-4" />

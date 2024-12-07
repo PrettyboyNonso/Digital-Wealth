@@ -7,7 +7,7 @@ import {
 
 const Plans = () => {
   return (
-    <div className="px-8 py-8 flex items-start justify-between mt-16">
+    <div className="px-8 py-8 flex items-start justify-between mt-16 flex-col lg:flex-row">
       <div className="flex-shrink-0 flex-grow-0 basis-[50%]">
         <p className="font-mono font-semibold  capitalize text-green-500">
           welcome to digital wealth, Apoloski!

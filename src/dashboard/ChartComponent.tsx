@@ -89,7 +89,7 @@ const ChartComponent: React.FC = () => {
           </Chart>
         </ChartCanvas>
       ) : (
-        <p className="text-center font-mono text-green-600">
+        <p className="text-center font-mono text-green-600 text-xs">
           Loading chart data...
         </p>
       )}

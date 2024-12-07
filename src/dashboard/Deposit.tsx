@@ -31,7 +31,7 @@ const Deposit = () => {
         <div className="flex flex-col gap-2 relative mt-5">
           <div className="px-4 py-5 min-h-fit  bg-black rounded-lg">
             <div className="w-full flex justify-between text-white">
-              <p className="uppercase text-gray-400 font-mons font-semibold text-sm lg:text-xs">
+              <p className="uppercase text-gray-400 font-mons font-semibold text-xs">
                 selling
               </p>
             </div>
@@ -42,13 +42,13 @@ const Deposit = () => {
                   src="https://coin-images.coingecko.com/coins/images/325/thumb/tether.png?1696501400"
                   alt=""
                 />
-                <p className="text-white text-sm uppercase font-mons font-semibold lg:text-xs">
+                <p className="text-white  uppercase font-mons font-semibold text-xs">
                   usdt
                 </p>
               </div>
 
               <div className=" flex-shrink-0 flex-grow-0 basis-[70%]">
-                <p className="text-white text-lg flex justify-end uppercase font-mons font-semibold lg:text-sm">
+                <p className="text-white  flex justify-end uppercase font-mons font-semibold text-sm">
                   $0.00
                 </p>
               </div>
@@ -61,7 +61,7 @@ const Deposit = () => {
 
           <div className="px-4 py-5 min-h-fit bg-black rounded-md">
             <div className="w-full flex justify-between text-white">
-              <p className="uppercase text-gray-400 font-mons font-semibold text-sm lg:text-xs">
+              <p className="uppercase text-gray-400 font-mons font-semibold text-xs">
                 buying
               </p>
             </div>
@@ -72,13 +72,13 @@ const Deposit = () => {
                   src="https://coin-images.coingecko.com/coins/images/1/thumb/bitcoin.png?1696501400"
                   alt=""
                 />
-                <p className="text-white text-sm uppercase font-mons font-semibold lg:text-xs">
+                <p className="text-white  uppercase font-mons font-semibold text-xs">
                   btc
                 </p>
               </div>
 
               <div className=" flex-shrink-0 flex-grow-0 basis-[70%]">
-                <p className="text-white text-lg flex justify-end uppercase font-mons font-semibold lg:text-sm">
+                <p className="text-white flex justify-end uppercase font-mons font-semibold text-sm">
                   0.00
                 </p>
               </div>
@@ -87,27 +87,27 @@ const Deposit = () => {
         </div>
 
         <div className="mt-3 flex justify-between w-full">
-          <p className="font-mons font-medium text-green-500 capitalize lg:text-xs lg:uppercase">
+          <p className="font-mons font-medium text-green-500  text-xs uppercase">
             rate
           </p>
           <div className="flex justify-end">
-            <p className="font-mons font-semibold text-gray-500 capitalize lg:uppercase lg:text-xs lg:text-black">
-              1 btc = $91,841.59
+            <p className="font-mons text-xs font-semibold text-gray-500  uppercase lg:text-xs lg:text-black">
+              1 btc = $98,465
             </p>
           </div>
         </div>
 
         <form className="w-full mt-8 lg:mt-5">
-          <p className="font-mons font-bold text-gray-500 capitalize text-sm lg:text-xs lg:uppercase">
-            enter amout
+          <p className="font-mons font-bold text-gray-500   text-xs uppercase">
+            enter amount
           </p>
           <input
             type="number"
             placeholder="$0.00"
-            className=" mt-4 w-full font-mons font-bold capitalize text-sm px-2 py-4 border-2 border-teal-500 outline-none rounded-md"
+            className=" mt-4 w-full font-mons font-bold capitalize text-xs px-2 py-4 border-2 border-teal-500 outline-none rounded-md"
           />
 
-          <button className="lg:text-xs mt-10 flex justify-center items-center w-full bg-green-500 text-white font-mons text-sm capitalize font-bold py-3 rounded-md">
+          <button className="text-xs mt-10 flex justify-center items-center w-full bg-green-500 text-white font-mons capitalize font-bold py-3 rounded-md">
             proceed to payment
           </button>
         </form>
