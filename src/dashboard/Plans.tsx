@@ -80,7 +80,9 @@ const Plans = () => {
           <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2 items-start ">
             <input type="radio" className="mt-1" />
             <div>
-              <h2 className="capitalize font-mono font-bold">basic plan</h2>
+              <h2 className="capitalize font-mono font-bold lg:text-base text-sm">
+                basic plan
+              </h2>
               <p className="font-mono font-semibold text-gray-600 text-xs mt-1">
                 Essential features for beginners to get started easily.
               </p>
@@ -95,7 +97,9 @@ const Plans = () => {
           <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2 items-start ">
             <input type="radio" className="mt-1" />
             <div>
-              <h2 className="capitalize font-mono font-bold">standard plan</h2>
+              <h2 className="capitalize font-mono font-bold lg:text-base text-sm">
+                standard plan
+              </h2>
               <p className="font-mono font-semibold text-gray-600 text-xs mt-1">
                 Advanced tools for growing users who need more flexibility.
               </p>
@@ -110,7 +114,9 @@ const Plans = () => {
           <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2 items-start ">
             <input type="radio" className="mt-1" />
             <div>
-              <h2 className="capitalize font-mono font-bold">premium plan</h2>
+              <h2 className="capitalize font-mono font-bold lg:text-base text-sm">
+                premium plan
+              </h2>
               <p className="font-mono font-semibold text-gray-600 text-xs mt-1">
                 All-inclusive features with top-tier support for professionals.
               </p>

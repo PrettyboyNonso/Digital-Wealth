@@ -2,8 +2,8 @@ import { StarIcon } from "@heroicons/react/24/solid";
 
 const CopyTrading = () => {
   return (
-    <div className=" w-full justify-between h-fit py-8 px-4 items-center flex ">
-      <div className="flex flex-col w-[48%] min-h-56 border border-solid shadow-md relative py-3">
+    <div className=" w-full justify-between h-fit py-8 px-4 items-center flex lg:flex-row flex-col gap-6 lg:gap-0">
+      <div className="flex flex-col lg:w-[48%] min-h-56 border border-solid shadow-md relative py-3 w-[100%]">
         <p className="bg-yellow-500 font-mons text-xs py-1  rounded-sm font-bold capitalize absolute top-2 left-2 px-4">
           pro
         </p>
@@ -53,7 +53,7 @@ const CopyTrading = () => {
         </div>
       </div>
 
-      <div className="flex flex-col w-[48%] min-h-56 border border-solid shadow-md relative py-3">
+      <div className="flex flex-col w-[100%] lg:w-[48%] min-h-56 border border-solid shadow-md relative py-3">
         <p className="bg-yellow-500 font-mons text-xs py-1  rounded-sm font-bold capitalize absolute top-2 left-2 px-4">
           pro
         </p>
