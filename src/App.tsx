@@ -28,7 +28,7 @@ function App() {
   return (
     <BrowserRouter>
       <LoginProvider>
-        <main className="">
+        <main>
           <Routes>
             <Route
               path="/"
@@ -47,10 +47,7 @@ function App() {
               <Route path="view-loans" element={<ViewLoan />} />
               <Route path="copy-trading" element={<CopyTrading />} />
               <Route path="plans" element={<Plans />} />
-              {/* <Route path="settings" element={<Settings />} /> */}
-              {/* <Route path="signals" element={<SignalPage />} /> */}
             </Route>
-
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/auth" element={<Auth />} />
