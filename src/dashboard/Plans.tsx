@@ -7,12 +7,12 @@ import {
 
 const Plans = () => {
   return (
-    <div className="px-8 py-8 flex items-start justify-between mt-16 flex-col lg:flex-row">
-      <div className="flex-shrink-0 flex-grow-0 basis-[50%]">
-        <p className="font-mono font-semibold  capitalize text-green-500">
+    <div className="lg:px-8 px-4 lg:py-8 flex items-start justify-between lg:mt-16 flex-col lg:flex-row mt-3 gap-4">
+      <div className="flex-shrink-0 flex-grow-0 w-[100%]  lg:basis-[50%]">
+        <p className="font-mono font-semibold  capitalize text-green-500 lg:text-base text-xs">
           welcome to digital wealth, Apoloski!
         </p>
-        <h1 className="mt-4 font-mons capitalize font-bold text-2xl">
+        <h1 className="mt-4 font-mons capitalize font-bold lg:text-2xl text-lg">
           select your plan
         </h1>
 
@@ -75,8 +75,8 @@ const Plans = () => {
         </div>
       </div>
 
-      <div className="flex-shrink-0 flex-grow-0 basis-[50%] flex justify-center flex-col items-center gap-2">
-        <div className="w-[70%]  border-2 border-green-500 min-h-32 rounded-md flex justify-between py-4 px-4 shadow-md">
+      <div className="flex-shrink-0 flex-grow-0 basis-[100%] lg:basis-[50%] flex justify-center flex-col items-center gap-2">
+        <div className="w-[100%] lg:w-[70%]  border-2 border-green-500 min-h-32 rounded-md flex justify-between py-4 px-4 shadow-md">
           <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2 items-start ">
             <input type="radio" className="mt-1" />
             <div>
@@ -91,7 +91,7 @@ const Plans = () => {
             <h2 className="font-mon0 font-bold">$100/yr</h2>
           </div>
         </div>
-        <div className="w-[70%] border-2 border-green-500 min-h-32 rounded-md flex justify-between py-4 px-4 shadow-md">
+        <div className=" w-[100%] lg:w-[70%] border-2 border-green-500 min-h-32 rounded-md flex justify-between py-4 px-4 shadow-md">
           <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2 items-start ">
             <input type="radio" className="mt-1" />
             <div>
@@ -106,7 +106,7 @@ const Plans = () => {
             <h2 className="font-mon0 font-bold">$200/yr</h2>
           </div>
         </div>
-        <div className="w-[70%] border-2 border-green-500 min-h-32 rounded-md flex justify-between py-4 px-4 shadow-md">
+        <div className="w-[100%] lg:w-[70%] border-2 border-green-500 min-h-32 rounded-md flex justify-between py-4 px-4 shadow-md">
           <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2 items-start ">
             <input type="radio" className="mt-1" />
             <div>
