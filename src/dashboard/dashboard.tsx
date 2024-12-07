@@ -120,7 +120,7 @@ const Dashboard = () => {
             <select
               name="crypto-pair"
               id="crypto-pair"
-              className=" border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
+              className=" border-2 border-solid w-full  font-mons font-semibold text-xs lg:text-xs outline-none px-2 py-8"
             >
               <option value="">Crypto Pair</option>
               <option value="usdt-tron">USDT/TRON</option>
