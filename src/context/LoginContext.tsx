@@ -184,42 +184,38 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
           password: details.confirmPassword,
         })
       );
-      try {
-        const response = await fetch(
-          "https://digital-wealth.onrender.com/auth/users/",
-          {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
 
-            body: JSON.stringify({
-              email: details.userEmail,
-              password: details.confirmPassword,
-            }),
-          }
-        );
-        console.log(
-          JSON.stringify({
+      const response = await fetch(
+        "https://digital-wealth.onrender.com/auth/users/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+
+          body: JSON.stringify({
             email: details.userEmail,
             password: details.confirmPassword,
-          })
-        );
-        console.log("auth");
-        console.log(response.status);
-
-        if (response.ok) {
-          setsuccessMessage(
-            "An email has been sent to your gmail account, proceed there for further confirmation"
-          );
-          console.log(response.status); // you should get 200 in the console
-        } else {
-          const errorData = await response.json();
-          throw new Error(errorData?.detail || "An error occurred");
+          }),
         }
-      } catch (error) {
-        console.error("Fetch error:", error);
-        throw new Error("An error occurred while registering");
+      );
+      console.log(
+        JSON.stringify({
+          email: details.userEmail,
+          password: details.confirmPassword,
+        })
+      );
+      console.log("auth");
+      console.log(response.status);
+
+      if (response.ok) {
+        setsuccessMessage(
+          "An email has been sent to your gmail account, proceed there for further confirmation"
+        );
+        console.log(response.status); // you should get 200 in the console
+      } else {
+        const errorData = await response.json();
+        throw new Error(errorData?.detail || "An error occurred");
       }
     }
   };
