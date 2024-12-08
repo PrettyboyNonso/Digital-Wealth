@@ -1,5 +1,10 @@
 import LoginContext from "@/context/LoginContext";
-import { formatNumberWithCommas } from "@/lib/utils";
+import Select from "react-select";
+import {
+  cryptoOptions,
+  formatNumberWithCommas,
+  handleChange,
+} from "@/lib/utils";
 import {
   ArrowLeftRight,
   ArrowRight,
@@ -117,24 +122,19 @@ const Dashboard = () => {
         <div className="mt-12 lg:mt-16">
           {/* <h2 className="text-[16px] font-mons capitalize font-bold">assets</h2> */}
           <form action="" className="w-full mt-4">
-            <select
-              name="crypto-pair"
-              id="crypto-pair"
-              className=" border-2 border-solid w-full  font-mons font-semibold text-xs lg:text-xs outline-none px-2 py-8"
-            >
-              <option value="">Crypto Pair</option>
-              <option value="usdt-tron">USDT/TRON</option>
-              <option value="btc-eth">BTC/ETH</option>
-              <option value="eth-usdt">ETH/USDT</option>
-              <option value="bnb-btc">BNB/BTC</option>
-              <option value="ltc-usdt">LTC/USDT</option>
-              <option value="doge-btc">DOGE/BTC</option>
-              <option value="sol-eth">SOL/ETH</option>
-              <option value="xrp-usdt">XRP/USDT</option>
-              <option value="ada-btc">ADA/BTC</option>
-              <option value="dot-usdt">DOT/USDT</option>
-            </select>
-
+            <Select
+              options={cryptoOptions}
+              defaultValue={cryptoOptions[0]}
+              onChange={handleChange}
+              className="w-full font-mons font-semibold text-xs lg:text-xs"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  border: "2px solid",
+                  padding: "3px 2px",
+                }),
+              }}
+            />
             <select
               name="leverage"
               id="leverage"

@@ -95,90 +95,45 @@ const Header = () => {
           <nav className="hidden lg:flex-shrink-0 lg:flex-grow-0 lg:basis-[60%] lg:block ">
             <ul className="flex justify-around">
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "home" ? "text-teal-600" : "text-black"}
-                    `}
-                  onClick={() => handleSmoothScroll(0)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(0)}>
                   home
                 </NavLink>
               </li>
 
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "market" ? "text-teal-600" : "text-black"}`}
-                  onClick={() => handleSmoothScroll(1)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(1)}>
                   market
                 </NavLink>
               </li>
 
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "about" ? "text-teal-600" : "text-black"}`}
-                  onClick={() => handleSmoothScroll(4)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(4)}>
                   about
                 </NavLink>
               </li>
 
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "trade" ? "text-teal-600" : "text-black"}`}
-                  onClick={() => handleSmoothScroll(6)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(6)}>
                   trading
                 </NavLink>
               </li>
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "plans" ? "text-teal-600" : "text-black"}`}
-                  onClick={() => handleSmoothScroll(7)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(7)}>
                   plans
                 </NavLink>
               </li>
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${
-                      isActive === "testimonials"
-                        ? "text-teal-600"
-                        : "text-black"
-                    }`}
-                  onClick={() => handleSmoothScroll(8)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(8)}>
                   testimonial
                 </NavLink>
               </li>
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "license" ? "text-teal-600" : "text-black"}`}
-                  onClick={() => handleSmoothScroll(9)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(9)}>
                   license
                 </NavLink>
               </li>
               <li className="font-mons capitalize font-semibold text-[13px]">
-                <NavLink
-                  to="/"
-                  className={`
-                    ${isActive === "support" ? "text-teal-600" : "text-black"}`}
-                  onClick={() => handleSmoothScroll(10)}
-                >
+                <NavLink to="/" onClick={() => handleSmoothScroll(10)}>
                   support
                 </NavLink>
               </li>

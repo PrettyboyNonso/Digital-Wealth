@@ -1,5 +1,6 @@
 import { clsx, type ClassValue } from "clsx";
 import { twMerge } from "tailwind-merge";
+import { SingleValue, ActionMeta } from "react-select";
 
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
@@ -66,3 +67,34 @@ export interface CryptoDetails {
 export function formatNumberWithCommas(number: number) {
   return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
 }
+
+export const cryptoOptions = [
+  { value: "", label: "Crypto Pair" },
+  { value: "usdt-tron", label: "USDT/TRON" },
+  { value: "btc-eth", label: "BTC/ETH" },
+  { value: "eth-usdt", label: "ETH/USDT" },
+  { value: "bnb-btc", label: "BNB/BTC" },
+  { value: "ltc-usdt", label: "LTC/USDT" },
+  { value: "doge-btc", label: "DOGE/BTC" },
+  { value: "sol-eth", label: "SOL/ETH" },
+  { value: "xrp-usdt", label: "XRP/USDT" },
+  { value: "ada-btc", label: "ADA/BTC" },
+  { value: "dot-usdt", label: "DOT/USDT" },
+];
+
+type OptionType = {
+  value: string;
+  label: string;
+};
+
+export const handleChange = (
+  selectedOption: SingleValue<OptionType>,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _actionMeta: ActionMeta<OptionType>
+) => {
+  if (selectedOption) {
+    console.log("Selected option:", selectedOption);
+  } else {
+    console.log("Selection cleared.");
+  }
+};

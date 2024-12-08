@@ -175,6 +175,12 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const registerFunction = async (e: FormEvent<HTMLFormElement>) => {
     const details = authenticateRegister(e);
     if (details?.authenticated) {
+      console.log(
+        JSON.stringify({
+          email: details.userEmail,
+          password: details.confirmPassword,
+        })
+      );
       try {
         const response = await fetch(
           "https://digital-wealth.onrender.com/auth/users/",
