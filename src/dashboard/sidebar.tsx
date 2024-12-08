@@ -10,10 +10,12 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
+import LoginContext from "@/context/LoginContext";
 
 import {
   BadgeCheck,
-  // BarChartBig,
+  BarChartBig,
+  Bell,
   Bitcoin,
   Briefcase,
   Copy,
@@ -21,10 +23,34 @@ import {
   HandHelping,
   LayoutDashboard,
   LogOutIcon,
-  // Settings,
+  Settings,
   Wallet,
 } from "lucide-react";
+import { useContext } from "react";
 import { NavLink } from "react-router-dom";
+const adminItems = [
+  {
+    title: "Home",
+    url: "/dashboard",
+    icon: LayoutDashboard,
+  },
+  {
+    title: "Deposit",
+    url: "/dashboard/deposit",
+    icon: Bitcoin,
+  },
+
+  {
+    title: "Withdrawals",
+    url: "/dashboard/withdraw",
+    icon: Wallet,
+  },
+  {
+    title: "Push Notifications",
+    url: "/dashboard/notify",
+    icon: Bell,
+  },
+];
 const items = [
   {
     title: "Dashboard",
@@ -66,25 +92,31 @@ const items = [
     url: "/dashboard/copy-trading",
     icon: Copy,
   },
-  // {
-  //   title: "Purchase Signals",
-  //   url: "/dashboard/signals",
-  //   icon: BarChartBig,
-  // },
-  // {
-  //   title: "Settings",
-  //   url: "/dashboard/settings",
-  //   icon: Settings,
-  // },
+  {
+    title: "Purchase Signals",
+    url: "/dashboard/signals",
+    icon: BarChartBig,
+  },
+  {
+    title: "Settings",
+    url: "/dashboard/settings",
+    icon: Settings,
+  },
 
   {
-    title: "Log out",
+    title: "Use Funds",
     url: "#",
     icon: LogOutIcon,
   },
 ];
 
 const SideNav = () => {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("state is mismanaged");
+  }
+
+  const { admin } = context;
   const { setOpenMobile } = useSidebar();
   return (
     <Sidebar>
@@ -98,20 +130,35 @@ const SideNav = () => {
             </SidebarGroupLabel>
             <SidebarGroupContent>
               <SidebarMenu className="flex flex-col gap-4">
-                {items.map((item) => (
-                  <SidebarMenuItem
-                    key={item.title}
-                    className="font-mono font-medium text-black"
-                    onClick={() => setOpenMobile(false)}
-                  >
-                    <SidebarMenuButton asChild>
-                      <NavLink to={item.url}>
-                        <item.icon />
-                        <span>{item.title}</span>
-                      </NavLink>
-                    </SidebarMenuButton>
-                  </SidebarMenuItem>
-                ))}
+                {admin
+                  ? adminItems.map((item) => (
+                      <SidebarMenuItem
+                        key={item.title}
+                        className="font-mono font-medium text-black"
+                        onClick={() => setOpenMobile(false)}
+                      >
+                        <SidebarMenuButton asChild>
+                          <NavLink to={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </NavLink>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))
+                  : items.map((item) => (
+                      <SidebarMenuItem
+                        key={item.title}
+                        className="font-mono font-medium text-black"
+                        onClick={() => setOpenMobile(false)}
+                      >
+                        <SidebarMenuButton asChild>
+                          <NavLink to={item.url}>
+                            <item.icon />
+                            <span>{item.title}</span>
+                          </NavLink>
+                        </SidebarMenuButton>
+                      </SidebarMenuItem>
+                    ))}
               </SidebarMenu>
             </SidebarGroupContent>
           </SidebarGroup>

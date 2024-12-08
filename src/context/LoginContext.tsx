@@ -30,6 +30,8 @@ interface LoginContextType {
   sectionArray: React.MutableRefObject<(HTMLElement | null)[]>;
   fetchStockData: (symbol: string) => void;
   stockData: StockData;
+  admin: boolean;
+  setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
@@ -43,6 +45,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [isActive, setIsActive] = useState("");
   const sectionArray = useRef<(HTMLElement | null)[]>([]);
   const [stockData, setStockData] = useState({});
+  const [admin, setAdmin] = useState(false);
 
   const apiKey = import.meta.env.VITE_STOCK_API;
   const fetchStockData = async (symbol: string) => {
@@ -256,6 +259,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     sectionArray,
     fetchStockData,
     stockData,
+    admin,
+    setAdmin,
   };
 
   return (

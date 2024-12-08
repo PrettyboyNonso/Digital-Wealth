@@ -57,7 +57,7 @@ const Loan = () => {
                 options={loanDurationOptions}
                 defaultValue={loanDurationOptions[0]}
                 onChange={handleChange}
-                className="text-xs w-full mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono px-2 py-3"
+                className="w-full font-mons font-medium text-xs lg:text-xs mt-3"
                 styles={{
                   control: (provided) => ({
                     ...provided,
