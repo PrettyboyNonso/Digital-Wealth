@@ -185,7 +185,6 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
             },
 
             body: JSON.stringify({
-              // name: details.fullName,
               email: details.userEmail,
               password: details.confirmPassword,
             }),
@@ -197,6 +196,9 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
             password: details.confirmPassword,
           })
         );
+        console.log("auth");
+        console.log(response.status);
+
         if (response.ok) {
           setsuccessMessage(
             "An email has been sent to your gmail account, proceed there for further confirmation"
