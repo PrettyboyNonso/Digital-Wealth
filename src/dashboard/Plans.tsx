@@ -45,7 +45,7 @@ const Plans = () => {
   ];
   const PlanCard: React.FC<{ value: PlansInterface }> = ({ value }) => {
     return (
-      <div className="flex-shrink-0 flex-grow-0 w-full py-4 border border-solid h-full flex flex-col items-center gap-3">
+      <div className="shadow-md flex-shrink-0 flex-grow-0 w-full py-4 border border-solid h-full flex flex-col items-center gap-3 md:w-[50%]">
         <div className="w-full  flex text-sm justify-center text-white uppercase font-mons font-semibold ">
           <h1 className="bg-blue-700 py-2 px-4 mt-4">{value.plan}</h1>
         </div>
@@ -87,7 +87,7 @@ const Plans = () => {
     );
   };
   return (
-    <div className="w-full flex flex-col gap-1 items-start px-4 py-4">
+    <div className="w-full flex flex-col gap-4 items-start px-4 py-4 md:items-center">
       {plansObj.map((item, index) => (
         <PlanCard value={item} key={index} />
       ))}

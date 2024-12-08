@@ -1,152 +1,62 @@
-// import React, { useState, useEffect } from "react";
-// import { ChartCanvas, Chart, CandlestickSeries } from "react-financial-charts";
-// import { scaleTime } from "d3-scale";
-// import { utcDay } from "d3-time";
-// import axios from "axios";
+import React from "react";
 
-// const SignalPage: React.FC = () => {
-//   const [tradePair, setTradePair] = useState("BTC/USD");
-//   const [chartData, setChartData] = useState<any[]>([]);
+const SignalPage = () => {
+  interface SignalType {
+    name: string;
+    amount: string;
+    percent: string;
+  }
+  const SignalObj = [
+    {
+      name: " momentum signals",
+      amount: "$1300",
+      percent: "63%",
+    },
+    {
+      name: " breakout signals",
+      amount: "$3000",
+      percent: "68.7%",
+    },
+    {
+      name: " buying oversold",
+      amount: "$3800",
+      percent: "70%",
+    },
+  ];
+  const Signals: React.FC<{ value: SignalType }> = ({ value }) => {
+    return (
+      <div className="w-full flex flex-col border border-solid md:w-[50%] ">
+        <div className="w-full bg-gray-100 py-2 flex justify-center rounded-md">
+          <h1 className="font-mons capitalize text-blue-400 font-semibold">
+            {value.name}
+          </h1>
+        </div>
 
-//   useEffect(() => {
-//     const fetchChartData = async () => {
-//       try {
-//         const response = await axios.get(
-//           "https://api.coingecko.com/api/v3/coins/bitcoin/ohlc",
-//           {
-//             params: {
-//               vs_currency: "usd",
-//               days: 1,
-//             },
-//           }
-//         );
+        <div className="w-full py-2 flex justify-center rounded-sm">
+          <h2 className="font-mono capitalize  font-semibold">
+            signals price: {value.amount}
+          </h2>
+        </div>
 
-//         const formattedData = response.data.map((d: any) => ({
-//           date: new Date(d[0]),
-//           open: d[1],
-//           high: d[2],
-//           low: d[3],
-//           close: d[4],
-//         }));
+        <div className="w-full py-3 flex justify-center rounded-sm border-t border-solid ">
+          <p className="font-mons capitalize text-xs font-medium">
+            percentage: {value.percent}
+          </p>
+        </div>
 
-//         setChartData(formattedData);
-//       } catch (error) {
-//         console.error("Error fetching chart data:", error);
-//       }
-//     };
+        <button className="bg-blue-700 py-2 text-sm text-white font-mono font-bold capitalize">
+          subscribe now
+        </button>
+      </div>
+    );
+  };
+  return (
+    <div className="w-full flex flex-col gap-5 items-start px-4 py-4 md:items-center">
+      {SignalObj.map((item, index) => (
+        <Signals value={item} key={index} />
+      ))}
+    </div>
+  );
+};
 
-//     fetchChartData();
-//   }, [tradePair]);
-
-//   return (
-//     <div className="flex h-screen bg-gray-100 font-mono text-sm">
-//       {/* Left Panel: Signals Feed */}
-//       <aside className="w-1/4 p-4 bg-white border-r overflow-y-auto">
-//         <h2 className="text-lg font-semibold mb-4">Trading Signals</h2>
-//         <div className="space-y-4">
-//           {[
-//             {
-//               pair: "BTC/USD",
-//               action: "Buy",
-//               entry: "28,000",
-//               tp: "30,000",
-//               sl: "27,000",
-//             },
-//             {
-//               pair: "ETH/USD",
-//               action: "Sell",
-//               entry: "1,800",
-//               tp: "1,600",
-//               sl: "1,900",
-//             },
-//           ].map((signal, index) => (
-//             <div
-//               key={index}
-//               className="p-4 border rounded-lg cursor-pointer hover:bg-gray-100"
-//               onClick={() => setTradePair(signal.pair)}
-//             >
-//               <p className="font-bold">{signal.pair}</p>
-//               <p>
-//                 Signal:{" "}
-//                 <span
-//                   className={
-//                     signal.action === "Buy" ? "text-green-600" : "text-red-600"
-//                   }
-//                 >
-//                   {signal.action}
-//                 </span>
-//               </p>
-//               <p>Entry: {signal.entry}</p>
-//               <p>
-//                 TP: {signal.tp} | SL: {signal.sl}
-//               </p>
-//             </div>
-//           ))}
-//         </div>
-//       </aside>
-
-//       {/* Center Panel: Trading Chart */}
-//       <main className="flex-grow p-4">
-//         <h2 className="text-lg font-semibold mb-4">
-//           Market Chart ({tradePair})
-//         </h2>
-//         <div className="w-full h-[70vh] bg-white p-4 rounded-lg shadow-lg">
-//           {chartData.length > 0 ? (
-//             <ChartCanvas
-//               height={400}
-//               width={700}
-//               ratio={1}
-//               seriesName={tradePair}
-//               data={chartData}
-//               xAccessor={(d) => d.date}
-//               xScale={scaleTime()}
-//               xExtents={[
-//                 utcDay.offset(chartData[0].date, -1),
-//                 utcDay.offset(chartData[chartData.length - 1].date, 1),
-//               ]}
-//             >
-//               <Chart id={0} yExtents={(d) => [d.high, d.low]}>
-//                 <CandlestickSeries />
-//               </Chart>
-//             </ChartCanvas>
-//           ) : (
-//             <p>Loading chart data...</p>
-//           )}
-//         </div>
-//       </main>
-
-//       {/* Right Panel: Trade Controls */}
-//       <aside className="w-1/4 p-4 bg-white border-l">
-//         <h2 className="text-lg font-semibold mb-4">Trade Controls</h2>
-//         <form className="space-y-4" onSubmit={(e) => e.preventDefault()}>
-//           <div>
-//             <label className="block font-bold mb-1" htmlFor="orderType">
-//               Order Type
-//             </label>
-//             <select id="orderType" className="w-full p-2 border rounded">
-//               <option value="market">Market</option>
-//               <option value="limit">Limit</option>
-//             </select>
-//           </div>
-//           <div>
-//             <label className="block font-bold mb-1" htmlFor="tradeAction">
-//               Action
-//             </label>
-//             <select id="tradeAction" className="w-full p-2 border rounded">
-//               <option value="Buy">Buy</option>
-//               <option value="Sell">Sell</option>
-//             </select>
-//           </div>
-//           <button
-//             type="button"
-//             className="w-full p-2 bg-blue-600 text-white rounded hover:bg-blue-700"
-//           >
-//             Execute Trade
-//           </button>
-//         </form>
-//       </aside>
-//     </div>
-//   );
-// };
-
-// export default SignalPage;
+export default SignalPage;

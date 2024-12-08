@@ -21,9 +21,9 @@ import {
   Copy,
   EyeIcon,
   HandHelping,
+  HistoryIcon,
   LayoutDashboard,
   LogOutIcon,
-  Settings,
   Wallet,
 } from "lucide-react";
 import { useContext } from "react";
@@ -77,6 +77,12 @@ const items = [
     url: "/dashboard/view-loans",
     icon: EyeIcon,
   },
+
+  {
+    title: "User Fund Log",
+    url: "/dashboard/logs",
+    icon: HistoryIcon,
+  },
   {
     title: "Upgrade Account",
     url: "/dashboard/upgrade",
@@ -97,14 +103,9 @@ const items = [
     url: "/dashboard/signals",
     icon: BarChartBig,
   },
-  {
-    title: "Settings",
-    url: "/dashboard/settings",
-    icon: Settings,
-  },
 
   {
-    title: "Use Funds",
+    title: "Log out",
     url: "#",
     icon: LogOutIcon,
   },
