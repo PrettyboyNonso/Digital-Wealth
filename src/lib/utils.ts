@@ -98,3 +98,72 @@ export const handleChange = (
     console.log("Selection cleared.");
   }
 };
+
+type LeverageOptionType = {
+  value: string;
+  label: string;
+};
+
+// Options for the Leverage select
+export const leverageOptions: LeverageOptionType[] = [
+  { value: "", label: "Leverage" },
+  { value: "1x", label: "1x" },
+  { value: "2x", label: "2x" },
+  { value: "5x", label: "5x" },
+  { value: "10x", label: "10x" },
+  { value: "20x", label: "20x" },
+  { value: "50x", label: "50x" },
+  { value: "100x", label: "100x" },
+];
+
+type DaysOptionType = {
+  value: string;
+  label: string;
+};
+
+// Options for the Days select
+export const daysOptions: DaysOptionType[] = [
+  { value: "", label: "Day" },
+  { value: "1", label: "1 Day" },
+  { value: "2", label: "2 Days" },
+  { value: "3", label: "3 Days" },
+  { value: "4", label: "4 Days" },
+  { value: "5", label: "5 Days" },
+  { value: "6", label: "6 Days" },
+  { value: "7", label: "7 Days" },
+];
+
+type WalletOptionType = {
+  value: string;
+  label: string;
+};
+
+export const walletOptions: WalletOptionType[] = [
+  { value: "", label: "Wallet" },
+];
+
+type LoanFacilityOptionType = {
+  value: string;
+  label: string;
+};
+
+export const loanFacilityOptions: LoanFacilityOptionType[] = [
+  { value: "personal-loan", label: "Personal Loan" },
+  { value: "home-loan", label: "Home Loan" },
+  { value: "car-loan", label: "Car Loan" },
+  { value: "education-loan", label: "Education Loan" },
+  { value: "business-loan", label: "Business Loan" },
+];
+
+type LoanDurationOptionType = {
+  value: string;
+  label: string;
+};
+
+export const loanDurationOptions: LoanDurationOptionType[] = [
+  { value: "1-month", label: "1 Month" },
+  { value: "3-months", label: "3 Months" },
+  { value: "6-months", label: "6 Months" },
+  { value: "9-months", label: "9 Months" },
+  { value: "12-months", label: "12 Months" },
+];

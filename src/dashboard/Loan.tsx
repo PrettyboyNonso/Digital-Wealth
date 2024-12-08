@@ -1,8 +1,13 @@
 import LoginContext from "@/context/LoginContext";
-import { formatNumberWithCommas } from "@/lib/utils";
+import {
+  formatNumberWithCommas,
+  handleChange,
+  loanDurationOptions,
+  loanFacilityOptions,
+} from "@/lib/utils";
 import { ArrowRight, Wallet } from "lucide-react";
 import { useContext } from "react";
-
+import Select from "react-select";
 const Loan = () => {
   const context = useContext(LoginContext);
   if (context === null) {
@@ -31,32 +36,36 @@ const Loan = () => {
               <p className="font-mono font-bold text-xs">
                 Select Loan Facility
               </p>
-              <select
-                id="loan-facility"
-                name="loanFacility"
-                className="text-xs w-full mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono px-2 py-3"
-              >
-                <option value="personal-loan">Personal Loan</option>
-                <option value="home-loan">Home Loan</option>
-                <option value="car-loan">Car Loan</option>
-                <option value="education-loan">Education Loan</option>
-                <option value="business-loan">Business Loan</option>
-              </select>
+              <Select
+                options={loanFacilityOptions}
+                defaultValue={loanFacilityOptions[0]} // Default to the "Personal Loan" label
+                onChange={handleChange}
+                className="w-full font-mons font-medium text-xs lg:text-xs mt-3"
+                styles={{
+                  control: (provided) => ({
+                    ...provided,
+                    border: "2px solid",
+                    padding: "3px 2px",
+                  }),
+                }}
+              />
             </div>
 
             <div className="w-full">
               <p className="font-mono font-bold text-xs">Select Duration</p>
-              <select
-                id="loan-duration"
-                name="loanDuration"
+              <Select
+                options={loanDurationOptions}
+                defaultValue={loanDurationOptions[0]}
+                onChange={handleChange}
                 className="text-xs w-full mt-2 border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-blue-500 font-mono px-2 py-3"
-              >
-                <option value="1-month">1 Month</option>
-                <option value="3-months">3 Months</option>
-                <option value="6-months">6 Months</option>
-                <option value="9-months">9 Months</option>
-                <option value="12-months">12 Months</option>
-              </select>
+                styles={{
+                  control: (provided) => ({
+                    ...provided,
+                    border: "2px solid",
+                    padding: "3px 2px",
+                  }),
+                }}
+              />
             </div>
 
             <div>

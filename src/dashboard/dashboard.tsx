@@ -2,8 +2,10 @@ import LoginContext from "@/context/LoginContext";
 import Select from "react-select";
 import {
   cryptoOptions,
+  daysOptions,
   formatNumberWithCommas,
   handleChange,
+  leverageOptions,
 } from "@/lib/utils";
 import {
   ArrowLeftRight,
@@ -135,42 +137,38 @@ const Dashboard = () => {
                 }),
               }}
             />
-            <select
-              name="leverage"
-              id="leverage"
-              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
-            >
-              <option value=""> Leverage</option>
-              <option value="1x">1x</option>
-              <option value="2x">2x</option>
-              <option value="5x">5x</option>
-              <option value="10x">10x</option>
-              <option value="20x">20x</option>
-              <option value="50x">50x</option>
-              <option value="100x">100x</option>
-            </select>
-
+            <Select
+              options={leverageOptions}
+              defaultValue={leverageOptions[0]}
+              onChange={handleChange}
+              className="mt-3 w-full font-mons font-semibold text-xs lg:text-xs"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  border: "2px solid",
+                  padding: "3px 2px",
+                }),
+              }}
+            />
             <input
               type="number"
               placeholder="Amount to invest"
               className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
             />
 
-            <select
-              name="days"
-              id="days"
-              className="mt-3 border-2 border-solid w-full py-3 font-mons font-semibold text-xs lg:text-xs outline-none px-2"
-            >
-              <option value=""> Day</option>
-              <option value="1">1 Day</option>
-              <option value="2">2 Days</option>
-              <option value="3">3 Days</option>
-              <option value="4">4 Days</option>
-              <option value="5">5 Days</option>
-              <option value="6">6 Days</option>
-              <option value="7">7 Days</option>
-            </select>
-
+            <Select
+              options={daysOptions}
+              defaultValue={daysOptions[0]}
+              onChange={handleChange}
+              className="mt-3 w-full font-mons font-semibold text-xs lg:text-xs"
+              styles={{
+                control: (provided) => ({
+                  ...provided,
+                  border: "2px solid",
+                  padding: "3px 2px",
+                }),
+              }}
+            />
             <div className="w-full justify-between flex mt-5 items-center">
               <button className="flex-shrink-0 flex-grow-0 basis-[48%] bg-red-600 py-2 rounded-sm capitalize text-white font-mons font-semibold text-xs">
                 sell

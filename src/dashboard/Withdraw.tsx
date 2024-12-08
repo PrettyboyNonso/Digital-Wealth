@@ -1,8 +1,12 @@
 import LoginContext from "@/context/LoginContext";
-import { formatNumberWithCommas } from "@/lib/utils";
+import {
+  formatNumberWithCommas,
+  handleChange,
+  walletOptions,
+} from "@/lib/utils";
 import { ArrowRight, BellIcon, Info, Wallet } from "lucide-react";
 import { useContext } from "react";
-
+import Select from "react-select";
 const Withdraw = () => {
   const context = useContext(LoginContext);
   if (context === null) {
@@ -49,13 +53,19 @@ const Withdraw = () => {
           <p className=" font-mons font-bold uppercase text-gray-600 text-xs">
             withdrawal method
           </p>
-          <select
-            name=""
-            id=""
-            className="border rounded-sm border-black outline-none w-full py-3 capitalize px-2 mt-2 font-mono font-medium text-xs text-gray-600"
-          >
-            <option value="">wallet</option>
-          </select>
+          <Select
+            options={walletOptions}
+            defaultValue={walletOptions[0]}
+            onChange={handleChange}
+            className="w-full mt-3 font-mons font-semibold text-xs lg:text-xs"
+            styles={{
+              control: (provided) => ({
+                ...provided,
+                border: "2px solid",
+                padding: "3px 2px",
+              }),
+            }}
+          />
         </div>
 
         <div className="mt-6">
