@@ -17,8 +17,8 @@ const Dashboardlayout = () => {
       <SidebarProvider>
         <SideNav />
         <SidebarTrigger className="lg:hidden" />
-        <div className="w-full py-2 bg-gray-100 lg:hidden">
-          <div className="overflow-auto animate-scroll  flex items-center w-full flex-nowrap  gap-6 hide-scrollbar min-h-10">
+        <div className="w-full py-2 bg-gray-100 lg:hidden overflow-auto hide-scrollbar">
+          <div className=" animate-scroll  flex items-center w-full flex-nowrap  gap-6 hide-scrollbar min-h-10">
             {assetState.map((value, index) => (
               <Coin coinData={value} key={index} />
             ))}
