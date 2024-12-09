@@ -2,11 +2,11 @@ import { CloudUpload } from "lucide-react";
 
 const Verify = () => {
   return (
-    <div className="flex flex-col px-8 py-4 mt-5">
-      <div className="w-full h-40">
+    <div className="flex flex-col px-8 py-4 mt-5  md:items-center w-full ">
+      <div className="w-full h-40 md:w-[50%]">
         <img src="/Id.jpg" alt="" className="w-full h-full object-contain" />
       </div>
-      <div className="w-full flex flex-col gap-1 mt-5">
+      <div className="w-full flex flex-col gap-1 mt-5 md:w-[50%] ">
         <h1 className="text-lg font-bold font-mons uppercase">
           upload proof of your identity
         </h1>
@@ -39,7 +39,7 @@ const Verify = () => {
           </div>
         </div>
 
-        <button className="mt-5 bg-blue-600 py-3 font-mons text-xs uppercase text-white font-semibold rounded-sm">
+        <button className=" mt-5 bg-blue-600 py-3 font-mons text-xs uppercase text-white font-semibold rounded-sm">
           Submit
         </button>
       </div>

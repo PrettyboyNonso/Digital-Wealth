@@ -14,6 +14,7 @@ import LoginContext from "@/context/LoginContext";
 import About from "./About";
 import License from "./License";
 import Refresh from "./Refresh";
+import Chat from "@/reuseables/Chat";
 
 const Home = () => {
   const context = useContext(LoginContext);
@@ -26,6 +27,7 @@ const Home = () => {
   return (
     <main className="pb-6 mb-4 relative">
       <Winners />
+      <Chat />
       <section
         className="overflow-auto hide-scrollbar"
         ref={(el) => (sectionArray.current[0] = el)}
