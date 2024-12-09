@@ -51,6 +51,7 @@ const Logs = () => {
   };
   return (
     <div className="w-full flex flex-col py-4 px-4 gap-4">
+      <div className="flex bg-teal-400"></div>
       {LogsDet.map((item, index) => (
         <LogCard value={item} key={index} />
       ))}

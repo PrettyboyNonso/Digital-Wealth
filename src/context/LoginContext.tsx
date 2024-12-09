@@ -1,4 +1,5 @@
 import { CryptoDetails } from "@/lib/utils";
+import axios from "axios";
 import React, {
   createContext,
   FormEvent,
@@ -178,44 +179,30 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const registerFunction = async (e: FormEvent<HTMLFormElement>) => {
     const details = authenticateRegister(e);
     if (details?.authenticated) {
-      console.log(
-        JSON.stringify({
-          email: details.userEmail,
-          password: details.confirmPassword,
-        })
-      );
-
-      const response = await fetch(
-        "https://digital-wealth.onrender.com/auth/users/",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-
-          body: JSON.stringify({
-            email: details.userEmail,
-            password: details.confirmPassword,
-          }),
-        }
-      );
-      console.log(
-        JSON.stringify({
-          email: details.userEmail,
-          password: details.confirmPassword,
-        })
-      );
-      console.log("auth");
-      console.log(response.status);
-
-      if (response.ok) {
-        setsuccessMessage(
-          "An email has been sent to your gmail account, proceed there for further confirmation"
+      const requestData = {
+        email: details.userEmail,
+        password: details.userPassword,
+      };
+      try {
+        const response = await axios.post(
+          "https://digital-wealth.onrender.com/auth/users/",
+          requestData,
+          {
+            headers: {
+              "Content-Type": "application/json",
+            },
+          }
         );
-        console.log(response.status); // you should get 200 in the console
-      } else {
-        const errorData = await response.json();
-        throw new Error(errorData?.detail || "An error occurred");
+        if (response.status === 201) {
+          setsuccessMessage(
+            "An email has been sent to your gmail account, proceed there for further confirmation"
+          );
+          console.log(response.status);
+        } else {
+          throw new Error("An error occurred");
+        }
+      } catch (error) {
+        console.log(error);
       }
     }
   };
