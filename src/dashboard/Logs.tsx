@@ -24,8 +24,8 @@ const Logs = () => {
   };
   return (
     <div className="px-3 py-3">
-      <h1 className="font-mono font-semibold uppercase text-sm mt-5">
-        fund history
+      <h1 className="font-mono font-semibold uppercase text-sm mt-5 ">
+        recent fund history
       </h1>
 
       <div className="w-full flex flex-col mt-7 gap-3">
