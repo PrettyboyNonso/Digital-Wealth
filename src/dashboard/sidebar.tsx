@@ -22,6 +22,7 @@ import {
   EyeIcon,
   HandHelping,
   HistoryIcon,
+  IdCardIcon,
   LayoutDashboard,
   LogOutIcon,
   Wallet,
@@ -102,6 +103,11 @@ const items = [
     title: "Purchase Signals",
     url: "/dashboard/signals",
     icon: BarChartBig,
+  },
+  {
+    title: "Verify Account",
+    url: "/dashboard/signals",
+    icon: IdCardIcon,
   },
 
   {
