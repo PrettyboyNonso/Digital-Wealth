@@ -4,7 +4,9 @@ const Logs = () => {
   };
   return (
     <div className="px-3 py-3">
-      <h1 className="font-mono font-semibold capitalize">fund history</h1>
+      <h1 className="font-mono font-semibold capitalize text-sm">
+        fund history
+      </h1>
 
       <div className="w-full flex flex-col ">
         <LogsCard />
