@@ -19,6 +19,7 @@ import Plans from "./dashboard/Plans";
 // import Settings from "./dashboard/Settings";
 import SignalPage from "./dashboard/Signal";
 import Logs from "./dashboard/Logs";
+import Verify from "./dashboard/Verify";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -50,6 +51,7 @@ function App() {
               <Route path="plans" element={<Plans />} />
               <Route path="signals" element={<SignalPage />} />
               <Route path="logs" element={<Logs />} />
+              <Route path="verify" element={<Verify />} />
             </Route>
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />

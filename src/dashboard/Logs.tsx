@@ -32,6 +32,7 @@ const Logs = () => {
         <LogsCard />
         <LogsCard />
         <LogsCard />
+        <LogsCard />
       </div>
     </div>
   );

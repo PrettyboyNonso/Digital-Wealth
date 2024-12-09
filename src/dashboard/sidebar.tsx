@@ -106,7 +106,7 @@ const items = [
   },
   {
     title: "Verify Account",
-    url: "/dashboard/signals",
+    url: "/dashboard/verify",
     icon: IdCardIcon,
   },
 
