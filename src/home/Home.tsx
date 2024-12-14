@@ -18,6 +18,7 @@ import Chat from "@/reuseables/Chat";
 
 const Home = () => {
   const context = useContext(LoginContext);
+
   if (!context) {
     throw new Error("context not found");
   }

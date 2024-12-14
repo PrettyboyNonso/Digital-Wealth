@@ -1,13 +1,21 @@
 import LoginContext from "@/context/LoginContext";
-import { useContext } from "react";
+import { CSSProperties, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Login = () => {
+  const [loading] = useState(true);
+
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "white",
+  };
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
   }
-  const { loginFunc, LoginerrorMessage } = context;
+  const { loginFunc, LoginerrorMessage, loginLoading } = context;
   return (
     <div className="min-h-dvh w-full flex justify-center items-center bg-teal-50 md:px-10 px-2 lg:px-0">
       <div className="lg:w-[40%] w-[100%]  py-6 flex flex-col items-center justify-center bg-white px-3 md:px-10 rounded-md">
@@ -51,7 +59,18 @@ const Login = () => {
               className="bg-teal-600 w-full h-10 text-xs capitalize font-mons text-white font-bold rounded-md"
               type="submit"
             >
-              login
+              {loginLoading ? (
+                <ClipLoader
+                  color="white"
+                  loading={loading}
+                  cssOverride={override}
+                  size={30}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "login"
+              )}
             </button>
             <p className="mt-4 font-medium text-xs font-mons text-red-500">
               {LoginerrorMessage}

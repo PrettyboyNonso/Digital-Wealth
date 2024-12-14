@@ -1,13 +1,22 @@
 import LoginContext from "../context/LoginContext";
-import { useContext } from "react";
+import { CSSProperties, useContext, useState } from "react";
 import { Link } from "react-router-dom";
+import ClipLoader from "react-spinners/ClipLoader";
 
 const Register = () => {
+  const [loading] = useState(true);
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
   }
-  const { registerFunction, errorMessage, successMessage } = context;
+
+  const override: CSSProperties = {
+    display: "block",
+    margin: "0 auto",
+    borderColor: "white",
+  };
+  const { registerFunction, errorMessage, successMessage, registerLoading } =
+    context;
 
   return (
     <div className="min-h-dvh w-full flex justify-center items-center bg-teal-50 lg:px-0 md:px-10 px-2">
@@ -77,7 +86,18 @@ const Register = () => {
               type="submit"
               className="bg-teal-600 w-full h-10 text-xs capitalize font-mons text-white font-bold rounded-md"
             >
-              register
+              {registerLoading ? (
+                <ClipLoader
+                  color="white"
+                  loading={loading}
+                  cssOverride={override}
+                  size={30}
+                  aria-label="Loading Spinner"
+                  data-testid="loader"
+                />
+              ) : (
+                "register"
+              )}
             </button>
             <p className="mt-4 font-medium text-xs font-mons text-green-500 ">
               {successMessage}

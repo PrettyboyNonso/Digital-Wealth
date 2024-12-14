@@ -1,5 +1,5 @@
 // import { ArrowUpRight } from "lucide-react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import { ArrowUpRight } from "lucide-react";
 import LoginContext from "@/context/LoginContext";
@@ -12,7 +12,7 @@ const Responsive = () => {
     throw new Error("context is empty");
   }
 
-  const { isActive, sectionArray } = context;
+  const { isActive, sectionArray, isLoggedin, setisLoggedIn } = context;
 
   function openNavClose() {
     setNavIsOpen((prev: boolean) => {
@@ -56,6 +56,13 @@ const Responsive = () => {
     handleSmoothScroll(index);
     handleLinkClick();
   };
+
+  useEffect(() => {
+    setisLoggedIn(() => {
+      return localStorage.getItem("accessToken") ? true : false;
+    });
+    console.log(localStorage.getItem("accessToken"));
+  });
 
   return (
     <>
@@ -159,30 +166,31 @@ const Responsive = () => {
               </NavLink>
             </li>
           </ul>
+          {!isLoggedin ? (
+            <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex ">
+              <NavLink to="/register" onClick={handleLinkClick}>
+                <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-6 py-3">
+                  register
+                </button>
+              </NavLink>
 
-          {/* <div className="flex-grow-0 flex-shrink-0 basis-[25%]  gap-8 items-center justify-center flex ">
-            <NavLink to="/register" onClick={handleLinkClick}>
-              <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-6 py-3">
-                register
+              <NavLink to="login" onClick={handleLinkClick}>
+                <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-7 py-3">
+                  login
+                </button>
+              </NavLink>
+            </div>
+          ) : (
+            <NavLink
+              to="/dashboard"
+              className="flex-grow-0 flex-shrink-0 basis-[25%]  items-center justify-center flex flex-col"
+              onClick={() => (window.location.href = "/dashboard")}
+            >
+              <button className="rounded-sm flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
+                dashboard <ArrowUpRight className="w-4 h-4" />
               </button>
             </NavLink>
-
-            <NavLink to="login" onClick={handleLinkClick}>
-              <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-7 py-3">
-                login
-              </button>
-            </NavLink>
-          </div> */}
-
-          <NavLink
-            to="/dashboard"
-            className="flex-grow-0 flex-shrink-0 basis-[25%]  items-center justify-center flex flex-col"
-            onClick={() => (window.location.href = "/dashboard")}
-          >
-            <button className="rounded-sm flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
-              dashboard <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </NavLink>
+          )}
         </div>
       </div>
     </>

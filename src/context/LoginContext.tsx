@@ -1,5 +1,5 @@
 import { CryptoDetails } from "@/lib/utils";
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import React, {
   createContext,
   FormEvent,
@@ -33,13 +33,19 @@ interface LoginContextType {
   stockData: StockData;
   admin: boolean;
   setAdmin: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoggedin: boolean;
+  setisLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+  registerLoading: boolean;
+  setRegisterLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  loginLoading: boolean;
+  setLoginLoading: React.Dispatch<React.SetStateAction<boolean>>;
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
 export default LoginContext;
 
 export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
-  const [errorMessage, setErrorMessage] = useState("");
+  const [errorMessage, setErrorMessage] = useState<string>("");
   const [LoginerrorMessage, setLoginErrorMessage] = useState("");
   const [successMessage, setsuccessMessage] = useState("");
   const [assetState, setAssetState] = useState<CryptoDetails[]>([]);
@@ -47,6 +53,11 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const sectionArray = useRef<(HTMLElement | null)[]>([]);
   const [stockData, setStockData] = useState({});
   const [admin, setAdmin] = useState(false);
+  const [isLoggedin, setisLoggedIn] = useState(() => {
+    return localStorage.getItem("accessToken") ? true : false;
+  });
+  const [registerLoading, setRegisterLoading] = useState(false);
+  const [loginLoading, setLoginLoading] = useState(false);
 
   const apiKey = import.meta.env.VITE_STOCK_API;
   const fetchStockData = async (symbol: string) => {
@@ -177,6 +188,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
 
   // beginning of register function, this is the function called when you click "register button"
   const registerFunction = async (e: FormEvent<HTMLFormElement>) => {
+    setRegisterLoading(true);
     const details = authenticateRegister(e);
     if (details?.authenticated) {
       const requestData = {
@@ -194,38 +206,66 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
           }
         );
         if (response.status === 201) {
+          setRegisterLoading(false);
           setsuccessMessage(
-            "An email has been sent to your gmail account, proceed there for further confirmation"
+            "You have successfully registered, proceed to login"
           );
-          console.log(response.status);
-        } else {
-          throw new Error("An error occurred");
         }
       } catch (error) {
-        console.log(error);
+        setRegisterLoading(false);
+        if (error instanceof AxiosError && error.response) {
+          const errorData = error.response.data as { [key: string]: string[] };
+
+          const emailErrors = errorData.email?.join(", ");
+          const passwordErrors = errorData.password?.join(", ");
+
+          if (emailErrors) {
+            setErrorMessage(emailErrors);
+          }
+          if (passwordErrors) {
+            setErrorMessage(passwordErrors);
+          }
+        } else {
+          console.error("An unexpected error occurred.", error);
+        }
       }
+    } else {
+      setRegisterLoading(false);
     }
   };
 
   const loginFunc = async (e: FormEvent<HTMLFormElement>) => {
+    setLoginLoading(true);
     const details = authenticateLogin(e);
     if (details) {
-      const response = await fetch("endpoint goes here", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: details.userEmail,
-          password: details.userPassword,
-        }),
-      });
+      const response = await fetch(
+        "https://digital-wealth.onrender.com/auth/jwt/create",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: details.userEmail,
+            password: details.userPassword,
+          }),
+        }
+      );
 
       if (response.ok) {
-        console.log("Worked well");
+        const data = await response.json();
+        localStorage.setItem("refreshToken", data.refresh);
+        localStorage.setItem("accessToken", data.access);
+        setLoginLoading(false);
+        window.location.href = "/dashboard";
       } else {
-        throw new Error("an error occured");
+        setLoginLoading(false);
+        const data = await response.json();
+        console.log(data);
+        setLoginErrorMessage(data.detail);
       }
+    } else {
+      setLoginLoading(false);
     }
   };
 
@@ -244,6 +284,12 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     stockData,
     admin,
     setAdmin,
+    isLoggedin,
+    setisLoggedIn,
+    registerLoading,
+    setRegisterLoading,
+    loginLoading,
+    setLoginLoading,
   };
 
   return (

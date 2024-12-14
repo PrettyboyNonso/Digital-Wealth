@@ -31,6 +31,7 @@ const Dashboard = () => {
 
   useEffect(() => {
     fetchStockData("IBM");
+    console.log(localStorage.getItem("accessToken"));
   }, []);
 
   return (
@@ -63,7 +64,7 @@ const Dashboard = () => {
                 <div className="flex items-center bg-greencustom px-3 py-1 gap-1 rounded-sm">
                   <ArrowUp className="w-4 h-4" /> <span className="">0.00</span>
                 </div>
-                <p className="font-mons text-gray-300 font-semibold lg:text-base text-xs">
+                <p className="font-mons text-gray-300 font-semibold  text-xs">
                   Compared to market data
                 </p>
               </div>

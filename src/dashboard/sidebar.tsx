@@ -22,6 +22,7 @@ import {
   EyeIcon,
   HandHelping,
   HistoryIcon,
+  Home,
   IdCardIcon,
   LayoutDashboard,
   LogOutIcon,
@@ -111,6 +112,12 @@ const items = [
   },
 
   {
+    title: "Back Home",
+    url: "/",
+    icon: Home,
+  },
+
+  {
     title: "Log out",
     url: "#",
     icon: LogOutIcon,
@@ -122,6 +129,12 @@ const SideNav = () => {
   if (context === null) {
     throw new Error("state is mismanaged");
   }
+
+  const Logout = () => {
+    setOpenMobile(false);
+    localStorage.clear();
+    window.location.href = "/";
+  };
 
   const { admin } = context;
   const { setOpenMobile } = useSidebar();
@@ -156,7 +169,11 @@ const SideNav = () => {
                       <SidebarMenuItem
                         key={item.title}
                         className="font-mono font-medium text-black"
-                        onClick={() => setOpenMobile(false)}
+                        onClick={() =>
+                          item.title === "Log out"
+                            ? Logout()
+                            : setOpenMobile(false)
+                        }
                       >
                         <SidebarMenuButton asChild>
                           <NavLink to={item.url}>

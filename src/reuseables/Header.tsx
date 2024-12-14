@@ -1,8 +1,9 @@
 import LoginContext from "@/context/LoginContext";
 import { CryptoDetails } from "@/lib/utils";
 import Responsive from "@/Responsive";
+import { ArrowUpRight } from "lucide-react";
 
-import { useContext } from "react";
+import { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 
 const LoadingCoin = () => {
@@ -50,7 +51,15 @@ const Header = () => {
     throw new Error("context is empty");
   }
 
-  const { assetState, isActive, sectionArray } = context;
+  const { assetState, isActive, sectionArray, isLoggedin, setisLoggedIn } =
+    context;
+
+  useEffect(() => {
+    setisLoggedIn(() => {
+      return localStorage.getItem("accessToken") ? true : false;
+    });
+    console.log(localStorage.getItem("accessToken"));
+  });
 
   function handleSmoothScroll(index: number) {
     sectionArray.current[index]?.scrollIntoView({
@@ -140,28 +149,30 @@ const Header = () => {
             </ul>
           </nav>
 
-          <div className="flex-grow-0 flex-shrink-0 basis-[20%]  gap-12 items-end justify-end lg:flex hidden">
-            <NavLink to="/register">
-              <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-3 py-1">
-                register
+          {!isLoggedin ? (
+            <div className="flex-grow-0 flex-shrink-0 basis-[20%]  gap-12 items-end justify-end lg:flex hidden">
+              <NavLink to="/register">
+                <button className="text-xs text-white font-bold font-mons capitalize bg-teal-600 px-3 py-1">
+                  register
+                </button>
+              </NavLink>
+
+              <NavLink to="/login">
+                <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-3 py-1">
+                  login
+                </button>
+              </NavLink>
+            </div>
+          ) : (
+            <NavLink
+              to="/dashboard"
+              className="flex-grow-0 flex-shrink-0 basis-[25%] justify-center lg:flex hidden"
+            >
+              <button className="flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
+                dashboard <ArrowUpRight className="w-4 h-4" />
               </button>
             </NavLink>
-
-            <NavLink to="/login">
-              <button className="text-xs text-gray-600 font-bold font-mons capitalize border  border-teal-600 px-3 py-1">
-                login
-              </button>
-            </NavLink>
-          </div>
-
-          {/* <NavLink
-            to="/dashboard"
-            className="flex-grow-0 flex-shrink-0 basis-[25%] justify-center lg:flex hidden"
-          >
-            <button className="flex gap-1 bg-orange-700 text-xs font-mons px-3 py-2 text-white capitalize font-semibold">
-              dashboard <ArrowUpRight className="w-4 h-4" />
-            </button>
-          </NavLink> */}
+          )}
         </div>
       </header>
       <Responsive />

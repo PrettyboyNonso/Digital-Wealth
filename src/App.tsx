@@ -3,7 +3,7 @@ import Login from "./Login/Login";
 // import Register from "./Login/Register";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import { LoginProvider } from "./context/LoginContext";
+import LoginContext, { LoginProvider } from "./context/LoginContext";
 import Dashboard from "./dashboard/dashboard";
 import Layout from "./layout";
 import Dashboardlayout from "./dashboard/dashboardlayout";
@@ -20,6 +20,7 @@ import Plans from "./dashboard/Plans";
 import SignalPage from "./dashboard/Signal";
 import Logs from "./dashboard/Logs";
 import Verify from "./dashboard/Verify";
+import { useContext } from "react";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -27,6 +28,13 @@ export interface stateFunc {
 }
 
 function App() {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("state is mismanaged");
+  }
+
+  const { isLoggedin } = context;
+
   return (
     <BrowserRouter>
       <LoginProvider>
@@ -40,7 +48,11 @@ function App() {
                 </Layout>
               }
             />
-            <Route path="dashboard/*" element={<Dashboardlayout />}>
+
+            <Route
+              path="dashboard/*"
+              element={isLoggedin ? <Dashboardlayout /> : <Login />}
+            >
               <Route index element={<Dashboard />} />
               <Route path="deposit" element={<Deposit />} />
               <Route path="withdraw" element={<Withdraw />} />
@@ -53,6 +65,7 @@ function App() {
               <Route path="logs" element={<Logs />} />
               <Route path="verify" element={<Verify />} />
             </Route>
+
             <Route path="/register" element={<Register />} />
             <Route path="/login" element={<Login />} />
             <Route path="/auth" element={<Auth />} />
