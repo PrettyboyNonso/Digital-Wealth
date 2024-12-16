@@ -46,16 +46,16 @@ const Dashboard = ({
   const WalletPart = () => {
     const [Network, setNetwork] = useState("TRC20");
     return (
-      <div className="w-[90%] absolute top-[40%] z-50 shadow-2xl rounded-md left-[50%] -translate-x-[50%] bg-white border border-teal-600  px-4 py-4">
+      <div className=" w-[90%] absolute top-[40%] z-50 shadow-2xl rounded-md left-[50%] -translate-x-[50%] bg-black border border-teal-600  px-4 py-4">
         <div className="w-full items-center flex justify-between">
-          <h2 className="font-mono text-sm font-bold uppercase">
+          <h2 className="font-mono text-sm font-bold uppercase text-white">
             enter <span className="text-teal-600">USDT</span> deposit address
           </h2>
 
-          <X onClick={() => setOpenConnect(false)} />
+          <X onClick={() => setOpenConnect(false)} className="text-white" />
         </div>
 
-        <div className="w-full items-center mt-2 flex gap-2  font-mono font-bold text-sm">
+        <div className="w-full items-center mt-2 flex gap-2  font-mono font-bold text-sm text-white">
           <p
             className={`px-2 py-1 border ${
               Network === "TRC20" ? "border-green-600" : "border-solid"
@@ -78,7 +78,7 @@ const Dashboard = ({
           <input
             type="text"
             placeholder="deposit address"
-            className="outline-none border-2 border-black px-2 py-3 w-full font-mono capitalize text-xs shadow-md"
+            className="outline-none border-2 border-white px-2 py-3 w-full font-mono capitalize text-xs shadow-md"
           />
 
           <button className="mt-6 w-full bg-green-600 py-2 font-mono font-bold text-sm capitalize rounded-md shadow-sm">

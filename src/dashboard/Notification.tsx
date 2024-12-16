@@ -14,7 +14,7 @@ const Notification = ({
 
       <div className="flex flex-col gap-3 w-full mt-5">
         <div className="flex items-center">
-          <div className="flex-shrink-0 flex-grow-0 basis-[15%] border-4 border-solid px-2 py-2 rounded-[50%]">
+          <div className="flex-shrink-0 flex-grow-0  border-4 border-solid px-2 py-2 rounded-[50%]">
             <Home />
             <div className=""></div>
           </div>
