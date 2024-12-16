@@ -48,7 +48,7 @@ const Dashboard = ({
     return (
       <div className="w-[90%] absolute top-[40%] z-50 shadow-2xl rounded-md left-[50%] -translate-x-[50%] bg-white border border-teal-600  px-4 py-4">
         <div className="w-full items-center flex justify-between">
-          <h2 className="font-mono text-xs font-bold uppercase">
+          <h2 className="font-mono text-sm font-bold uppercase">
             enter <span className="text-teal-600">USDT</span> deposit address
           </h2>
 
