@@ -118,6 +118,7 @@ const Plans = () => {
         </div>
 
         <button
+          disabled={openPay}
           className="bg-blue-700 font-mono text-white mt-4 uppercase text-sm rounded-sm px-6 py-1"
           onClick={() => setOpenPay(true)}
         >

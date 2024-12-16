@@ -21,6 +21,7 @@ import SignalPage from "./dashboard/Signal";
 import Logs from "./dashboard/Logs";
 import Verify from "./dashboard/Verify";
 import { useContext, useState } from "react";
+import Chat from "./dashboard/Chat";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -73,6 +74,7 @@ function App() {
               <Route path="signals" element={<SignalPage />} />
               <Route path="logs" element={<Logs />} />
               <Route path="verify" element={<Verify />} />
+              <Route path="chat" element={<Chat />} />
             </Route>
 
             <Route path="/register" element={<Register />} />

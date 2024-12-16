@@ -12,6 +12,7 @@ import {
   ArrowRight,
   ArrowUp,
   Bitcoin,
+  Copy,
   // Copy,
   PiggyBank,
   Wallet,
@@ -89,10 +90,48 @@ const Dashboard = ({
     );
   };
 
+  const AdminDashboard = () => {
+    const User = () => {
+      return (
+        <div className="flex items-center bg-transparent border border-solid shadow-lg px-2 py-5 rounded-md ">
+          <div className="flex-shrink-0 flex-grow-0 basis-[70%] flex gap-2">
+            <div className="w-9 uppercase flex justify-center items-center font-black text-white rounded-[50%] bg-orange-500">
+              {" "}
+              jb
+            </div>
+            <div>
+              <h1 className="font-mons capitalize text-xs font-bold">
+                jonathan Bleming
+              </h1>
+              <p className="font-mons mt-1 text-xs font-medium">
+                jbleming@gmail.com
+              </p>
+            </div>
+          </div>
+
+          <div className="flex-shrink-0 flex-grow-0 basis-[30%] w-full flex flex-col gap-2">
+            <Copy className="self-end w-5 h-5 text-blue-800" />
+          </div>
+        </div>
+      );
+    };
+    return (
+      <div className="px-2 py-4">
+        <h1 className="font-mons  font-bold uppercase text-xs">all users</h1>
+
+        <div className="flex flex-col mt-4 gap-2">
+          <User />
+          <User />
+          <User />
+        </div>
+      </div>
+    );
+  };
+
   return (
     <>
       {admin ? (
-        <div className=""></div>
+        <AdminDashboard />
       ) : !openNotification ? (
         <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start relative">
           {openConnect && <WalletPart />}

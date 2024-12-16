@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 
 const SignalPage = () => {
+  const [clickedSignal, setClickedSignal] = useState(false);
   interface SignalType {
     name: string;
     amount: string;
@@ -23,9 +24,33 @@ const SignalPage = () => {
       percent: "70%",
     },
   ];
+
+  const AreUSure = () => {
+    return (
+      <div className="fixed top-[50%] left-[50%] -translate-x-[50%] bg-teal-500 z-[60] w-[90%] px-2 py-4 rounded-md">
+        <h1 className="text-center w-full capitalize font-mons text-xs font-bold">
+          you are about to pay <span className="text-white">$1300</span> for{" "}
+          <span className="text-white">momentum signals</span>
+        </h1>
+
+        <div className="w-full flex justify-between px-3 mt-4 items-center">
+          <button
+            className="text-white font-bold flex-shrink-0 flex-grow-0 basis-[45%] py-2 rounded-md  capitalize font-mons text-xs bg-red-600"
+            onClick={() => setClickedSignal(false)}
+          >
+            cancel
+          </button>
+          <button className="flex-shrink-0 flex-grow-0 basis-[45%] py-2 rounded-md  capitalize font-mons font-bold text-xs bg-green-600">
+            pay
+          </button>
+        </div>
+      </div>
+    );
+  };
   const Signals: React.FC<{ value: SignalType }> = ({ value }) => {
     return (
-      <div className="w-full flex flex-col border border-solid md:w-[50%] ">
+      <div className="relative w-full flex flex-col border border-solid md:w-[50%] ">
+        {clickedSignal && <AreUSure />}
         <div className="w-full bg-gray-100 py-2 flex justify-center rounded-md">
           <h1 className="font-mons capitalize text-blue-400 font-semibold">
             {value.name}
@@ -44,7 +69,10 @@ const SignalPage = () => {
           </p>
         </div>
 
-        <button className="bg-blue-700 py-2 text-sm text-white font-mono font-bold capitalize">
+        <button
+          className="bg-blue-700 py-2 text-sm text-white font-mono font-bold capitalize"
+          onClick={() => setClickedSignal(true)}
+        >
           subscribe now
         </button>
       </div>

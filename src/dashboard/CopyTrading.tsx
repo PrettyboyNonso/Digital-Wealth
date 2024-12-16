@@ -1,8 +1,32 @@
 import { StarIcon } from "@heroicons/react/24/solid";
+import { useState } from "react";
 
 const CopyTrading = () => {
+  const [clickedCopy, setClickedCopy] = useState(false);
+  const AreUSure = () => {
+    return (
+      <div className="fixed top-[50%] left-[50%] -translate-x-[50%] bg-teal-500 z-[60] w-[90%] px-2 py-4 rounded-md">
+        <h1 className="text-center w-full capitalize font-mons text-xs font-bold">
+          are you sure you want to copy this trader?
+        </h1>
+
+        <div className="w-full flex justify-between px-3 mt-4 items-center">
+          <button
+            className="text-white font-bold flex-shrink-0 flex-grow-0 basis-[45%] py-2 rounded-md  capitalize font-mons text-xs bg-red-600"
+            onClick={() => setClickedCopy(false)}
+          >
+            no
+          </button>
+          <button className="flex-shrink-0 flex-grow-0 basis-[45%] py-2 rounded-md  capitalize font-mons font-bold text-xs bg-green-600">
+            yes
+          </button>
+        </div>
+      </div>
+    );
+  };
   return (
-    <div className=" w-full justify-between h-fit py-8 px-4 items-center flex lg:flex-row flex-col gap-6 lg:gap-0">
+    <div className="relative w-full justify-between h-fit py-8 px-4 items-center flex lg:flex-row flex-col gap-6 lg:gap-0">
+      {clickedCopy && <AreUSure />}
       <div className="flex flex-col lg:w-[48%] min-h-56 border border-solid shadow-md relative py-3 w-[100%]">
         <p className="bg-yellow-500 font-mons text-xs py-1  rounded-sm font-bold capitalize absolute top-2 left-2 px-4">
           pro
@@ -47,7 +71,11 @@ const CopyTrading = () => {
             </div>
           </div>
 
-          <button className="w-full mt-5 bg-green-500 py-2 rounded-sm text-white font-mono capitalize">
+          <button
+            disabled={clickedCopy}
+            className="w-full mt-5 bg-green-500 py-2 rounded-sm text-white font-mono capitalize"
+            onClick={() => setClickedCopy(true)}
+          >
             copy Javis B
           </button>
         </div>
@@ -97,7 +125,11 @@ const CopyTrading = () => {
             </div>
           </div>
 
-          <button className="w-full mt-5 bg-green-500 py-2 rounded-sm text-white font-mono capitalize">
+          <button
+            disabled={clickedCopy}
+            className="w-full mt-5 bg-green-500 py-2 rounded-sm text-white font-mono capitalize"
+            onClick={() => setClickedCopy(true)}
+          >
             copy Mara
           </button>
         </div>

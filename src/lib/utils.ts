@@ -6,6 +6,42 @@ export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
 
+export async function createPayment(
+  amount: string,
+  currency: string,
+  orderId: string
+) {
+  const BASE_URL = "https://api.cryptomus.com/v1";
+  const API_KEY =
+    "28gxbvZLzxm74A8hwil0Id6Dn9QsFzrq2HV5k8jBw3DZqVDqDkY61rEWjrqUbXTu9xV2LKM3Ir2ms5KSOYtG64jz4G2Bfx8qjsJ6ez1jJuDkmxvTf8F2FheUtNUxwReM";
+  const MERCHANT_ID = "c0e8c0a6-73e3-4ae6-82da-c5634c40655e";
+  try {
+    const body = JSON.stringify({
+      amount,
+      currency,
+      order_id: orderId,
+    });
+    const response = await fetch(`${BASE_URL}/payment`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        merchant: MERCHANT_ID,
+        sign: API_KEY,
+      },
+      body,
+    });
+
+    if (!response.ok) {
+      const errorData = await response.json();
+      return errorData;
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export interface HeroProps {
   head: string;
   paragraph: string;

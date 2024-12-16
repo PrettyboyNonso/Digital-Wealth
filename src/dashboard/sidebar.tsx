@@ -26,15 +26,23 @@ import {
   IdCardIcon,
   LayoutDashboard,
   LogOutIcon,
+  MessageCircle,
+  Users,
   Wallet,
 } from "lucide-react";
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 const adminItems = [
   {
-    title: "Home",
+    title: "Users",
     url: "/dashboard",
-    icon: LayoutDashboard,
+    icon: Users,
+  },
+
+  {
+    title: "Chat",
+    url: "/dashboard/chat",
+    icon: MessageCircle,
   },
   {
     title: "Deposit",
@@ -47,9 +55,10 @@ const adminItems = [
     url: "/dashboard/withdraw",
     icon: Wallet,
   },
+
   {
     title: "Push Notifications",
-    url: "/dashboard/notify",
+    url: "/dashboard/loan",
     icon: Bell,
   },
 ];
@@ -109,6 +118,11 @@ const items = [
     title: "Verify Account",
     url: "/dashboard/verify",
     icon: IdCardIcon,
+  },
+  {
+    title: "Chat",
+    url: "/dashboard/chat",
+    icon: MessageCircle,
   },
 
   {

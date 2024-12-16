@@ -88,6 +88,7 @@ const Upgrade = () => {
             </div>
 
             <button
+              disabled={openPay}
               className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm"
               onClick={() => setOpenPay(true)}
             >
@@ -137,6 +138,7 @@ const Upgrade = () => {
             </div>
 
             <button
+              disabled={openPay}
               className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm"
               onClick={() => setOpenPay(true)}
             >
@@ -186,6 +188,7 @@ const Upgrade = () => {
             </div>
 
             <button
+              disabled={openPay}
               className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm"
               onClick={() => setOpenPay(true)}
             >
