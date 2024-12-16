@@ -1,9 +1,10 @@
 import LoginContext from "@/context/LoginContext";
 import { formatNumberWithCommas } from "@/lib/utils";
-import { ArrowRight, Check, Wallet } from "lucide-react";
-import { useContext } from "react";
+import { ArrowRight, Check, Wallet, X } from "lucide-react";
+import { useContext, useState } from "react";
 
 const Upgrade = () => {
+  const [openPay, setOpenPay] = useState(false);
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
@@ -11,8 +12,40 @@ const Upgrade = () => {
 
   const { assetState } = context;
 
+  const Amount = () => {
+    return (
+      <div className="top-[50%] fixed border border-solid w-[80%] left-[50%] -translate-x-[50%] px-4 bg-teal-50 py-4 rounded-md">
+        <div className="flex w-full justify-between font-mons uppercase text-xs items-center font-semibold ">
+          <h2>plan upgrade</h2>
+          <X className="w-6 h-6" onClick={() => setOpenPay(false)} />
+        </div>
+
+        <form action="" className="mt-5">
+          <label
+            htmlFor=""
+            className="font-mons text-xs font-semibold capitalize"
+          >
+            amount (USD)
+          </label>
+          <input
+            type="number"
+            placeholder="$0.00"
+            className="outline-none mt-2 border border-solid w-full px-2 py-2  font-mons text-xs font-semibold"
+          />
+
+          <button
+            className="mt-4 bg-blue-600 text-white w-full font-mons text-xs font-bold uppercase
+           py-3 rounded-md"
+          >
+            pay
+          </button>
+        </form>
+      </div>
+    );
+  };
   return (
-    <div className="w-full h-full py-4 lg:py-0 px-4 lg:flex lg:justify-between lg:items-start">
+    <div className="absolute w-full h-full py-4 lg:py-0 px-4 lg:flex lg:justify-between lg:items-start">
+      {openPay && <Amount />}
       <div className="flex flex-col w-full gap-14 mt-3 lg:w-[50%] lg:px-4 lg:py-4">
         <div className="w-full px-2 py-2 min-h-52 lg:border lg:border-solid lg:shadow-xl lg:rounded-md lg:py-5">
           <h2 className="w-full text-center font-mono text-lg font-semibold text-blue-600 uppercase lg:text-xl">
@@ -54,7 +87,10 @@ const Upgrade = () => {
               </p>
             </div>
 
-            <button className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm">
+            <button
+              className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm"
+              onClick={() => setOpenPay(true)}
+            >
               join plan
             </button>
           </div>
@@ -100,7 +136,10 @@ const Upgrade = () => {
               </p>
             </div>
 
-            <button className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm">
+            <button
+              className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm"
+              onClick={() => setOpenPay(true)}
+            >
               join plan
             </button>
           </div>
@@ -146,7 +185,10 @@ const Upgrade = () => {
               </p>
             </div>
 
-            <button className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm">
+            <button
+              className="text-sm font-mono font-bold uppercase mt-4 bg-blue-600 text-white py-3 rounded-sm"
+              onClick={() => setOpenPay(true)}
+            >
               join plan
             </button>
           </div>

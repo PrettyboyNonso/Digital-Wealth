@@ -1,4 +1,8 @@
+import { X } from "lucide-react";
+import { useState } from "react";
+
 const Plans = () => {
+  const [openPay, setOpenPay] = useState(false);
   interface PlansInterface {
     plan: string;
     percent: string;
@@ -43,9 +47,42 @@ const Plans = () => {
       maxDeposit: "$5000",
     },
   ];
+
+  const Amount = () => {
+    return (
+      <div className="top-[50%] fixed border border-solid w-[80%] left-[50%] -translate-x-[50%] px-4 bg-blue-50 py-4 rounded-md">
+        <div className="flex w-full justify-between font-mons uppercase text-xs items-center font-semibold ">
+          <h2>select plan</h2>
+          <X className="w-6 h-6" onClick={() => setOpenPay(false)} />
+        </div>
+
+        <form action="" className="mt-5">
+          <label
+            htmlFor=""
+            className="font-mons text-xs font-semibold capitalize"
+          >
+            amount (USD)
+          </label>
+          <input
+            type="number"
+            placeholder="$0.00"
+            className="outline-none mt-2 border border-solid w-full px-2 py-2  font-mons text-xs font-semibold"
+          />
+
+          <button
+            className="mt-4 bg-black text-white w-full font-mons text-xs font-bold uppercase
+           py-3 rounded-md"
+          >
+            pay
+          </button>
+        </form>
+      </div>
+    );
+  };
   const PlanCard: React.FC<{ value: PlansInterface }> = ({ value }) => {
     return (
-      <div className="shadow-md flex-shrink-0 flex-grow-0 w-full py-4 border border-solid h-full flex flex-col items-center gap-3 md:w-[50%]">
+      <div className="relative shadow-md flex-shrink-0 flex-grow-0 w-full py-4 border border-solid h-full flex flex-col items-center gap-3 md:w-[50%]">
+        {openPay && <Amount />}
         <div className="w-full  flex text-sm justify-center text-white uppercase font-mons font-semibold ">
           <h1 className="bg-blue-700 py-2 px-4 mt-4">{value.plan}</h1>
         </div>
@@ -80,7 +117,10 @@ const Plans = () => {
           </div>
         </div>
 
-        <button className="bg-blue-700 font-mono text-white mt-4 uppercase text-sm rounded-sm px-6 py-1">
+        <button
+          className="bg-blue-700 font-mono text-white mt-4 uppercase text-sm rounded-sm px-6 py-1"
+          onClick={() => setOpenPay(true)}
+        >
           select plan
         </button>
       </div>

@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const ViewLoan = () => {
   return (
     <div className="w-full h-svh flex justify-center items-center">
@@ -12,9 +14,11 @@ const ViewLoan = () => {
         </p>
         <p className="text-gray-600 font-mono font-bold capitalize text-xs"></p>
 
-        <button className="mt-8 bg-green-600 text-white px-3 py-2 font-mono text-xs lg:text-sm font-bold capitalize rounded-md">
-          apply for a loan
-        </button>
+        <Link to="/dashboard/loan">
+          <button className="mt-8 bg-green-600 text-white px-3 py-2 font-mono text-xs lg:text-sm font-bold capitalize rounded-md">
+            apply for a loan
+          </button>
+        </Link>
       </div>
     </div>
   );

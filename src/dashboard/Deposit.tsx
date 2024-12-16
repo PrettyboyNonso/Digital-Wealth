@@ -1,9 +1,10 @@
 import LoginContext from "@/context/LoginContext";
 import { formatNumberWithCommas } from "@/lib/utils";
-import { ArrowRight, ArrowUpDown, Info, Wallet } from "lucide-react";
-import { useContext } from "react";
+import { ArrowBigDown, ArrowRight, Info, Wallet } from "lucide-react";
+import { useContext, useState } from "react";
 
 const Deposit = () => {
+  const [inputval, setInputval] = useState("0.00");
   const context = useContext(LoginContext);
 
   if (context === null) {
@@ -42,37 +43,34 @@ const Deposit = () => {
 
               <div className=" flex-shrink-0 flex-grow-0 basis-[70%]">
                 <p className="text-white  flex justify-end uppercase font-mons font-semibold text-sm">
-                  $0.00
+                  ${formatNumberWithCommas(parseInt(inputval))}
                 </p>
               </div>
             </div>
           </div>
 
           <div className="absolute border bg-black opacity-90 px-3 rounded-xl py-2 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
-            <ArrowUpDown className="text-white lg:w-5 lg:h-5" />
+            <ArrowBigDown className="text-white lg:w-5 lg:h-5" />
           </div>
 
           <div className="px-4 py-5 min-h-fit bg-black rounded-md">
             <div className="w-full flex justify-between text-white">
               <p className="uppercase text-gray-400 font-mons font-semibold text-xs">
-                buying
+                receiving
               </p>
             </div>
 
-            <div className="mt-5 w-[100%] flex  justify-between">
-              <div className="flex items-center flex-shrink-0 flex-grow-0 basis-[30%] gap-1">
-                <img
-                  src="https://coin-images.coingecko.com/coins/images/1/thumb/bitcoin.png?1696501400"
-                  alt=""
-                />
+            <div className="mt-5 w-[100%] flex items-center justify-between">
+              <div className="flex items-center flex-shrink-0 flex-grow-0 basis-[30%] gap-2">
+                <Wallet className="text-yellow-500" />
                 <p className="text-white  uppercase font-mons font-semibold text-xs">
-                  btc
+                  wallet
                 </p>
               </div>
 
               <div className=" flex-shrink-0 flex-grow-0 basis-[70%]">
                 <p className="text-white flex justify-end uppercase font-mons font-semibold text-sm">
-                  0.00
+                  ${formatNumberWithCommas(parseInt(inputval))}
                 </p>
               </div>
             </div>
@@ -81,11 +79,11 @@ const Deposit = () => {
 
         <div className="mt-3 flex justify-between w-full">
           <p className="font-mons font-medium text-green-500  text-xs uppercase">
-            rate
+            balance
           </p>
           <div className="flex justify-end">
             <p className="font-mons text-xs font-semibold text-gray-500  uppercase lg:text-xs lg:text-black">
-              1 btc = $98,465
+              $0.00
             </p>
           </div>
         </div>
@@ -98,6 +96,7 @@ const Deposit = () => {
             type="number"
             placeholder="$0.00"
             className=" mt-4 w-full font-mons font-bold capitalize text-xs px-2 py-4 border-2 border-teal-500 outline-none rounded-md"
+            onChange={(e) => setInputval(e.target.value)}
           />
 
           <button className="text-xs mt-10 flex justify-center items-center w-full bg-green-500 text-white font-mons capitalize font-bold py-3 rounded-md">

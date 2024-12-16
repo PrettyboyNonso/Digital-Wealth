@@ -81,8 +81,8 @@ const Dashboard = ({
             className="outline-none border-2 border-white px-2 py-3 w-full font-mono capitalize text-xs shadow-md"
           />
 
-          <button className="mt-6 w-full bg-green-600 py-2 font-mono font-bold text-sm capitalize rounded-md shadow-sm">
-            add address
+          <button className="mt-6 w-full bg-green-600 py-2 text-white font-mono font-bold text-sm capitalize rounded-md shadow-sm">
+            save address
           </button>
         </form>
       </div>
