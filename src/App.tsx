@@ -20,7 +20,7 @@ import Plans from "./dashboard/Plans";
 import SignalPage from "./dashboard/Signal";
 import Logs from "./dashboard/Logs";
 import Verify from "./dashboard/Verify";
-import { useContext } from "react";
+import { useContext, useState } from "react";
 
 export interface stateFunc {
   navIsOpen: boolean;
@@ -28,6 +28,7 @@ export interface stateFunc {
 }
 
 function App() {
+  const [openNotification, setOpenNotification] = useState(false);
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
@@ -53,7 +54,15 @@ function App() {
               path="dashboard/*"
               element={isLoggedin ? <Dashboardlayout /> : <Login />}
             >
-              <Route index element={<Dashboard />} />
+              <Route
+                index
+                element={
+                  <Dashboard
+                    openNotification={openNotification}
+                    setOpenNotification={setOpenNotification}
+                  />
+                }
+              />
               <Route path="deposit" element={<Deposit />} />
               <Route path="withdraw" element={<Withdraw />} />
               <Route path="loan" element={<Loan />} />

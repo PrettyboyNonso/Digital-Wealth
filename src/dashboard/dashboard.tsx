@@ -11,17 +11,26 @@ import {
   ArrowLeftRight,
   ArrowRight,
   ArrowUp,
-  BellIcon,
   Bitcoin,
-  Copy,
+  // Copy,
   PiggyBank,
   Wallet,
+  X,
 } from "lucide-react";
-import { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
-import ChartComponent from "./ChartComponent";
+import Bell from "./Bell";
+import Notification from "./Notification";
+// import ChartComponent from "./ChartComponent";
 
-const Dashboard = () => {
+const Dashboard = ({
+  openNotification,
+  setOpenNotification,
+}: {
+  openNotification: boolean;
+  setOpenNotification: React.Dispatch<React.SetStateAction<boolean>>;
+}) => {
+  const [openConnect, setOpenConnect] = useState(false);
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
@@ -34,19 +43,66 @@ const Dashboard = () => {
     console.log(localStorage.getItem("accessToken"));
   }, []);
 
+  const WalletPart = () => {
+    const [Network, setNetwork] = useState("TRC20");
+    return (
+      <div className="w-[90%] absolute top-[40%] z-50 shadow-2xl rounded-md left-[50%] -translate-x-[50%] bg-white border border-teal-600  px-4 py-4">
+        <div className="w-full items-center flex justify-between">
+          <h2 className="font-mono text-xs font-bold uppercase">
+            enter <span className="text-teal-600">USDT</span> deposit address
+          </h2>
+
+          <X onClick={() => setOpenConnect(false)} />
+        </div>
+
+        <div className="w-full items-center mt-2 flex gap-2  font-mono font-bold text-sm">
+          <p
+            className={`px-2 py-1 border ${
+              Network === "TRC20" ? "border-green-600" : "border-solid"
+            }  `}
+            onClick={() => setNetwork("TRC20")}
+          >
+            TRC20
+          </p>
+          <p
+            className={`px-2 py-1 border ${
+              Network === "ERC20" ? "border-green-600" : "border-solid"
+            }  `}
+            onClick={() => setNetwork("ERC20")}
+          >
+            ERC20
+          </p>
+        </div>
+
+        <form action="" className="mt-4">
+          <input
+            type="text"
+            placeholder="deposit address"
+            className="outline-none border-2 border-black px-2 py-3 w-full font-mono capitalize text-xs shadow-md"
+          />
+
+          <button className="mt-6 w-full bg-green-600 py-2 font-mono font-bold text-sm capitalize rounded-md shadow-sm">
+            add address
+          </button>
+        </form>
+      </div>
+    );
+  };
+
   return (
     <>
       {admin ? (
         <div className=""></div>
-      ) : (
-        <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start">
+      ) : !openNotification ? (
+        <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start relative">
+          {openConnect && <WalletPart />}
           <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
             <div className="flex justify-between items-center">
               <h1 className="font-mons font-semibold text-xs capitalize">
                 welcome, Apoloski!
               </h1>
 
-              <BellIcon className="text-gray-700" />
+              <Bell setOpenNotification={setOpenNotification} />
             </div>
 
             <div className="w-full min-h-32 px-4 py-4 border border-solid mt-5 lg:mt-3 shadow-lg bg-black rounded-md lg:py-6 lg:min-h-fit">
@@ -54,7 +110,7 @@ const Dashboard = () => {
                 <p className="capitalize font-semibold font-mons text-gray-300 text-[13px] lg:text-xs">
                   deposits
                 </p>
-                <Copy className="text-white cursor-pointer lg:w-4 lg:h-4 w-5 h-5" />
+                {/* <Copy className="text-white cursor-pointer lg:w-4 lg:h-4 w-5 h-5" /> */}
               </div>
 
               <h1 className=" lg:mt-1 mt-2 lg:text-lg text-[15px] font-semibold font-mons capitalize text-white">
@@ -108,11 +164,11 @@ const Dashboard = () => {
               </div>
             </div>
 
-            <div className="mt-10 w-full lg:hidden">
+            {/* <div className="mt-10 w-full lg:hidden">
               <ChartComponent />
-            </div>
+            </div> */}
 
-            <div className="bg-blue-600 py-4 min-h-fit rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid  flex flex-col items-center">
+            <div className="bg-blue-600 py-4 min-h-fit rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid  flex flex-col items-center mt-4">
               <Wallet className="text-white w-5 h-5" />
               <h1 className="text-white font-mono font-semibold capitalize lg:text-base text-sm">
                 connect wallet
@@ -121,7 +177,10 @@ const Dashboard = () => {
                 earn daily 250 for connecting your wallet
               </p>
 
-              <button className="mt-6 bg-white lg:px-5 py-2 px-4 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
+              <button
+                className="mt-6 bg-white lg:px-5 py-2 px-4 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center"
+                onClick={() => setOpenConnect(true)}
+              >
                 connect now
                 <ArrowRight />
               </button>
@@ -249,6 +308,8 @@ const Dashboard = () => {
             </div>
           </div>
         </div>
+      ) : (
+        <Notification setOpenNotification={setOpenNotification} />
       )}
     </>
   );

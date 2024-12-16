@@ -1,10 +1,11 @@
 import LoginContext from "@/context/LoginContext";
 import { formatNumberWithCommas } from "@/lib/utils";
-import { ArrowRight, ArrowUpDown, BellIcon, Info, Wallet } from "lucide-react";
+import { ArrowRight, ArrowUpDown, Info, Wallet } from "lucide-react";
 import { useContext } from "react";
 
 const Deposit = () => {
   const context = useContext(LoginContext);
+
   if (context === null) {
     throw new Error("state is mismanaged");
   }
@@ -13,14 +14,6 @@ const Deposit = () => {
   return (
     <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start">
       <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
-        <div className="flex justify-between items-center">
-          <h1 className="font-mons font-semibold text-xs capitalize">
-            welcome, Apoloski!
-          </h1>
-
-          <BellIcon className="text-gray-700" />
-        </div>
-
         <div className="mt-2 flex gap-2 items-center bg-green-500 py-2 px-1 rounded-md">
           <Info className="text-white w-5 h-5" />
           <p className="text-xs font-mons capitalize font-semibold text-white">
