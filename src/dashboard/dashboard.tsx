@@ -168,7 +168,7 @@ const Dashboard = ({
               <ChartComponent />
             </div> */}
 
-            <div className="bg-blue-600 py-4 min-h-fit rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid  flex flex-col items-center mt-4">
+            <div className="bg-blue-600 py-4 min-h-fit rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid  flex flex-col items-center mt-8">
               <Wallet className="text-white w-5 h-5" />
               <h1 className="text-white font-mono font-semibold capitalize lg:text-base text-sm">
                 connect wallet
