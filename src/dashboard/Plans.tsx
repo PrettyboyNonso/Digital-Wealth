@@ -52,7 +52,7 @@ const Plans = () => {
     return (
       <div className="top-[50%] fixed border border-solid w-[80%] left-[50%] -translate-x-[50%] px-4 bg-blue-50 py-4 rounded-md">
         <div className="flex w-full justify-between font-mons uppercase text-xs items-center font-semibold ">
-          <h2>select plan</h2>
+          <h2 className="font-bold">select plan</h2>
           <X className="w-6 h-6" onClick={() => setOpenPay(false)} />
         </div>
 

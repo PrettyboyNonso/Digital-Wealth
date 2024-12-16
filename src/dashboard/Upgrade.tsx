@@ -16,7 +16,7 @@ const Upgrade = () => {
     return (
       <div className="top-[50%] fixed border border-solid w-[80%] left-[50%] -translate-x-[50%] px-4 bg-teal-50 py-4 rounded-md">
         <div className="flex w-full justify-between font-mons uppercase text-xs items-center font-semibold ">
-          <h2>plan upgrade</h2>
+          <h2 className="font-bold">plan upgrade</h2>
           <X className="w-6 h-6" onClick={() => setOpenPay(false)} />
         </div>
 
