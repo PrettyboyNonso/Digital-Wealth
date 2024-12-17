@@ -12,9 +12,8 @@ export async function createPayment(
   orderId: string
 ) {
   const BASE_URL = "https://api.cryptomus.com/v1";
-  const API_KEY =
-    "28gxbvZLzxm74A8hwil0Id6Dn9QsFzrq2HV5k8jBw3DZqVDqDkY61rEWjrqUbXTu9xV2LKM3Ir2ms5KSOYtG64jz4G2Bfx8qjsJ6ez1jJuDkmxvTf8F2FheUtNUxwReM";
-  const MERCHANT_ID = "c0e8c0a6-73e3-4ae6-82da-c5634c40655e";
+  const API_KEY = import.meta.env.VITE_APIKEY;
+  const MERCHANT_ID = import.meta.env.VITE_MERCHANTID;
   try {
     const body = JSON.stringify({
       amount,

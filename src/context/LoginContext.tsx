@@ -52,7 +52,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   const [isActive, setIsActive] = useState("");
   const sectionArray = useRef<(HTMLElement | null)[]>([]);
   const [stockData, setStockData] = useState({});
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
   const [isLoggedin, setisLoggedIn] = useState(() => {
     return localStorage.getItem("accessToken") ? true : false;
   });
