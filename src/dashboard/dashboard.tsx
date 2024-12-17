@@ -37,7 +37,7 @@ const Dashboard = ({
     throw new Error("state is mismanaged");
   }
 
-  const { fetchStockData, assetState, admin } = context;
+  const { fetchStockData, assetState, admin, userData } = context;
 
   useEffect(() => {
     fetchStockData("IBM");
@@ -138,7 +138,7 @@ const Dashboard = ({
           <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
             <div className="flex justify-between items-center">
               <h1 className="font-mons font-semibold text-xs capitalize">
-                welcome, Apoloski!
+                welcome, {userData.name}!
               </h1>
 
               <Bell setOpenNotification={setOpenNotification} />
@@ -153,11 +153,12 @@ const Dashboard = ({
               </div>
 
               <h1 className=" lg:mt-1 mt-2 lg:text-lg text-[15px] font-semibold font-mons capitalize text-white">
-                $0.00
+                ${userData.account_balance}
               </h1>
               <div className="flex mt-3 text-white gap-3 font-mons font-medium text-xs items-center">
                 <div className="flex items-center bg-greencustom px-3 py-1 gap-1 rounded-sm">
-                  <ArrowUp className="w-4 h-4" /> <span className="">0.00</span>
+                  <ArrowUp className="w-4 h-4" />{" "}
+                  <span className="">{userData.account_balance}</span>
                 </div>
                 <p className="font-mons text-gray-300 font-semibold  text-xs">
                   Compared to market data

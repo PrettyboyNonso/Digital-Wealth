@@ -1,10 +1,18 @@
+import LoginContext from "@/context/LoginContext";
 import { Home, X } from "lucide-react";
+import { useContext } from "react";
 
 const Notification = ({
   setOpenNotification,
 }: {
   setOpenNotification: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
+  const context = useContext(LoginContext);
+  if (context === null) {
+    throw new Error("state is mismanaged");
+  }
+
+  const { userData } = context;
   return (
     <div className="w-full px-4 py-2">
       <div className="w-full flex justify-between items-center">
@@ -19,7 +27,7 @@ const Notification = ({
           </div>
           <div className="flex flex-col gap-1">
             <h2 className="font-mons text-xs capitalize font-bold">
-              welcome apoloski
+              welcome {userData.name}
             </h2>
             <p className="font-mons text-xs capitalize font-semibold">
               welcome to digital wealth, your beginning to financial freedom

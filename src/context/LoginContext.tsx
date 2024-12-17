@@ -1,5 +1,6 @@
 import { CryptoDetails } from "@/lib/utils";
 import axios, { AxiosError } from "axios";
+import { jwtDecode } from "jwt-decode";
 import React, {
   createContext,
   FormEvent,
@@ -17,6 +18,13 @@ type StockData = {
     5: string; // adjusted close price
   };
 };
+
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  account_balance: number;
+}
 
 interface LoginContextType {
   registerFunction: (e: FormEvent<HTMLFormElement>) => void;
@@ -39,6 +47,16 @@ interface LoginContextType {
   setRegisterLoading: React.Dispatch<React.SetStateAction<boolean>>;
   loginLoading: boolean;
   setLoginLoading: React.Dispatch<React.SetStateAction<boolean>>;
+  userId: string;
+  userData: User;
+}
+
+interface DecodedToken {
+  token_type: string;
+  exp: number;
+  iat: number;
+  jti: string;
+  user_id: number;
 }
 const LoginContext = createContext<LoginContextType | null>(null);
 
@@ -58,6 +76,14 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
   });
   const [registerLoading, setRegisterLoading] = useState(false);
   const [loginLoading, setLoginLoading] = useState(false);
+  const [userId] = useState<string>(() => {
+    const storedUserId = localStorage.getItem("userId");
+    return storedUserId ? JSON.parse(storedUserId) : "";
+  });
+  const [userData] = useState(() => {
+    const storedData = localStorage.getItem("userData");
+    return storedData ? JSON.parse(storedData) : "";
+  });
 
   const apiKey = import.meta.env.VITE_STOCK_API;
   const fetchStockData = async (symbol: string) => {
@@ -175,7 +201,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
       setErrorMessage("");
 
       return {
-        fullName: fullName,
+        name: fullName,
         userEmail: userEmail,
         userPassword: userPassword,
         confirmPassword: confirmPassword,
@@ -192,6 +218,7 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     const details = authenticateRegister(e);
     if (details?.authenticated) {
       const requestData = {
+        name: details.name,
         email: details.userEmail,
         password: details.userPassword,
       };
@@ -254,10 +281,42 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
 
       if (response.ok) {
         const data = await response.json();
+
         localStorage.setItem("refreshToken", data.refresh);
         localStorage.setItem("accessToken", data.access);
-        setLoginLoading(false);
-        window.location.href = "/dashboard";
+        const decoded: DecodedToken = jwtDecode(data.access);
+
+        console.log(decoded);
+        localStorage.setItem("userId", JSON.stringify(decoded.user_id));
+        const accessToken = localStorage.getItem("accessToken") || "";
+        // const authHeader = `Bearer ${
+        //   accessToken ? JSON.parse(accessToken) : ""
+        // }`;
+        try {
+          const response = await fetch(
+            `https://digital-wealth.onrender.com/auth/users/${userId}`,
+            {
+              method: "GET",
+              headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${accessToken}`,
+              },
+            }
+          );
+          if (!response.ok) {
+            const errorData = await response.json();
+            console.error("Failed to fetch:", errorData);
+            setLoginErrorMessage(errorData.message);
+            throw new Error(errorData.message || "An error occurred");
+          }
+          const data = await response.json();
+          console.log("Fetched data:", data);
+          localStorage.setItem("userData", JSON.stringify(data));
+          setLoginLoading(false);
+          window.location.href = "/dashboard";
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         setLoginLoading(false);
         const data = await response.json();
@@ -290,6 +349,8 @@ export const LoginProvider = ({ children }: { children: React.ReactNode }) => {
     setRegisterLoading,
     loginLoading,
     setLoginLoading,
+    userId,
+    userData,
   };
 
   return (
