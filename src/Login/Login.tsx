@@ -77,9 +77,12 @@ const Login = () => {
             </p>
             <p className="mt-4 font-semibold text-[11px] font-mons capitalize">
               don't have an account?{" "}
-              <Link to="/register" className="underline text-teal-600">
+              <p
+                className="underline text-teal-600"
+                onClick={() => (window.location.href = "/register")}
+              >
                 register
-              </Link>
+              </p>
             </p>
             <p className="mt-1 italic font-semibold text-teal-500 text-[11px] font-mons capitalize">
               <Link to="/">back to homepage</Link>

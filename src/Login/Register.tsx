@@ -106,10 +106,13 @@ const Register = () => {
               {errorMessage}
             </p>
             <p className="mt-4 font-semibold text-[11px] font-mons capitalize">
-              have an account already?{" "}
-              <Link to="/login" className="underline text-teal-600">
+              have an account already?
+              <p
+                className="underline text-teal-600"
+                onClick={() => (window.location.href = "/login")}
+              >
                 login
-              </Link>
+              </p>
             </p>
             <p className="mt-1 italic font-semibold text-teal-500 text-[11px] font-mons capitalize">
               <Link to="/">back to homepage</Link>
