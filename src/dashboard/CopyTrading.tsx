@@ -5,7 +5,7 @@ const CopyTrading = () => {
   const [clickedCopy, setClickedCopy] = useState(false);
   const AreUSure = () => {
     return (
-      <div className="fixed top-[50%] left-[50%] -translate-x-[50%] bg-teal-500 z-[60] w-[90%] px-2 py-4 rounded-md">
+      <div className="md:w-[30%] fixed top-[50%] left-[50%] -translate-x-[50%] bg-teal-500 z-[60] w-[90%] px-2 py-4 rounded-md">
         <h1 className="text-center w-full capitalize font-mons text-xs font-bold">
           are you sure you want to copy this trader?
         </h1>

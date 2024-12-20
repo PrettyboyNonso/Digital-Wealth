@@ -5,16 +5,31 @@ import {
   loanDurationOptions,
   loanFacilityOptions,
 } from "@/lib/utils";
-import { ArrowRight, Wallet } from "lucide-react";
-import { useContext } from "react";
+
+import { useContext, useEffect } from "react";
 import Select from "react-select";
+import Connect from "./Connect";
+import { WalletPart } from "./WalletPart";
 const Loan = () => {
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
   }
 
-  const { assetState, admin } = context;
+  const {
+    assetState,
+    admin,
+    Walleterror,
+    fetchUser,
+    checkWalletConnection,
+    FetchWallet,
+  } = context;
+
+  useEffect(() => {
+    fetchUser();
+    checkWalletConnection();
+    FetchWallet();
+  }, []);
 
   const AdminNotify = () => {
     return (
@@ -75,7 +90,8 @@ const Loan = () => {
       {admin ? (
         <AdminNotify />
       ) : (
-        <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start">
+        <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start relative">
+          {Walleterror && <WalletPart />}
           <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
             <div className="w-full">
               <h2 className="text-center font-mono text-xs lg:text-sm capitalize font-bold  w-full mt-2">
@@ -204,20 +220,7 @@ const Loan = () => {
                 ))}
               </div>
             </div>
-            <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
-              <Wallet className="text-white" />
-              <h1 className="text-white font-mono font-semibold capitalize">
-                connect wallet
-              </h1>
-              <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
-                earn daily 250 for connecting your wallet
-              </p>
-
-              <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
-                connect now
-                <ArrowRight />
-              </button>
-            </div>
+            <Connect />
           </div>
         </div>
       )}

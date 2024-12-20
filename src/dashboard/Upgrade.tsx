@@ -1,7 +1,9 @@
 import LoginContext from "@/context/LoginContext";
 import { formatNumberWithCommas } from "@/lib/utils";
-import { ArrowRight, Check, Wallet, X } from "lucide-react";
-import { useContext, useState } from "react";
+import { Check, X } from "lucide-react";
+import { useContext, useEffect, useState } from "react";
+import Connect from "./Connect";
+import { WalletPart } from "./WalletPart";
 
 const Upgrade = () => {
   const [openPay, setOpenPay] = useState(false);
@@ -10,14 +12,29 @@ const Upgrade = () => {
     throw new Error("state is mismanaged");
   }
 
-  const { assetState } = context;
+  const {
+    assetState,
+    Walleterror,
+    fetchUser,
+    checkWalletConnection,
+    FetchWallet,
+  } = context;
+
+  useEffect(() => {
+    fetchUser();
+    checkWalletConnection();
+    FetchWallet();
+  }, []);
 
   const Amount = () => {
     return (
-      <div className="top-[50%] fixed border border-solid w-[80%] left-[50%] -translate-x-[50%] px-4 bg-teal-50 py-4 rounded-md">
+      <div className="top-[50%] md:w-[30%] fixed border border-solid w-[80%] left-[50%] -translate-x-[50%] px-4 bg-teal-50 py-4 rounded-md z-50">
         <div className="flex w-full justify-between font-mons uppercase text-xs items-center font-semibold ">
           <h2 className="font-bold">plan upgrade</h2>
-          <X className="w-6 h-6" onClick={() => setOpenPay(false)} />
+          <X
+            className="w-6 h-6 cursor-pointer"
+            onClick={() => setOpenPay(false)}
+          />
         </div>
 
         <form action="" className="mt-5">
@@ -46,6 +63,7 @@ const Upgrade = () => {
   return (
     <div className="absolute w-full h-full py-4 lg:py-0 px-4 lg:flex lg:justify-between lg:items-start">
       {openPay && <Amount />}
+      {Walleterror && <WalletPart />}
       <div className="flex flex-col w-full gap-14 mt-3 lg:w-[50%] lg:px-4 lg:py-4">
         <div className="w-full px-2 py-2 min-h-52 lg:border lg:border-solid lg:shadow-xl lg:rounded-md lg:py-5">
           <h2 className="w-full text-center font-mono text-lg font-semibold text-blue-600 uppercase lg:text-xl">
@@ -239,20 +257,7 @@ const Upgrade = () => {
             ))}
           </div>
         </div>
-        <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
-          <Wallet className="text-white" />
-          <h1 className="text-white font-mono font-semibold capitalize">
-            connect wallet
-          </h1>
-          <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
-            earn daily 250 for connecting your wallet
-          </p>
-
-          <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
-            connect now
-            <ArrowRight />
-          </button>
-        </div>
+        <Connect />
       </div>
     </div>
   );

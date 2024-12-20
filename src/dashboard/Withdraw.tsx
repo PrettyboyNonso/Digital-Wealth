@@ -4,16 +4,31 @@ import {
   handleChange,
   walletOptions,
 } from "@/lib/utils";
-import { ArrowRight, Info, Wallet } from "lucide-react";
-import { useContext } from "react";
+import { Info } from "lucide-react";
+import { useContext, useEffect } from "react";
 import Select from "react-select";
+import Connect from "./Connect";
+import { WalletPart } from "./WalletPart";
 const Withdraw = () => {
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
   }
 
-  const { assetState, admin } = context;
+  const {
+    assetState,
+    admin,
+    Walleterror,
+    fetchUser,
+    checkWalletConnection,
+    FetchWallet,
+  } = context;
+
+  useEffect(() => {
+    fetchUser();
+    checkWalletConnection();
+    FetchWallet();
+  }, []);
 
   const AdminWithdraw = () => {
     const Withdrawal = () => {
@@ -48,7 +63,8 @@ const Withdraw = () => {
       {admin ? (
         <AdminWithdraw />
       ) : (
-        <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start">
+        <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start relative">
+          {Walleterror && <WalletPart />}
           <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
             <div className="mt-4 flex gap-1 items-center bg-red-500 py-2 rounded-sm px-1">
               <Info className="text-white w-5 h-5" />
@@ -159,20 +175,7 @@ const Withdraw = () => {
                 ))}
               </div>
             </div>
-            <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
-              <Wallet className="text-white" />
-              <h1 className="text-white font-mono font-semibold capitalize">
-                connect wallet
-              </h1>
-              <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
-                earn daily 250 for connecting your wallet
-              </p>
-
-              <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
-                connect now
-                <ArrowRight />
-              </button>
-            </div>
+            <Connect />
           </div>
         </div>
       )}

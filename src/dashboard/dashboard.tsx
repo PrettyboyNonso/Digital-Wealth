@@ -9,19 +9,19 @@ import {
 } from "@/lib/utils";
 import {
   ArrowLeftRight,
-  ArrowRight,
   ArrowUp,
   Bitcoin,
   Copy,
   // Copy,
   PiggyBank,
-  Wallet,
-  X,
 } from "lucide-react";
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect } from "react";
 import { NavLink } from "react-router-dom";
 import Bell from "./Bell";
 import Notification from "./Notification";
+import Connect from "./Connect";
+import { WalletPart } from "./WalletPart";
+
 // import ChartComponent from "./ChartComponent";
 
 const Dashboard = ({
@@ -31,64 +31,30 @@ const Dashboard = ({
   openNotification: boolean;
   setOpenNotification: React.Dispatch<React.SetStateAction<boolean>>;
 }) => {
-  const [openConnect, setOpenConnect] = useState(false);
   const context = useContext(LoginContext);
   if (context === null) {
     throw new Error("state is mismanaged");
   }
 
-  const { fetchStockData, assetState, admin, userData } = context;
+  const {
+    fetchStockData,
+    assetState,
+    admin,
+    userData,
+    Walleterror,
+
+    fetchUser,
+    checkWalletConnection,
+    wallet,
+    FetchWallet,
+  } = context;
 
   useEffect(() => {
     fetchStockData("IBM");
-    console.log(localStorage.getItem("accessToken"));
+    fetchUser();
+    checkWalletConnection();
+    FetchWallet();
   }, []);
-
-  const WalletPart = () => {
-    const [Network, setNetwork] = useState("TRC20");
-    return (
-      <div className=" w-[90%] fixed top-[40%] z-50 shadow-2xl rounded-md left-[50%] -translate-x-[50%] bg-black border border-teal-600  px-4 py-4">
-        <div className="w-full items-center flex justify-between">
-          <h2 className="font-mono text-sm font-bold uppercase text-white">
-            enter <span className="text-teal-600">USDT</span> deposit address
-          </h2>
-
-          <X onClick={() => setOpenConnect(false)} className="text-white" />
-        </div>
-
-        <div className="w-full items-center mt-2 flex gap-2  font-mono font-bold text-sm text-white">
-          <p
-            className={`px-2 py-1 border ${
-              Network === "TRC20" ? "border-green-600" : "border-solid"
-            }  `}
-            onClick={() => setNetwork("TRC20")}
-          >
-            TRC20
-          </p>
-          <p
-            className={`px-2 py-1 border ${
-              Network === "ERC20" ? "border-green-600" : "border-solid"
-            }  `}
-            onClick={() => setNetwork("ERC20")}
-          >
-            ERC20
-          </p>
-        </div>
-
-        <form action="" className="mt-4">
-          <input
-            type="text"
-            placeholder="deposit address"
-            className="outline-none border-2 border-white px-2 py-3 w-full font-mono capitalize text-xs shadow-md"
-          />
-
-          <button className="mt-6 w-full bg-green-600 py-2 text-white font-mono font-bold text-sm capitalize rounded-md shadow-sm">
-            save address
-          </button>
-        </form>
-      </div>
-    );
-  };
 
   const AdminDashboard = () => {
     const User = () => {
@@ -134,7 +100,7 @@ const Dashboard = ({
         <AdminDashboard />
       ) : !openNotification ? (
         <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start relative">
-          {openConnect && <WalletPart />}
+          {Walleterror && <WalletPart />}
           <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
             <div className="flex justify-between items-center">
               <h1 className="font-mons font-semibold text-xs capitalize">
@@ -153,7 +119,7 @@ const Dashboard = ({
               </div>
 
               <h1 className=" lg:mt-1 mt-2 lg:text-lg text-[15px] font-semibold font-mons capitalize text-white">
-                ${userData.account_balance}
+                ${wallet.account_balance}
               </h1>
               <div className="flex mt-3 text-white gap-3 font-mons font-medium text-xs items-center">
                 <div className="flex items-center bg-greencustom px-3 py-1 gap-1 rounded-sm">
@@ -208,24 +174,9 @@ const Dashboard = ({
               <ChartComponent />
             </div> */}
 
-            <div className="bg-blue-600 py-4 min-h-fit rounded-md flex-shrink-0 lg:hidden flex-grow-0 basis-[48%] border border-solid  flex flex-col items-center mt-8">
-              <Wallet className="text-white w-5 h-5" />
-              <h1 className="text-white font-mono font-semibold capitalize lg:text-base text-sm">
-                connect wallet
-              </h1>
-              <p className="text-black mt-1 text-xs font-mono font-bold capitalize">
-                earn daily 250 for connecting your wallet
-              </p>
-
-              <button
-                className="mt-6 bg-white lg:px-5 py-2 px-4 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center"
-                onClick={() => setOpenConnect(true)}
-              >
-                connect now
-                <ArrowRight />
-              </button>
+            <div className="md:hidden">
+              <Connect />
             </div>
-
             <div className="mt-12 lg:mt-16">
               {/* <h2 className="text-[16px] font-mons capitalize font-bold">assets</h2> */}
               <form action="" className="w-full mt-4">
@@ -332,20 +283,7 @@ const Dashboard = ({
                 ))}
               </div>
             </div>
-            <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
-              <Wallet className="text-white" />
-              <h1 className="text-white font-mono font-semibold capitalize">
-                connect wallet
-              </h1>
-              <p className="text-gray-300 text-xs font-mono font-bold capitalize ">
-                earn daily 250 for connecting your wallet
-              </p>
-
-              <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
-                connect now
-                <ArrowRight />
-              </button>
-            </div>
+            <Connect />
           </div>
         </div>
       ) : (

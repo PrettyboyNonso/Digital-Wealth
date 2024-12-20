@@ -1,37 +1,38 @@
 import LoginContext from "@/context/LoginContext";
-import { createPayment, formatNumberWithCommas } from "@/lib/utils";
-import { ArrowBigDown, ArrowRight, Copy, Info, Wallet } from "lucide-react";
-import { FormEvent, useContext, useState } from "react";
+import { formatNumberWithCommas } from "@/lib/utils";
+import { ArrowBigDown, Copy, Info, Wallet } from "lucide-react";
+import { useContext, useEffect } from "react";
+import Connect from "./Connect";
+import { WalletPart } from "./WalletPart";
 
 const Deposit = () => {
-  const [inputval, setInputval] = useState("0.00");
   const context = useContext(LoginContext);
-  const [error, setError] = useState("");
-  // const [paymentLink, setPaymentLink] = useState("");
 
   if (context === null) {
     throw new Error("state is mismanaged");
   }
 
-  const { assetState, admin } = context;
-  async function AuthenticateWithdrawal(e: FormEvent<HTMLFormElement>) {
-    e.preventDefault();
-    const event = e.target as HTMLFormElement;
-    const input = event.amount.value;
-    if (input.trim() !== "") {
-      try {
-        const orderId = `order_${Date.now()}`;
-        const response = await createPayment(input, "USDT", orderId);
-        // setPaymentLink(response.result.url);
-        console.log(response);
-      } catch (error) {
-        console.log(error);
-      }
-    } else {
-      setError("You can't have an empty field");
-    }
-  }
+  const {
+    assetState,
+    admin,
+    inputval,
+    setInputval,
+    handleDeposit,
+    loading,
+    depositError,
+    Walleterror,
+    fetchUser,
+    checkWalletConnection,
+    userData,
+    totalbal,
+    FetchWallet,
+  } = context;
 
+  useEffect(() => {
+    fetchUser();
+    checkWalletConnection();
+    FetchWallet();
+  }, []);
   const AdminDeposit = () => {
     const Deposit = () => {
       return (
@@ -77,6 +78,7 @@ const Deposit = () => {
         <AdminDeposit />
       ) : (
         <div className="w-full h-full py-4 px-4 lg:flex lg:justify-between lg:items-start">
+          {Walleterror && <WalletPart />}
           <div className="lg:w-[50%] lg:border lg:border-solid lg:shadow-xl lg:px-4 lg:py-4 rounded-md">
             <div className="mt-2 flex gap-2 items-center bg-green-500 py-2 px-1 rounded-md">
               <Info className="text-white w-5 h-5" />
@@ -146,14 +148,14 @@ const Deposit = () => {
               </p>
               <div className="flex justify-end">
                 <p className="font-mons text-xs font-semibold text-gray-500  uppercase lg:text-xs lg:text-black">
-                  $0.00
+                  ${userData.account_balance}
                 </p>
               </div>
             </div>
 
             <form
-              className="w-full mt-8 lg:mt-5"
-              onSubmit={(e) => AuthenticateWithdrawal(e)}
+              className="w-full mt-8 lg:mt-5 flex flex-col"
+              onSubmit={(e) => handleDeposit(e)}
             >
               <p className="font-mons font-bold text-gray-500   text-xs uppercase">
                 enter amount
@@ -163,14 +165,24 @@ const Deposit = () => {
                 placeholder="$0.00"
                 name="amount"
                 className=" mt-4 w-full font-mons font-bold capitalize text-xs px-2 py-4 border-2 border-teal-500 outline-none rounded-md"
+                step="any"
                 onChange={(e) => setInputval(e.target.value)}
               />
-
+              <p className="font-mons font-bold text-xs capitalize">
+                total charge: {formatNumberWithCommas(parseInt(totalbal))}
+              </p>
               <button className="text-xs mt-10 flex justify-center items-center w-full bg-green-500 text-white font-mons capitalize font-bold py-3 rounded-md">
-                proceed to payment
+                {loading ? "loading..." : "proceed to payment"}
               </button>
-              <p className="font-mons font-bold text-red-500 mt-1 text-xs ">
-                {error}
+
+              <p
+                className={`font-mons font-bold  mt-1 text-xs ${
+                  depositError === "Deposit sent successfully!"
+                    ? "text-green-600"
+                    : "text-red-500"
+                }`}
+              >
+                {depositError}
               </p>
             </form>
           </div>
@@ -221,20 +233,7 @@ const Deposit = () => {
                 ))}
               </div>
             </div>
-            <div className="bg-blue-600 py-4 min-h-48 rounded-md flex-shrink-0 flex-grow-0 basis-[48%] border border-solid rounde flex flex-col items-center">
-              <Wallet className="text-white" />
-              <h1 className="text-white font-mono font-semibold capitalize">
-                connect wallet
-              </h1>
-              <p className="text-gray-700 text-xs font-mono font-bold capitalize ">
-                earn daily 250 for connecting your wallet
-              </p>
-
-              <button className="mt-6 bg-white px-5 py-2 capitalize font-mono text-xs rounded-md  font-bold flex gap-1 items-center">
-                connect now
-                <ArrowRight />
-              </button>
-            </div>
+            <Connect />
           </div>
         </div>
       )}
